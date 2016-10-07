@@ -1,0 +1,61 @@
+{
+  "name": "vue-play-cli",
+  "version": "0.0.0",
+  "description": "Demonstrate vue components like a pro.",
+  "license": "MIT",
+  "repository": "egoist/vue-play-cli",
+  "author": {
+    "name": "EGOIST",
+    "email": "0x142857@gmail.com",
+    "url": "github.com/egoist"
+  },
+  "engines": {
+    "node": ">=4"
+  },
+  "scripts": {
+    "test": "jest && eslint *.js"
+  },
+  "files": [
+    "bin",
+    "lib"
+  ],
+  "bin": {
+    "vue-play": "bin/vue-play.js"
+  },
+  "keywords": [
+    ""
+  ],
+  "devDependencies": {
+    "jest-cli": "^15.1.1",
+    "eslint": "latest",
+    "eslint-config-egoist": "latest"
+  },
+  "jest": {
+    "testEnvironment": "node"
+  },
+  "eslintConfig": {
+    "extends": "egoist/esnext"
+  },
+  "dependencies": {
+    "babel-core": "^6.17.0",
+    "babel-helper-vue-jsx-merge-props": "^2.0.1",
+    "babel-loader": "^6.2.5",
+    "babel-plugin-syntax-jsx": "^6.13.0",
+    "babel-plugin-transform-runtime": "^6.15.0",
+    "babel-plugin-transform-vue-jsx": "^3.1.0",
+    "babel-preset-es2015": "^6.16.0",
+    "babel-preset-stage-2": "^6.17.0",
+    "cac": "^2.3.2",
+    "css-loader": "^0.25.0",
+    "html-webpack-plugin": "^2.22.0",
+    "path-exists": "^3.0.0",
+    "postcss-loader": "^0.13.0",
+    "postcss-nested": "^1.0.0",
+    "require-from-string": "^1.2.1",
+    "style-loader": "^0.13.1",
+    "vue-play": "^0.1.0",
+    "webpack": "2.1.0-beta.22",
+    "webpack-hot-middleware": "^2.12.2",
+    "webpack-hot-server": "^0.6.0"
+  }
+}
