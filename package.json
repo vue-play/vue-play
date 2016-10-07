@@ -1,0 +1,30 @@
+{
+  "name": "vue-play",
+  "version": "0.0.0",
+  "description": "Play with your vue components.",
+  "license": "MIT",
+  "repository": "egoist/vue-play",
+  "author": {
+    "name": "EGOIST",
+    "email": "0x142857@gmail.com",
+    "url": "github.com/egoist"
+  },
+  "engines": {
+    "node": ">=4"
+  },
+  "scripts": {
+    "test": "jest && eslint *.js",
+    "build:cjs": "vbuild --config vue.config.cjs.json"
+  },
+  "files": [
+    "dist"
+  ],
+  "main": "dist/vue-play.js",
+  "style": "dist/vue-play.css",
+  "keywords": [
+    ""
+  ],
+  "dependencies": {
+    "eva.js": "^1.0.0"
+  }
+}

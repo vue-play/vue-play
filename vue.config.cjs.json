@@ -1,0 +1,8 @@
+{
+  "cjs": true,
+  "vendor": false,
+  "compress": false,
+  "devtool": false,
+  "externals": ["eva.js"],
+  "filename": "vue-play"
+}
