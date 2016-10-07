@@ -8,6 +8,9 @@ update({pkg: cli.pkg}).notify()
 
 cli
   .option('production, p', 'Play in production mode')
+  .option('config, c', 'Specfic custom user config')
+  .option('webpack-config, wc', 'Specific custom webpack config')
+  .option('dist, d', 'Dist folder name')
 
 cli.command('*', 'Play a component', (input, flags) => {
   const options = Object.assign({

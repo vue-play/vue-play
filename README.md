@@ -71,7 +71,23 @@ play({
 })
 ```
 
-## Customize webpack config
+## Play config
+
+In most cases you only need to update babel, postcss or loaders, so here's the API for that:
+
+```js
+// play.config.js
+module.exports = {
+  // all the cli options can be defined here and:
+  babel: {}, // override babel options
+  postcss: [], // or function, override postcss options
+  loaders: [], // append to current loaders
+}
+```
+
+Run `vue-play -c` will auto load this file, and `-c /path/to/custom/file` to change location.
+
+## Use your own webpack config file
 
 Check out the [default webpack config](https://github.com/egoist/vue-play/blob/master/packages/vue-play-cli/lib/make-config.js), in brief, you can play with:
 
@@ -79,23 +95,7 @@ Check out the [default webpack config](https://github.com/egoist/vue-play/blob/m
 **postcss**: postcss-nested postcsss-simple-vars<br>
 **image and fonts**: file-loader
 
-### The simple? way
-
-Provide your own webpack.config.js and pass the path to it in `--config` option. In this way you will need to install loaders and plugins you used in your project.
-
-### The hard? way
-
-Provide a config file which exports a function, taking `config` and `options` as arguments. And you can modify the config as you like, and finally pass the path to it in `--config` option.
-
-```js
-// update-config.js
-// config - webpack config
-// options - cli arguments
-module.exports = (config, options) {
-  config.postcss.push(require('postcss-mixins'))
-  return config
-}
-```
+Provide your own webpack.config.js and pass the path to it in `--webpack-config` option. In this way you will need to install loaders and plugins you used in your project, since the default config was totally overridden.
 
 ## Badges
 

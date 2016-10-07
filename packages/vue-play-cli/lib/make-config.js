@@ -3,6 +3,7 @@ const path = require('path')
 const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const handleUserConfig = require('./handle-user-config')
 
 function cwd(file) {
   return path.resolve(process.cwd(), file || '')
@@ -24,7 +25,7 @@ module.exports = function (options) {
       options.entry
     ],
     output: {
-      path: cwd('play-dist'),
+      path: cwd(options.dist || 'play-dist'),
       filename: '[name].js',
       publicPath: '/'
     },
@@ -137,12 +138,17 @@ module.exports = function (options) {
     )
   }
 
+  if (options.webpackConfig) {
+    config = require(cwd(options.webpackConfig))
+  }
+
   if (options.config) {
-    const userConfig = require(cwd(options.config))
-    if (typeof userConfig === 'function') {
-      config = userConfig(config, options)
-    } else if (typeof userConfig === 'object') {
-      config = userConfig
+    const configFile = options.config === true ? './play.config.js' : options.config
+    const userConfig = require(cwd(configFile))
+    if (typeof userConfig === 'object') {
+      config = handleUserConfig(config, userConfig)
+    } else {
+      console.error(`Invalid config file: ${configFile}`)
     }
   }
 
