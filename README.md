@@ -64,7 +64,11 @@ play({
 
 ## Customize webpack config
 
-By default, 
+Check out the [default webpack config](https://github.com/egoist/vue-play/blob/master/packages/vue-play-cli/lib/make-config.js), in brief, you can play with:
+
+**babel**: es2015 stage-2<br>
+**postcss**: postcss-nested postcsss-simple-vars<br>
+**image and fonts**: file-loader
 
 ### The simple? way
 

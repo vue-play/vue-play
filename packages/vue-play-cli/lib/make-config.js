@@ -52,6 +52,13 @@ module.exports = function runWebpack(options) {
         {
           test: /\.vue$/,
           loader: 'vue'
+        },
+        {
+          test: /\.(ico|jpg|png|gif|eot|otf|webp|svg|ttf|woff|woff2)(\?.*)?$/,
+          loader: 'file',
+          query: {
+            name: 'static/media/[name].[hash:8].[ext]'
+          }
         }
       ]
     },
