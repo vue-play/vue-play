@@ -37,6 +37,15 @@ $ ~/my-button-component vue-play
 > play at http://localhost:5000
 ```
 
+Share the play spot with your team mates!
+
+```bash
+# bundled into ./play-dist
+$ vue-play -p
+# for example, deploy to gh-pages
+$ gh-pages -d ./play-dist
+```
+
 ## Advanced
 
 ### States and methods
