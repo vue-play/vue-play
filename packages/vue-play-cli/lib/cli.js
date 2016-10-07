@@ -4,6 +4,9 @@ const play = require('./')
 
 const cli = cac()
 
+cli
+  .option('production, p', 'Play in production mode')
+
 cli.command('*', 'Play a component', (input, flags) => {
   const options = Object.assign({
     entry: input[0]

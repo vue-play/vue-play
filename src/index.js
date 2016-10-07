@@ -37,7 +37,6 @@ const play = toys => {
   })
   app.router(routes)
   app.start(App, '#app')
-  console.log(app)
 }
 
 export {

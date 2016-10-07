@@ -1,4 +1,3 @@
-'use strict'
 const path = require('path')
 const webpack = require('webpack')
 const server = require('webpack-hot-server')
@@ -52,6 +51,10 @@ module.exports = function runWebpack(options) {
           test: /\.css$/,
           loader: 'css!postcss',
           fallbackLoader: 'style'
+        },
+        {
+          test: /\.vue$/,
+          loader: 'vue'
         }
       ]
     },
@@ -76,10 +79,31 @@ module.exports = function runWebpack(options) {
     }
   }
 
+  if (options.production) {
+    config.devtool = 'source-map'
+    config.plugins.push(
+      new webpack.optimize.UglifyJsPlugin({
+        sourceMap: true,
+        compressor: {
+          warnings: false
+        },
+        output: {
+          comments: false
+        }
+      })
+    )
+  } else {
+    config.devtool = 'eval-source-map'
+    config.entry.push(dir('node_modules/webpack-hot-middleware/client'))
+    config.plugins.push(
+      new webpack.HotModuleReplacementPlugin()
+    )
+  }
+
   const app = server({
     config,
     webpack,
-    hot: false
+    hot: true
   })
 
   app.listen(4000, () => {
