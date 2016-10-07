@@ -4,7 +4,6 @@ const update = require('update-notifier')
 const play = require('./')
 
 const cli = cac()
-console.log(cli.pkg)
 update({pkg: cli.pkg}).notify()
 
 cli

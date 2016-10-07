@@ -37,6 +37,53 @@ $ ~/my-button-component vue-play
 > play at http://localhost:5000
 ```
 
+## Advanced
+
+### States and methods
+
+How do I write play script so that my component can call a method or update a state? Well, you can simply:
+
+```js
+// pass a component object
+play({
+  Button: {
+    'with text': {
+      data() {
+        return {/* ... */}
+      },
+      methods: {
+        handleClick() {/* ... */}
+      },
+      render(h) {
+        return <MyButton on-click={this.handleClick}>text</MyButton>
+      }
+    }
+  }
+})
+```
+
+## Customize webpack config
+
+By default, 
+
+### The simple? way
+
+Provide your own webpack.config.js and pass the path to it in `--config` option. In this way you will need to install loaders and plugins you used in your project.
+
+### The hard? way
+
+Provide a config file which exports a function, taking `config` and `options` as arguments. And you can modify the config as you like, and finally pass the path to it in `--config` option.
+
+```js
+// update-config.js
+// config - webpack config
+// options - cli arguments
+module.exports = (config, options) {
+  config.postcss.push(require('postcss-mixins'))
+  return config
+}
+```
+
 ## License
 
 [MIT](https://egoist.mit-license.org) &copy; [EGOIST](https://github.com/egoist)

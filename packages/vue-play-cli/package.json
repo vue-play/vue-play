@@ -53,6 +53,7 @@
     "path-exists": "^3.0.0",
     "postcss-loader": "^0.13.0",
     "postcss-nested": "^1.0.0",
+    "postcss-simple-vars": "^3.0.0",
     "style-loader": "^0.13.1",
     "update-notifier": "^1.0.2",
     "vue-loader": "^9.5.1",
