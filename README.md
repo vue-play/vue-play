@@ -30,7 +30,7 @@ play({
 })
 ```
 
-Run the play script with command `vue-play`, and [see it in action!](http://vue-play-button.surge.sh)
+Run the play script with command `vue-play`, and [see it in action!](http://vue-play-button.surge.sh) ([code](https://github.com/egoist/vue-play-button))
 
 ```bash
 $ ~/my-button-component vue-play
