@@ -71,7 +71,7 @@ play({
 })
 ```
 
-## Play config
+### Play config
 
 In most cases you only need to update babel, postcss or loaders, so here's the API for that:
 
@@ -87,7 +87,7 @@ module.exports = {
 
 Run `vue-play -c` will auto load this file, and `-c /path/to/custom/file` to change location.
 
-## Use your own webpack config file
+### Use your own webpack config file
 
 Check out the [default webpack config](https://github.com/egoist/vue-play/blob/master/packages/vue-play-cli/lib/make-config.js), in brief, you can play with:
 
