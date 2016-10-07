@@ -12,7 +12,7 @@ function dir(file) {
   return path.join(__dirname, '../', file || '')
 }
 
-module.exports = function runWebpack(options) {
+module.exports = function (options) {
   const postcss = [
     require('postcss-nested'),
     require('postcss-simple-vars')
@@ -113,6 +113,7 @@ module.exports = function runWebpack(options) {
       loader: 'css?sourceMap&-autoprefixer&minimize'
     })
     webpack(config, (err, stats) => {
+      if (err) return console.error(err)
       console.log(stats.toString({
         colors: true,
         modules: false,
@@ -136,10 +137,8 @@ module.exports = function runWebpack(options) {
     )
   }
 
-
-  let userConfig
   if (options.config) {
-    userConfig = require(cwd(options.config))
+    const userConfig = require(cwd(options.config))
     if (typeof userConfig === 'function') {
       config = userConfig(config, options)
     } else if (typeof userConfig === 'object') {

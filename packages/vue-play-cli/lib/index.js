@@ -3,7 +3,7 @@ const path = require('path')
 const pathExists = require('path-exists')
 const runWebpack = require('./run-webpack')
 
-module.exports = function playMain(options) {
+module.exports = function (options) {
   options = Object.assign({}, options)
   options.entry = options.entry || './play.js'
 

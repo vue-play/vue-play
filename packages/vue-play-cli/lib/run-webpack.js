@@ -4,7 +4,7 @@ const webpack = require('webpack')
 const server = require('webpack-hot-server')
 const makeConfig = require('./make-config')
 
-module.exports = function runWebpack(options) {
+module.exports = function (options) {
   const config = makeConfig(options)
 
   const app = server({
