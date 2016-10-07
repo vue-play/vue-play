@@ -13,8 +13,9 @@
     "node": ">=4"
   },
   "scripts": {
-    "test": "npm run build:cjs",
-    "build:cjs": "vbuild --config vue.config.cjs.json"
+    "test": "npm run build",
+    "build": "vbuild --config vue.config.cjs.json",
+    "watch": "vbuild --config vue.config.cjs.json --watch"
   },
   "files": [
     "dist"
@@ -22,7 +23,11 @@
   "main": "dist/vue-play.js",
   "style": "dist/vue-play.css",
   "keywords": [
-    ""
+    "vue",
+    "play",
+    "storybook",
+    "component",
+    "ui"
   ],
   "dependencies": {
     "eva.js": "^1.0.0"

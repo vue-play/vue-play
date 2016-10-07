@@ -97,6 +97,22 @@ module.exports = (config, options) {
 }
 ```
 
+## Development
+
+```bash
+# link vue-play in vue-play-cli
+$ cd vue-play
+$ npm link 
+$ cd package/vue-play-cli
+$ npm link vue-play
+$ npm link
+
+# build vue-play
+$ npm run build
+# run example play script
+$ vue-play example.js
+```
+
 ## License
 
 [MIT](https://egoist.mit-license.org) &copy; [EGOIST](https://github.com/egoist)
