@@ -1,4 +1,6 @@
+'use strict'
 const path = require('path')
+const chalk = require('chalk')
 const webpack = require('webpack')
 const server = require('webpack-hot-server')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
@@ -135,7 +137,8 @@ module.exports = function runWebpack(options) {
     hot: true
   })
 
-  app.listen(4000, () => {
-    console.log(`http://localhost:4000`)
+  const port = options.port || 5000
+  app.listen(port, () => {
+    console.log(chalk.bold(`> play at http://localhost:${port}`))
   })
 }
