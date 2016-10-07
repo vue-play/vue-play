@@ -12,7 +12,7 @@ $ npm install -g vue-play-cli
 
 Then, let's play with your Button component, create a `play.js` in the root directory of your project (anywhere else is ok):
 
-```js
+```jsx
 // you don't need to install vue-play!
 import {play} from 'vue-play'
 // import the button you wanna play
