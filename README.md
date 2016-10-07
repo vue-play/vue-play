@@ -97,6 +97,13 @@ module.exports = (config, options) {
 }
 ```
 
+## Badges
+
+|package|version|
+|---|---|
+|vue-play|[![vue-play](https://img.shields.io/npm/v/vue-play.svg?style=flat-square)](https://www.npmjs.com/package/vue-play)|
+|vue-play-cli|[![vue-play-cli](https://img.shields.io/npm/v/vue-play-cli.svg?style=flat-square)](https://www.npmjs.com/package/vue-play-cli)|
+
 ## Development
 
 ```bash
