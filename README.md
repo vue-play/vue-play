@@ -1,4 +1,4 @@
-# Vue Play
+![logo](./media/logo.png)
 
 Play and demonstrate your Vue components, inspired by [react-storybook](https://github.com/kadirahq/react-storybook).
 
