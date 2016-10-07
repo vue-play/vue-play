@@ -1,6 +1,6 @@
 const spawn = require('child_process').spawnSync
 
-const version = process.argv.slice(2, 1) || 'patch'
+const version = process.argv[2] || 'patch'
 
 const test = exec('npm', ['test'])
 check(test)
@@ -11,15 +11,22 @@ check(bump)
 const publish = exec('npm', ['publish'])
 check(publish)
 
-const push = exec('git', ['push'])
+const pkg = require('./packages/vue-play-cli')
+const commit = exec('git', ['commit', '-am', `bump vue-play-cli -> ${pkg.version}`], './')
+check(commit)
+
+const push = exec('git', ['push'], './')
 check(push)
 
-function test(cmd) {
+function check(cmd) {
   if (cmd.status !== 0) {
-    process.exit(res.status)
+    process.exit(cmd.status)
   }
 }
 
-function exec(cmd, args) {
-  return spawn(cmd, args, {cwd: './packages/vue-play-cli', stdio: 'inherit'})
+function exec(cmd, args, cwd) {
+  return spawn(cmd, args, {
+    cwd: cwd || './packages/vue-play-cli',
+    stdio: 'inherit'}
+  )
 }
