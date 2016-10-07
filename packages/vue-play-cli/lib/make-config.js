@@ -47,7 +47,7 @@ module.exports = function (options) {
         {
           test: /\.js$/,
           loader: 'babel',
-          exclude: [/node_modules/]
+          exclude: [/node_modules|dist/]
         },
         {
           test: /\.vue$/,
