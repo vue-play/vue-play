@@ -11,7 +11,7 @@ check(bump)
 const publish = exec('npm', ['publish'])
 check(publish)
 
-const pkg = require('../packages/vue-play-cli')
+const pkg = require('../packages/vue-play-cli/package.json')
 const commit = exec('git', ['commit', '-am', `bump vue-play-cli -> ${pkg.version}`], './')
 check(commit)
 
