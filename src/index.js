@@ -18,7 +18,7 @@ const play = toys => {
           )
         }
       }
-      const routePath = `/${componentName}/${type.replace(' ', '_')}`
+      const routePath = `/${componentName}/${type.replace(/\s/g, '_')}`
       routePaths[componentName] = routePaths[componentName] || []
       routePaths[componentName].push({
         type: type,

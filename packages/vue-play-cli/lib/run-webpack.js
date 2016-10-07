@@ -2,6 +2,7 @@ const path = require('path')
 const webpack = require('webpack')
 const server = require('webpack-hot-server')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 function cwd(file) {
   return path.resolve(process.cwd(), file || '')
@@ -18,8 +19,8 @@ module.exports = function runWebpack(options) {
 
   const config = {
     entry: [
-      options.entry,
-      'style!vue-play/dist/vue-play.css'
+      'style!vue-play/dist/vue-play.css',
+      options.entry
     ],
     output: {
       path: cwd('play-dist'),
@@ -48,11 +49,6 @@ module.exports = function runWebpack(options) {
           exclude: [/node_modules/]
         },
         {
-          test: /\.css$/,
-          loader: 'css!postcss',
-          fallbackLoader: 'style'
-        },
-        {
           test: /\.vue$/,
           loader: 'vue'
         }
@@ -75,12 +71,14 @@ module.exports = function runWebpack(options) {
     },
     postcss,
     vue: {
+      loaders: {},
       postcss
     }
   }
 
   if (options.production) {
     config.devtool = 'source-map'
+    config.output.filename = '[name].[chunkhash:8].js'
     config.plugins.push(
       new webpack.optimize.UglifyJsPlugin({
         sourceMap: true,
@@ -90,15 +88,46 @@ module.exports = function runWebpack(options) {
         output: {
           comments: false
         }
-      })
+      }),
+      new ExtractTextPlugin('[name].[contenthash:8].css')
     )
-  } else {
-    config.devtool = 'eval-source-map'
-    config.entry.push(dir('node_modules/webpack-hot-middleware/client'))
-    config.plugins.push(
-      new webpack.HotModuleReplacementPlugin()
+    config.module.loaders.push(
+      {
+        test: /\.css$/,
+        loader: ExtractTextPlugin.extract({
+          fallbackLoader: 'style-loader',
+          loader: 'css?sourceMap&-autoprefixer&minimize!postcss'
+        })
+      }
     )
+    config.vue.loaders.css = ExtractTextPlugin.extract({
+      fallbackLoader: 'vue-style-loader',
+      loader: 'css?sourceMap&-autoprefixer&minimize'
+    })
+    webpack(config, (err, stats) => {
+      console.log(stats.toString({
+        colors: true,
+        modules: false,
+        children: false,
+        chunks: false,
+        chunkModules: false
+      }))
+    })
+    return
   }
+
+  config.devtool = 'eval-source-map'
+  config.entry.push(dir('node_modules/webpack-hot-middleware/client'))
+  config.plugins.push(
+    new webpack.HotModuleReplacementPlugin()
+  )
+  config.module.loaders.push(
+    {
+      test: /\.css$/,
+      loader: 'css!postcss',
+      fallbackLoader: 'style'
+    }
+  )
 
   const app = server({
     config,
