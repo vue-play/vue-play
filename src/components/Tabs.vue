@@ -71,7 +71,7 @@
   }
 </script>
 
-<style src="highlight.js/styles/monokai-sublime"></style>
+<style src="highlight.js/styles/github"></style>
 <style scoped>
   .play-tabs {
     height: 260px;

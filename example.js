@@ -28,6 +28,14 @@ play({
     },
     'with emoji'(h) {
       return <button>😄🤗😃😐😲</button>
+    },
+    'use single file component': {
+      sample: `<my-button :handle-click="handleClick">
+  children
+</my-button>`,
+      render(h) {
+        return <button>lol</button>
+      }
     }
   },
   List: {
