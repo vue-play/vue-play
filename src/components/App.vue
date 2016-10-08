@@ -17,6 +17,7 @@
   }
 </script>
 
+<style src="hint.css/hint.css"></style>
 <style>
   html, body, .app {
     height: 100%;
@@ -32,7 +33,17 @@
     display: flex;
   }
   .main {
-    padding: 10px;
     width: calc(100% - 280px);
+    height: 100%;
+  }
+  .view {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+  .play-ground {
+    height: calc(100% - 260px);
+    padding: 10px;
+    overflow: auto;
   }
 </style>

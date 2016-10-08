@@ -21,7 +21,9 @@ import MyButton from './components/MyButton.vue'
 play({
   Button: {
     'with text'(h) {
-      return <MyButton>Hello Play!</MyButton>
+      // in the component
+      // you can use this.$log and this.$clear to debug
+      return <MyButton on-click={this.$log('hi')}>Hello Play!</MyButton>
     },
     'with rounded border'(h) {
       return <MyButton rounded={true}>I'm rouned!</MyButton>

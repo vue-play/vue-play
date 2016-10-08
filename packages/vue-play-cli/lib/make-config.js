@@ -22,10 +22,7 @@ module.exports = function (options) {
   ]
 
   let config = {
-    entry: [
-      'style!vue-play/dist/vue-play.css',
-      options.entry
-    ],
+    entry: [options.entry],
     output: {
       path: cwd(options.dist),
       filename: '[name].js',
@@ -86,6 +83,10 @@ module.exports = function (options) {
       loaders: {},
       postcss
     }
+  }
+
+  if (__dirname.indexOf('/dev/') === -1) {
+    config.entry.push('style!vue-play/dist/vue-play.css')
   }
 
   if (options.production) {

@@ -24,7 +24,7 @@ const List = {
 play({
   Button: {
     'with text'(h) {
-      return <button>Text</button>
+      return <button on-click={() => this.$log({foo: {bar: 123}})}>Text</button>
     },
     'with emoji'(h) {
       return <button>😄🤗😃😐😲</button>
