@@ -3,6 +3,7 @@ const path = require('path')
 const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const ProgressPlugin = require('webpack/lib/ProgressPlugin')
 const handleUserConfig = require('./handle-user-config')
 
 function cwd(file) {
@@ -66,7 +67,8 @@ module.exports = function (options) {
     plugins: [
       new HtmlWebpackPlugin({
         template: dir('lib/template.html')
-      })
+      }),
+      new webpack.NoErrorsPlugin()
     ],
     babel: {
       presets: [
@@ -98,7 +100,8 @@ module.exports = function (options) {
           comments: false
         }
       }),
-      new ExtractTextPlugin('[name].[contenthash:8].css')
+      new ExtractTextPlugin('[name].[contenthash:8].css'),
+      new ProgressPlugin()
     )
     config.module.loaders.push(
       {
