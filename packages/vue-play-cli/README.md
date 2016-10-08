@@ -1,1 +1,3 @@
-game changer, ??? days until shit happens.
+```bash
+$ npm install -g vue-play-cli
+```

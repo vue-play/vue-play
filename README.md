@@ -110,7 +110,7 @@ Provide your own webpack.config.js and pass the path to it in `--webpack-config`
 # link vue-play in vue-play-cli
 $ cd vue-play
 $ npm link 
-$ cd package/vue-play-cli
+$ cd packages/vue-play-cli
 $ npm link vue-play
 $ npm link
 
