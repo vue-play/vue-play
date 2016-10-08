@@ -39,6 +39,7 @@ play({
       return <List data={data}/>
     },
     'fetch data': {
+      sample: '<List data={this.repos}/>',
       data() {
         return {repos: []}
       },

@@ -1,10 +1,8 @@
 import EVA from 'eva.js'
 import uid from 'uid'
 import App from './components/App'
-import Console from './components/Console'
-
-import hljs from 'highlight.js/lib/highlight'
-hljs.registerLanguage('json', require('highlight.js/lib/languages/json'))
+import Tabs from './components/Tabs'
+import highlight from './utils/highlight'
 
 const play = toys => {
   const routePaths = {}
@@ -19,6 +17,9 @@ const play = toys => {
         componentFn
       Component.name = Component.name || type.replace(/\s/g, '_')
 
+      const sample = Component.sample
+      delete Component.sample
+
       const View = {
         name: 'view',
         render(h) {
@@ -27,7 +28,7 @@ const play = toys => {
               <div class="play-ground">
                 <Component />
               </div>
-              <Console />
+              <Tabs sample={sample} />
             </div>
           )
         }
@@ -53,7 +54,7 @@ const play = toys => {
         id: uid()
       })
       setTimeout(() => {
-        const consoleEl = document.querySelector('.console-body')
+        const consoleEl = document.querySelector('.tab-body')
         consoleEl.scrollTop = consoleEl.scrollHeight
       })
     }
@@ -84,7 +85,7 @@ const play = toys => {
         }).map(log => {
           return {
             ...log,
-            data: hljs.highlight('json', JSON.stringify(log.data, null, 2)).value
+            data: highlight.highlight('json', JSON.stringify(log.data, null, 2)).value
           }
         })
       }
