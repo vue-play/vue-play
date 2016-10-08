@@ -3,6 +3,11 @@
   "vendor": false,
   "compress": false,
   "devtool": false,
-  "externals": ["eva.js", "highlight.js", "hint.css"],
+  "externals": [
+    "eva.js",
+    "highlight.js/lib/highlight",
+    "highlight.js/lib/languages/javascript",
+    "uid"
+  ],
   "filename": "vue-play"
 }
