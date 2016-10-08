@@ -23,10 +23,18 @@ play({
     'with text'(h) {
       // in the component
       // you can use this.$log and this.$clear to debug
-      return <MyButton on-click={this.$log('hi')}>Hello Play!</MyButton>
+      return <MyButton on-click={() => this.$log('hi')}>Hello Play!</MyButton>
     },
     'with rounded border'(h) {
       return <MyButton rounded={true}>I'm rouned!</MyButton>
+    },
+    'with example code': {
+      // if you want to let people know how to use the component
+      // you can pass some code example here
+      example: '<my-button>text</my-button>',
+      render(h) {
+        return <MyButton>text</MyButton>
+      }
     }
   }
 })

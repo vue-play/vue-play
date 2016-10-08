@@ -30,7 +30,7 @@ play({
       return <button>😄🤗😃😐😲</button>
     },
     'use single file component': {
-      sample: `<my-button :handle-click="handleClick">
+      example: `<my-button :handle-click="handleClick">
   children
 </my-button>`,
       render(h) {
@@ -47,7 +47,7 @@ play({
       return <List data={data}/>
     },
     'fetch data': {
-      sample: '<List data={this.repos}/>',
+      example: '<List data={this.repos}/>',
       data() {
         return {repos: []}
       },

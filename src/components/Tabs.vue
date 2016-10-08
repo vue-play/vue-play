@@ -8,14 +8,14 @@
         console
       </span>
       <span
-        v-if="sample"
+        v-if="example"
         class="title"
-        :class="{active: active === 'sample'}"
-        @click="active = 'sample'">
+        :class="{active: active === 'example'}"
+        @click="active = 'example'">
         <svg id="i-code" viewBox="0 0 32 32" width="32" height="32" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="6.25%">
             <path d="M10 9 L3 17 10 25 M22 9 L29 17 22 25 M18 7 L14 27" />
         </svg>
-        Sample
+        Example
       </span>
       <div class="tab-actions">
         <span
@@ -34,8 +34,8 @@
         <pre><code v-html="log.data"></code></pre>
       </div>
     </div>
-    <div class="tab-body" v-if="active === 'sample'">
-      <pre><code v-html="highlightedSample"></code></pre>
+    <div class="tab-body" v-if="active === 'example'">
+      <pre><code v-html="highlightedExample"></code></pre>
     </div>
   </div>
 </template>
@@ -47,15 +47,15 @@
   export default {
     name: 'console',
     props: {
-      sample: {
+      example: {
         type: String
       }
     },
     computed: {
       ...mapGetters(['logs']),
-      highlightedSample() {
-        if (!this.sample) return
-        return highlight.highlightAuto(this.sample).value
+      highlightedExample() {
+        if (!this.example) return
+        return highlight.highlightAuto(this.example).value
       }
     },
     data() {
