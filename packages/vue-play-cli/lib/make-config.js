@@ -86,7 +86,7 @@ module.exports = function (options) {
   }
 
   if (__dirname.indexOf('/dev/') === -1) {
-    config.entry.push('style!vue-play/dist/vue-play.css')
+    config.entry.push('vue-play/dist/vue-play.css')
   }
 
   if (options.production) {
@@ -127,8 +127,7 @@ module.exports = function (options) {
     config.module.loaders.push(
       {
         test: /\.css$/,
-        loader: 'css!postcss',
-        fallbackLoader: 'style'
+        loader: 'style!css!postcss'
       }
     )
   }
