@@ -19,7 +19,7 @@
       </span>
       <div class="tab-actions">
         <span
-          v-if="logs.length > 0"
+          v-if="logs.length > 0 && active === 'console'"
           class="tab-action hint--top-left hint--rounded"
           aria-label="clean logs"
           @click="cleanCurrentLogs">
