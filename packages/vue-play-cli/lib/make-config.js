@@ -85,8 +85,21 @@ module.exports = function (options) {
     }
   }
 
-  if (__dirname.indexOf('/dev/') === -1) {
+  // in dev env we import vue-play/src
+  // so only add css if installed from npm
+  if (__dirname.indexOf('/node_modules/') !== -1) {
     config.entry.push('vue-play/dist/vue-play.css')
+  } else {
+    // the dev env
+    // resolve modules here
+    // since vue-play in symlinked to vue-play-cli
+    // if installed from npm
+    // vue-play is in a sub directory of vue-play-cli
+    // and due to the npm 3 flat folder structure
+    // then we don't need this
+    config.resolve.modules.push(
+      path.join(path.dirname(require.resolve('vue-play')), '../node_modules')
+    )
   }
 
   if (options.production) {
