@@ -63,10 +63,10 @@
       }
     }
     h1 {
+      margin: 0;
       font-weight: 300;
-      border: 2px solid #42b983;
+      border-bottom: 1px solid #e2e2e2;
       background-color: white;
-      margin: 10px;
       text-align: center;
       a {
         color: #42b983;
