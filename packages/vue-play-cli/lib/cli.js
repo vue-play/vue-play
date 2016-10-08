@@ -1,6 +1,7 @@
 'use strict'
 const cac = require('cac')
 const update = require('update-notifier')
+const chalk = require('chalk')
 const play = require('./')
 
 const cli = cac()
@@ -12,6 +13,8 @@ cli
   .option('webpack-config, wc', 'Specific custom webpack config')
   .option('dist, d', 'Dist folder name')
   .option('clean', 'Remove dist directory before bundling in production mode', true)
+
+cli.usage(`${chalk.yellow('vue-play')} [entry] <options>`)
 
 cli.command('*', 'Play a component', (input, flags) => {
   const options = Object.assign({
