@@ -54,6 +54,7 @@
                 background-color: #f0f0f0;
               }
               &.router-link-active {
+                padding-left: 7px;
                 border-left: 3px solid #42b983;
               }
             }
