@@ -113,16 +113,6 @@ module.exports = function (options) {
       fallbackLoader: 'vue-style-loader',
       loader: 'css?sourceMap&-autoprefixer&minimize'
     })
-    webpack(config, (err, stats) => {
-      if (err) return console.error(err)
-      console.log(stats.toString({
-        colors: true,
-        modules: false,
-        children: false,
-        chunks: false,
-        chunkModules: false
-      }))
-    })
   } else {
     config.devtool = 'eval-source-map'
     config.entry.push(dir('node_modules/webpack-hot-middleware/client'))
