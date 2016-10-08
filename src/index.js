@@ -4,7 +4,7 @@ import App from './components/App'
 import Console from './components/Console'
 
 import hljs from 'highlight.js/lib/highlight'
-hljs.registerLanguage('javascript', require('highlight.js/lib/languages/javascript'))
+hljs.registerLanguage('json', require('highlight.js/lib/languages/json'))
 
 const play = toys => {
   const routePaths = {}
@@ -84,7 +84,7 @@ const play = toys => {
         }).map(log => {
           return {
             ...log,
-            data: hljs.highlight('javascript', JSON.stringify(log.data, null, 2)).value
+            data: hljs.highlight('json', JSON.stringify(log.data, null, 2)).value
           }
         })
       }

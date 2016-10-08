@@ -43,7 +43,7 @@
   }
 </script>
 
-<style src="highlight.js/styles/github"></style>
+<style src="highlight.js/styles/monokai-sublime"></style>
 <style scoped>
   .play-console {
     height: 260px;
