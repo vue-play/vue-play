@@ -102,6 +102,10 @@ module.exports = function (options) {
     config.entry.push('vue-play/dist/vue-play.css')
   }
 
+  const cssModules = options.cssModules ?
+    '&modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]' :
+    ''
+
   if (options.production) {
     config.devtool = 'source-map'
     config.output.filename = '[name].[chunkhash:8].js'
@@ -123,7 +127,7 @@ module.exports = function (options) {
         test: /\.css$/,
         loader: ExtractTextPlugin.extract({
           fallbackLoader: 'style-loader',
-          loader: 'css?sourceMap&-autoprefixer&minimize!postcss'
+          loader: `css?sourceMap&-autoprefixer&minimize${cssModules}!postcss`
         })
       }
     )
@@ -140,7 +144,7 @@ module.exports = function (options) {
     config.module.loaders.push(
       {
         test: /\.css$/,
-        loader: 'style!css!postcss'
+        loader: `style!css?-autoprefixer${cssModules}!postcss`
       }
     )
   }

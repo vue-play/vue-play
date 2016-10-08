@@ -13,6 +13,7 @@ cli
   .option('webpack-config, wc', 'Specific custom webpack config')
   .option('dist, d', 'Dist folder name')
   .option('clean', 'Remove dist directory before bundling in production mode', true)
+  .option('css-modules', 'Load css with css-modules', false)
 
 cli.usage(`${chalk.yellow('vue-play')} [entry] <options>`)
 
