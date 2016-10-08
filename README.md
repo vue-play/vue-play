@@ -79,6 +79,7 @@ In most cases you only need to update babel, postcss or loaders, so here's the A
 // play.config.js
 module.exports = {
   // all the cli options can be defined here and:
+  browsers: [], // autoprefixer browsers
   babel: {}, // override babel options
   postcss: [], // or function, override postcss options
   loaders: [], // append to current loaders

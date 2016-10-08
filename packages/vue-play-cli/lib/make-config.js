@@ -16,6 +16,7 @@ function dir(file) {
 
 module.exports = function (options) {
   const postcss = [
+    require('autoprefixer')({browsers: options.browsers}),
     require('postcss-nested'),
     require('postcss-simple-vars')
   ]
