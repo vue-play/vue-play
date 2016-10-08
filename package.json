@@ -34,5 +34,8 @@
     "eva.js": "^1.0.0",
     "highlight.js": "^9.7.0",
     "uid": "0.0.2"
+  },
+  "devDependencies": {
+    "hint.css": "^2.4.0"
   }
 }

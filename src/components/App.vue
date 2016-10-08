@@ -17,7 +17,7 @@
   }
 </script>
 
-<style src="../css/hint.css"></style>
+<style src="hint.css/hint.css"></style>
 <style>
   html, body, .app {
     height: 100%;
