@@ -1,6 +1,6 @@
 <template>
   <figure class="sidebar">
-    <h1>Play</h1>
+    <h1><a href="https://github.com/egoist/vue-play">Play</a></h1>
     <ul v-for="(routes, component) in paths" class="paths">
       <li>
         <div class="component-name">{{ component }}</div>
@@ -64,13 +64,16 @@
     }
     h1 {
       font-weight: 300;
-      margin: 0;
-      padding: 10px;
       border: 2px solid #42b983;
       background-color: white;
       margin: 10px;
       text-align: center;
-      color: #42b983;
+      a {
+        color: #42b983;
+        text-decoration: none;
+        display: block;
+        padding: 10px;
+      }
     }
   }
 </style>
