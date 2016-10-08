@@ -25,7 +25,7 @@ module.exports = function (options) {
       options.entry
     ],
     output: {
-      path: cwd(options.dist || 'play-dist'),
+      path: cwd(options.dist),
       filename: '[name].js',
       publicPath: '/'
     },
