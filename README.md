@@ -32,6 +32,10 @@ play({
       // if you want to let people know how to use the component
       // you can pass some code example here
       example: '<my-button>text</my-button>',
+      // or use a readme instead
+      // you can import xxx.md to use it here
+      // you can have both example field and readme field, it's up to you
+      readme: '<html code/>',
       render(h) {
         return <MyButton>text</MyButton>
       }
