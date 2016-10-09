@@ -3,10 +3,10 @@ const path = require('path')
 
 const _ = module.exports = {}
 
-_.cwd = function cwd(file) {
+_.cwd = function (file) {
   return path.resolve(process.cwd(), file || '')
 }
 
-_.dir = function dir(file) {
+_.dir = function (file) {
   return path.join(__dirname, '../', file || '')
 }
