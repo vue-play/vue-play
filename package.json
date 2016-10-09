@@ -16,7 +16,8 @@
     "test": "npm run build",
     "test:cli": "cd packages/vue-play-cli && npm t",
     "build": "vbuild --config vue.config.cjs.json",
-    "watch": "vbuild --config vue.config.cjs.json --watch"
+    "watch": "vbuild --config vue.config.cjs.json --watch",
+    "gh": "vue-play playspot/play.js -p && surge -p play-dist -d vue-play-button.surge.sh"
   },
   "files": [
     "dist"
