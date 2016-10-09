@@ -39,7 +39,7 @@ module.exports = function (options) {
       hot: true
     })
 
-    const port = options.port || 5000
+    const port = options.port
     app.listen(port, () => {
       console.log(chalk.bold(`> play at http://localhost:${port}`))
     })

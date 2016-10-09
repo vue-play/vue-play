@@ -5,14 +5,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const ProgressPlugin = require('webpack/lib/ProgressPlugin')
 const handleUserConfig = require('./handle-user-config')
-
-function cwd(file) {
-  return path.resolve(process.cwd(), file || '')
-}
-
-function dir(file) {
-  return path.join(__dirname, '../', file || '')
-}
+const _ = require('./utils')
 
 module.exports = function (options) {
   const postcss = [
@@ -24,22 +17,22 @@ module.exports = function (options) {
   let config = {
     entry: [options.entry],
     output: {
-      path: cwd(options.dist),
+      path: _.cwd(options.dist),
       filename: '[name].js',
       publicPath: '/'
     },
     resolveLoader: {
       modules: [
-        cwd('node_modules'),
-        dir('node_modules')
+        _.cwd('node_modules'),
+        _.dir('node_modules')
       ]
     },
     resolve: {
       extensions: ['', '.js', '.vue', '.css'],
       modules: [
-        cwd(),
-        cwd('node_modules'),
-        dir('node_modules')
+        _.cwd(),
+        _.cwd('node_modules'),
+        _.dir('node_modules')
       ]
     },
     module: {
@@ -64,7 +57,7 @@ module.exports = function (options) {
     },
     plugins: [
       new HtmlWebpackPlugin({
-        template: dir('lib/template.html')
+        template: _.dir('lib/template.html')
       }),
       new webpack.NoErrorsPlugin()
     ],
@@ -137,7 +130,7 @@ module.exports = function (options) {
     })
   } else {
     config.devtool = 'eval-source-map'
-    config.entry.push(dir('node_modules/webpack-hot-middleware/client'))
+    config.entry.push(_.dir('node_modules/webpack-hot-middleware/client'))
     config.plugins.push(
       new webpack.HotModuleReplacementPlugin()
     )
@@ -150,17 +143,11 @@ module.exports = function (options) {
   }
 
   if (options.webpackConfig) {
-    config = require(cwd(options.webpackConfig))
+    config = require(_.cwd(options.webpackConfig))
   }
 
   if (options.config) {
-    const configFile = options.config === true ? './play.config.js' : options.config
-    const userConfig = require(cwd(configFile))
-    if (typeof userConfig === 'object') {
-      config = handleUserConfig(config, userConfig)
-    } else {
-      console.error(`Invalid config file: ${configFile}`)
-    }
+    config = handleUserConfig(config, options)
   }
 
   return config

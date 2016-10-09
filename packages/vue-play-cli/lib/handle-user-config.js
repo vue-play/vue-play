@@ -1,9 +1,9 @@
 'use strict'
 
-module.exports = function (config, userConfig) {
-  const postcss = userConfig.postcss
-  const babel = userConfig.babel
-  const loaders = userConfig.loaders
+module.exports = function (config, options) {
+  const postcss = options.postcss
+  const babel = options.babel
+  const loaders = options.loaders
   if (postcss) {
     config.postcss = config.vue.postcss = postcss
   }
