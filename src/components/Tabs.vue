@@ -1,7 +1,20 @@
 <template>
   <div class="play-tabs">
     <div class="tab-header">
-      <span class="title" :class="{active: active === 'console'}" @click="active = 'console'">
+      <span
+        v-if="readme"
+        class="title"
+        :class="{active: active === 'readme'}"
+        @click="active = 'readme'">
+        <svg id="i-book" viewBox="0 0 32 32" width="32" height="32" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="6.25%">
+          <path d="M16 7 C16 7 9 1 2 6 L2 28 C9 23 16 28 16 28 16 28 23 23 30 28 L30 6 C23 1 16 7 16 7 Z M16 7 L16 28" />
+        </svg>
+        readme
+      </span>
+      <span
+        class="title"
+        :class="{active: active === 'console'}"
+        @click="active = 'console'">
         <svg id="i-bell" viewBox="0 0 32 32" width="32" height="32" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="6.25%">
           <path d="M8 17 C8 12 9 6 16 6 23 6 24 12 24 17 24 22 27 25 27 25 L5 25 C5 25 8 22 8 17 Z M20 25 C20 25 20 29 16 29 12 29 12 25 12 25 M16 3 L16 6" />
         </svg>
@@ -29,6 +42,9 @@
         </span>
       </div>
     </div>
+    <div class="tab-body" v-if="active ==='readme'" style="padding: 10px">
+      <div class="markdown-body" v-html="readme"></div>
+    </div>
     <div class="tab-body" v-if="active ==='console'">
       <div v-for="log in logs" class="console-item">
         <pre><code v-html="log.data"></code></pre>
@@ -49,6 +65,9 @@
     props: {
       example: {
         type: String
+      },
+      readme: {
+        type: String
       }
     },
     computed: {
@@ -60,7 +79,7 @@
     },
     data() {
       return {
-        active: 'console'
+        active: this.readme ? 'readme' : 'console'
       }
     },
     methods: {
@@ -72,6 +91,7 @@
 </script>
 
 <style src="highlight.js/styles/github"></style>
+<style src="github-markdown-css"></style>
 <style scoped>
   .play-tabs {
     height: 260px;
@@ -85,6 +105,7 @@
       padding-right: 10px;
       font-size: 12px;
       border-bottom: 1px solid #e2e2e2;
+      user-select: none;
       svg {
         height: 16px;
         color: #999;
@@ -96,7 +117,6 @@
         align-items: center;
         background-color: white;
         cursor: pointer;
-        user-select: none;
         svg {
           margin-top: -2px;
         }

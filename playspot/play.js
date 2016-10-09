@@ -1,4 +1,5 @@
-import {play} from './src'
+import {play} from '../src'
+import buttonReadme from './button-readme.md'
 
 // a component that we'd like to play
 const List = {
@@ -33,8 +34,9 @@ play({
       example: `<my-button :handle-click="handleClick">
   children
 </my-button>`,
+      readme: buttonReadme,
       render(h) {
-        return <button>lol</button>
+        return <button on-click={() => this.$log('lol')}>lol</button>
       }
     }
   },

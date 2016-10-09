@@ -18,7 +18,9 @@ const play = toys => {
       Component.name = Component.name || type.replace(/\s/g, '_')
 
       const example = Component.example
+      const readme = Component.readme
       delete Component.example
+      delete Component.readme
 
       const View = {
         name: 'view',
@@ -28,7 +30,7 @@ const play = toys => {
               <div class="play-ground">
                 <Component />
               </div>
-              <Tabs example={example} />
+              <Tabs example={example} readme={readme} />
             </div>
           )
         }

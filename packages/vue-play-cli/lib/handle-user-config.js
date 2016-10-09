@@ -4,6 +4,7 @@ module.exports = function (config, options) {
   const postcss = options.postcss
   const babel = options.babel
   const loaders = options.loaders
+  const markdown = options.markdown
   if (postcss) {
     config.postcss = config.vue.postcss = postcss
   }
@@ -12,6 +13,9 @@ module.exports = function (config, options) {
   }
   if (loaders) {
     config.module.loaders = config.module.loaders.concat(loaders)
+  }
+  if (markdown) {
+    Object.assign(config['markdown-it'], markdown)
   }
   return config
 }

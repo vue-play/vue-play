@@ -52,6 +52,10 @@ module.exports = function (options) {
           query: {
             name: 'static/media/[name].[hash:8].[ext]'
           }
+        },
+        {
+          test: /\.md$/,
+          loader: 'html!markdown-it'
         }
       ]
     },
@@ -75,6 +79,11 @@ module.exports = function (options) {
     vue: {
       loaders: {},
       postcss
+    },
+    'markdown-it': {
+      html: true,
+      breaks: true,
+      linkify: true
     }
   }
 
