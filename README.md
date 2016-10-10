@@ -32,7 +32,7 @@ $ npm link
 # build vue-play
 $ npm run build
 # run example play script
-$ vue-play example.js
+$ vue-play playspot/play.js
 ```
 
 ## License
