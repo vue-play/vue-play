@@ -59,10 +59,10 @@ const play = toys => {
         path,
         id: uid()
       })
-      setTimeout(() => {
-        const consoleEl = document.querySelector('.tab-body')
-        consoleEl.scrollTop = consoleEl.scrollHeight
-      })
+      const consoleEl = document.querySelector('.console-body')
+      if (consoleEl) {
+        Vue.nextTick(() => consoleEl.scrollTop = consoleEl.scrollHeight)
+      }
     }
     Vue.prototype.$clear = function () {
       const path = this.$store.state.route.path

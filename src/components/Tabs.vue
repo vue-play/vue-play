@@ -18,7 +18,7 @@
         <svg id="i-bell" viewBox="0 0 32 32" width="32" height="32" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="6.25%">
           <path d="M8 17 C8 12 9 6 16 6 23 6 24 12 24 17 24 22 27 25 27 25 L5 25 C5 25 8 22 8 17 Z M20 25 C20 25 20 29 16 29 12 29 12 25 12 25 M16 3 L16 6" />
         </svg>
-        console
+        console<sup v-if="logs.length > 0" class="logs-count">{{ logs.length }}</sup>
       </span>
       <span
         v-if="example"
@@ -45,7 +45,7 @@
     <div class="tab-body" v-if="active ==='readme'" style="padding: 10px">
       <div class="markdown-body" v-html="readme"></div>
     </div>
-    <div class="tab-body" v-if="active ==='console'">
+    <div class="tab-body console-body" v-if="active ==='console'">
       <div v-for="log in logs" class="console-item">
         <pre><code v-html="log.data"></code></pre>
       </div>
@@ -117,6 +117,7 @@
         align-items: center;
         background-color: white;
         cursor: pointer;
+        position: relative;
         svg {
           margin-top: -2px;
         }
@@ -128,6 +129,15 @@
         }
         &:hover {
           color: #666;
+        }
+        .logs-count {
+              color: white;
+              background-color: #42b983;
+              height: 14px;
+              line-height: 50%;
+              border-radius: 33px;
+              padding: 5px;
+              margin-left: 5px;
         }
       }
     }
