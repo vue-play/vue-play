@@ -38,7 +38,8 @@ play({
       render(h) {
         return <button on-click={() => this.$log('lol')}>lol</button>
       }
-    }
+    },
+    'use template Syntax': `<button>It's even more easier!</button>`
   },
   List: {
     'preset data'(h) {

@@ -14,10 +14,12 @@ const play = toys => {
       const componentFn = toys[componentName][type]
       const Component = typeof componentFn === 'function' ?
         {render: componentFn} :
+        typeof componentFn === 'string' ?
+        {template: componentFn} :
         componentFn
       Component.name = Component.name || type.replace(/\s/g, '_')
 
-      const example = Component.example
+      const example = Component.example || Component.template
       const readme = Component.readme
       delete Component.example
       delete Component.readme

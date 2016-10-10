@@ -14,6 +14,7 @@ cli
   .option('dist, d', 'Dist folder name')
   .option('clean', 'Remove dist directory before bundling in production mode', true)
   .option('css-modules', 'Load css with css-modules', false)
+  .option('exclude-runtime', 'Exclude runtime for compiling vue template', false)
 
 cli.usage(`${chalk.yellow('vue-play')} [entry] <options>`)
 

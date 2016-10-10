@@ -14,6 +14,11 @@ module.exports = function (options) {
     require('postcss-simple-vars')
   ]
 
+  const alias = {}
+  if (options.excludeRuntime !== false) {
+    alias.vue = 'vue/dist/vue'
+  }
+
   let config = {
     entry: [options.entry],
     output: {
@@ -33,7 +38,8 @@ module.exports = function (options) {
         _.cwd(),
         _.cwd('node_modules'),
         _.dir('node_modules')
-      ]
+      ],
+      alias
     },
     module: {
       loaders: [

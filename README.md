@@ -39,7 +39,8 @@ play({
       render(h) {
         return <MyButton>text</MyButton>
       }
-    }
+    },
+    'without jsx': '<button>i prefer template syntax</button>'
   }
 })
 ```
