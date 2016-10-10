@@ -70,7 +70,7 @@ const play = toys => {
     }
 
     // register components
-    if (typeof localComponents !== 'object') {
+    if (typeof localComponents === 'object') {
       Object.keys(localComponents).forEach(name => {
         Vue.component(name, localComponents[name])
       })

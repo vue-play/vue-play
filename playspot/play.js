@@ -1,4 +1,4 @@
-import {play} from '../src'
+import {play, useComponents} from '../src'
 import buttonReadme from './button-readme.md'
 
 // a component that we'd like to play
@@ -22,6 +22,17 @@ const List = {
   }
 }
 
+const MyButton = {
+  functional: true,
+  render(h, ctx) {
+    return <button>{ctx.children}</button>
+  }
+}
+
+useComponents({
+  MyButton
+})
+
 play({
   Button: {
     'with text'(h) {
@@ -39,7 +50,7 @@ play({
         return <button on-click={() => this.$log('lol')}>lol</button>
       }
     },
-    'use template Syntax': `<button>It's even more easier!</button>`
+    'use template Syntax': `<my-button>It's even more easier!</my-button>`
   },
   List: {
     'preset data'(h) {
