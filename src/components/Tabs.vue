@@ -1,6 +1,6 @@
 <template>
-  <div class="play-tabs">
-    <div class="tab-header">
+  <div class="play-tabs" ref="panel">
+    <div ref="header" class="tab-header" @mousedown="handleMouseDown" @mouseup="handleMouseUp">
       <span
         v-if="readme"
         class="title"
@@ -42,15 +42,15 @@
         </span>
       </div>
     </div>
-    <div class="tab-body" v-if="active ==='readme'" style="padding: 10px">
+    <div ref="body" class="tab-body" v-if="active ==='readme'" style="padding: 10px">
       <div class="markdown-body" v-html="readme"></div>
     </div>
-    <div class="tab-body console-body" v-if="active ==='console'">
+    <div ref="body" class="tab-body console-body" v-if="active ==='console'">
       <div v-for="log in logs" class="console-item">
         <pre><code v-html="log.data"></code></pre>
       </div>
     </div>
-    <div class="tab-body" v-if="active === 'example'">
+    <div ref="body" class="tab-body" v-if="active === 'example'">
       <pre><code v-html="highlightedExample"></code></pre>
     </div>
   </div>
@@ -82,7 +82,39 @@
         active: this.readme ? 'readme' : 'console'
       }
     },
+
+    mounted() {
+      const headerHeight = this.$refs.header.getBoundingClientRect().height;
+      this.boundary = {
+        min: headerHeight,
+        max: this.$refs.panel.parentNode.getBoundingClientRect().height
+      };
+    },
+
     methods: {
+      handleMouseDown({ clientY }) {
+        this.resizing = true;
+        this.startY = clientY;
+        this.finalY = parseInt(this.$refs.body.getBoundingClientRect().height, 10) || 0;
+        document.addEventListener('mousemove', this.handleMouseMove);
+        document.addEventListener('mouseup', this.handleMouseUp);
+        document.onselectstart = () => false;
+        document.ondragstart = () => false;
+      },
+
+      handleMouseMove({ clientY }) {
+        if (!this.resizing ||
+          clientY < this.boundary.min ||
+          clientY > this.boundary.max) return;
+        this.$refs.body.style.height = this.finalY - clientY + this.startY + 'px';
+      },
+
+      handleMouseUp() {
+        this.resizing = false;
+        document.removeEventListener('mousemove', this.handleMouseMove);
+        document.removeEventListener('mouseup', this.handleMouseUp);
+      },
+
       cleanCurrentLogs() {
         this.$store.commit('CLEAN_CURRENT_LOGS', this.$store.state.route.path)
       }
@@ -94,7 +126,6 @@
 <style src="github-markdown-css"></style>
 <style scoped>
   .play-tabs {
-    height: 260px;
     border-top: 1px solid #e2e2e2;
     position: relative;
 
@@ -106,6 +137,8 @@
       font-size: 12px;
       border-bottom: 1px solid #e2e2e2;
       user-select: none;
+      cursor: row-resize;
+
       svg {
         height: 16px;
         color: #999;
@@ -131,19 +164,19 @@
           color: #666;
         }
         .logs-count {
-              color: white;
-              background-color: #42b983;
-              height: 14px;
-              line-height: 50%;
-              border-radius: 33px;
-              padding: 5px;
-              margin-left: 5px;
+          color: white;
+          background-color: #42b983;
+          height: 14px;
+          line-height: 50%;
+          border-radius: 33px;
+          padding: 5px;
+          margin-left: 5px;
         }
       }
     }
     .tab-body {
       overflow: auto;
-      height: calc(100% - 27px);
+      height: 280px;
     }
     .console-item:not(:first-child) {
       border-top: 1px solid #f0f0f0;

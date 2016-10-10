@@ -1,5 +1,6 @@
 <template>
-  <figure class="sidebar">
+  <figure class="sidebar" ref="sidebar">
+    <div class="sidebar-border" @mousedown="handleMouseDown" @mouseup="handleMouseUp"></div>
     <h1><a href="https://github.com/egoist/vue-play">Play</a></h1>
     <ul v-for="(routes, component) in paths" class="paths">
       <li>
@@ -22,6 +23,38 @@
       paths() {
         return this.$store.state.toys.paths
       }
+    },
+
+    created() {
+      this.boundary = {
+        min: 200,
+        max: 500
+      };
+    },
+
+    methods: {
+      handleMouseDown({ clientX }) {
+        this.resizing = true;
+        this.startX = clientX;
+        this.finalX = parseInt(this.$refs.sidebar.getBoundingClientRect().width, 10) || 0;
+        document.addEventListener('mousemove', this.handleMouseMove);
+        document.addEventListener('mouseup', this.handleMouseUp);
+        document.onselectstart = () => false;
+        document.ondragstart = () => false;
+      },
+
+      handleMouseMove({ clientX }) {
+        if (!this.resizing ||
+          clientX < this.boundary.min ||
+          clientX > this.boundary.max) return;
+        this.$refs.sidebar.style.width = this.finalX + clientX - this.startX + 'px';
+      },
+
+      handleMouseUp() {
+        this.resizing = false;
+        document.removeEventListener('mousemove', this.handleMouseMove);
+        document.removeEventListener('mouseup', this.handleMouseUp);
+      }
     }
   }
 </script>
@@ -34,6 +67,14 @@
     border-right: 1px solid #e2e2e2;
     height: 100%;
     overflow: auto;
+
+    .sidebar-border {
+      cursor: col-resize;
+      width: 20px;
+      float: right;
+      height: 100%;
+    }
+
     .paths {
       margin: 0;
       list-style: none;
