@@ -1,33 +1,5 @@
 import {play, useComponents} from '../src'
-import buttonReadme from './button-readme.md'
-
-// a component that we'd like to play
-const List = {
-  props: {
-    data: {
-      type: Array,
-      required: true
-    }
-  },
-  render(h) {
-    return (
-      <ul>
-        {this.data.map(item => (
-          <li>
-            <a href={item.html_url}>{item.full_name}</a>
-          </li>
-        ))}
-      </ul>
-    )
-  }
-}
-
-const MyButton = {
-  functional: true,
-  render(h, ctx) {
-    return <button>{ctx.children}</button>
-  }
-}
+import MyButton from './MyButton'
 
 useComponents({
   MyButton
@@ -35,49 +7,21 @@ useComponents({
 
 play({
   Button: {
-    'with text'(h) {
-      return <button on-click={() => this.$log({foo: {bar: 123}})}>Text</button>
-    },
-    'with emoji'(h) {
-      return <button>😄🤗😃😐😲</button>
-    },
-    'use single file component': {
-      example: `<my-button :handle-click="handleClick">
-  children
-</my-button>`,
-      readme: buttonReadme,
-      render(h) {
-        return <button on-click={() => this.$log('lol')}>lol</button>
-      }
-    },
-    'use template Syntax': `<my-button>It's even more easier!</my-button>`
-  },
-  List: {
-    'preset data'(h) {
-      const data = [
-        {html_url: 'https://github.com/vuejs/vue', full_name: 'vuejs/vue'},
-        {html_url: 'https://github.com/egoist/eva.js', full_name: 'egoist/eva.js'}
-      ]
-      return <List data={data}/>
-    },
-    'fetch data': {
-      example: '<List data={this.repos}/>',
-      data() {
-        return {repos: []}
-      },
-      created() {
-        fetch('https://api.github.com/users/egoist/repos')
-          .then(data => data.json())
-          .then(data => this.repos = data)
-      },
-      render(h) {
-        if (this.repos.length === 0) {
-          return <span>Loading repos...</span>
+    'with text': {
+      template: '<my-button :handleClick="log">Text</my-button>',
+      methods: {
+        log() {
+          this.$log(new Date())
         }
-        return (
-          <List data={this.repos}/>
-        )
       }
-    }
+    },
+    'with emoji': '<my-button>😄🤗😃😐😲</my-button>',
+    'with colors': `
+<div class="examples">
+  <my-button color="red">red button</my-button>
+  <my-button color="blue">blue button</my-button>
+  <my-button color="magenta">magenta button</my-button>
+</div>
+    `.trim()
   }
 })
