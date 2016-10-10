@@ -4,6 +4,8 @@ import App from './components/App'
 import Tabs from './components/Tabs'
 import highlight from './utils/highlight'
 
+let localComponents
+
 const play = toys => {
   const routePaths = {}
   const routeIds = []
@@ -66,6 +68,13 @@ const play = toys => {
       const path = this.$store.state.route.path
       this.$store.commit('CLEAN_CURRENT_LOGS', path)
     }
+
+    // register components
+    if (typeof localComponents !== 'object') {
+      Object.keys(localComponents).forEach(name => {
+        Vue.component(name, localComponents[name])
+      })
+    }
   })
 
   app.model({
@@ -99,6 +108,9 @@ const play = toys => {
   app.start(App, '#app')
 }
 
+const useComponents = components => localComponents = components
+
 export {
-  play
+  play,
+  useComponents
 }
