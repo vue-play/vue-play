@@ -18,7 +18,7 @@ cli
 
 cli.usage(`${chalk.yellow('vue-play')} [entry] <options>`)
 
-cli.command('*', 'Play a component', (input, flags) => {
+cli.command('*', 'Run vue-play', (input, flags) => {
   const options = Object.assign({
     entry: input[0]
   }, flags)
