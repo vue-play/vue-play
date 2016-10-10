@@ -18,7 +18,7 @@
     "build": "vbuild --config vue.config.cjs.json",
     "watch": "vbuild --config vue.config.cjs.json --watch",
     "surge": "vue-play playspot/play.js -p && surge -p play-dist -d vue-play-button.surge.sh",
-    "gh": "gitbook build doc && gh-pages -d doc/_book"
+    "gh": "gitbook build docs && gh-pages -d docs/_book"
   },
   "files": [
     "dist"
