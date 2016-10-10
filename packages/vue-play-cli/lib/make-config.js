@@ -15,7 +15,7 @@ module.exports = function (options) {
   ]
 
   const alias = {}
-  if (options.excludeRuntime !== false) {
+  if (options.excludeRuntime === false) {
     alias.vue = 'vue/dist/vue'
   }
 
