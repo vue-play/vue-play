@@ -1,0 +1,19 @@
+{
+
+  "plugins": [
+
+    "github"
+
+  ],
+
+  "pluginsConfig": {
+
+    "github": {
+
+      "url": "https://github.com/egoist/vue-play"
+
+    }
+
+  }
+
+}
