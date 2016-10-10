@@ -1,19 +1,15 @@
 {
-
   "plugins": [
-
-    "github"
-
+    "github",
+    "edit-link"
   ],
-
   "pluginsConfig": {
-
     "github": {
-
       "url": "https://github.com/egoist/vue-play"
-
+    },
+    "edit-link": {
+      "base": "https://github.com/egoist/vue-play/tree/master/docs",
+      "label": "Edit This Page"
     }
-
   }
-
 }
