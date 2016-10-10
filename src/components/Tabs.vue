@@ -84,9 +84,8 @@
     },
 
     mounted() {
-      const headerHeight = this.$refs.header.getBoundingClientRect().height;
       this.boundary = {
-        min: headerHeight,
+        min: this.$refs.header.getBoundingClientRect().height,
         max: this.$refs.panel.parentNode.getBoundingClientRect().height
       };
     },
@@ -95,7 +94,7 @@
       handleMouseDown({ clientY }) {
         this.resizing = true;
         this.startY = clientY;
-        this.finalY = parseInt(this.$refs.body.getBoundingClientRect().height, 10) || 0;
+        this.originHeight = parseInt(this.$refs.body.getBoundingClientRect().height, 10) || 0;
         document.addEventListener('mousemove', this.handleMouseMove);
         document.addEventListener('mouseup', this.handleMouseUp);
         document.onselectstart = () => false;
@@ -106,7 +105,7 @@
         if (!this.resizing ||
           clientY < this.boundary.min ||
           clientY > this.boundary.max) return;
-        this.$refs.body.style.height = this.finalY - clientY + this.startY + 'px';
+        this.$refs.body.style.height = this.originHeight - clientY + this.startY + 'px';
       },
 
       handleMouseUp() {

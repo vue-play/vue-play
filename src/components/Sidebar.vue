@@ -18,6 +18,11 @@
 </template>
 
 <script>
+  const BOUNDARY = {
+    min: 200,
+    max: 500
+  };
+
   export default {
     computed: {
       paths() {
@@ -25,18 +30,11 @@
       }
     },
 
-    created() {
-      this.boundary = {
-        min: 200,
-        max: 500
-      };
-    },
-
     methods: {
       handleMouseDown({ clientX }) {
         this.resizing = true;
         this.startX = clientX;
-        this.finalX = parseInt(this.$refs.sidebar.getBoundingClientRect().width, 10) || 0;
+        this.originWidth = parseInt(this.$refs.sidebar.getBoundingClientRect().width, 10) || 0;
         document.addEventListener('mousemove', this.handleMouseMove);
         document.addEventListener('mouseup', this.handleMouseUp);
         document.onselectstart = () => false;
@@ -45,9 +43,9 @@
 
       handleMouseMove({ clientX }) {
         if (!this.resizing ||
-          clientX < this.boundary.min ||
-          clientX > this.boundary.max) return;
-        this.$refs.sidebar.style.width = this.finalX + clientX - this.startX + 'px';
+          clientX < BOUNDARY.min ||
+          clientX > BOUNDARY.max) return;
+        this.$refs.sidebar.style.width = this.originWidth + clientX - this.startX + 'px';
       },
 
       handleMouseUp() {
