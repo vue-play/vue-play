@@ -10,7 +10,7 @@ update({pkg: cli.pkg}).notify()
 cli
   .option('production, p', 'Play in production mode', false)
   .option('config, c', 'Specfic custom user config')
-  .option('webpack-config, wc', 'Specific custom webpack config')
+  // .option('webpack-config, wc', 'Specific custom webpack config')
   .option('dist, d', 'Dist folder name')
   .option('clean', 'Remove dist directory before bundling in production mode', true)
   .option('css-modules', 'Load css with css-modules', false)

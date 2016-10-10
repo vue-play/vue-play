@@ -4,3 +4,4 @@ node_modules
 /dist
 play-dist
 /stats.html
+_book
