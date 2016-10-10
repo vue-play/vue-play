@@ -30,7 +30,7 @@ Run the command:
 ```bash
 $ ~/my-project vue-play
 # navigate to http://localhost:5000
-# and you'll see you play spot in action!
+# and you'll see the play spot in action!
 ```
 
 ## Use Components
