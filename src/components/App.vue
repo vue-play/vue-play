@@ -33,8 +33,9 @@
     display: flex;
   }
   .main {
-    width: calc(100% - 280px);
+    width: 100%;
     height: 100%;
+    flex: 1;
   }
   .view {
     display: flex;
@@ -42,8 +43,9 @@
     height: 100%;
   }
   .play-ground {
-    height: calc(100% - 260px);
+    height: 100%;
     padding: 10px;
     overflow: auto;
+    flex: 1;
   }
 </style>
