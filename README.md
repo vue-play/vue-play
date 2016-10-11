@@ -8,7 +8,7 @@ Install with [yarn](https://yarnpkg.com/):
 
 ```bash
 # $ npm install -g vue-play-cli
-$ yarn globall add vue-play-cli
+$ yarn global add vue-play-cli
 ```
 
 For more usages , please head to the [handbook](https://egoistian.com/vue-play).
