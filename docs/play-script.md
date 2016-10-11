@@ -3,9 +3,8 @@
 A play script is basically where you import your components and write demos. Here's a simple one:
 
 ```js
+// install vue-play in your project first
 import {play, useComponents} from 'vue-play'
-// you don't need to install vue-play
-// it's installed in vue-play-cli
 import MyButton from './component/MyButton'
 // the component you'd like to play
 
