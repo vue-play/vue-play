@@ -1,10 +1,12 @@
 <template>
   <div class="play-tabs" ref="panel">
+    <div class="resize-indicator" v-if="resizing">H: {{ tabHeight }}px</div>
     <div ref="header" class="tab-header" @mousedown="handleMouseDown" @mouseup="handleMouseUp">
       <span
         v-if="readme"
         class="title"
         :class="{active: active === 'readme'}"
+        @mousedown.stop
         @click="active = 'readme'">
         <svg id="i-book" viewBox="0 0 32 32" width="32" height="32" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="6.25%">
           <path d="M16 7 C16 7 9 1 2 6 L2 28 C9 23 16 28 16 28 16 28 23 23 30 28 L30 6 C23 1 16 7 16 7 Z M16 7 L16 28" />
@@ -14,6 +16,7 @@
       <span
         class="title"
         :class="{active: active === 'console'}"
+        @mousedown.stop
         @click="active = 'console'">
         <svg id="i-bell" viewBox="0 0 32 32" width="32" height="32" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="6.25%">
           <path d="M8 17 C8 12 9 6 16 6 23 6 24 12 24 17 24 22 27 25 27 25 L5 25 C5 25 8 22 8 17 Z M20 25 C20 25 20 29 16 29 12 29 12 25 12 25 M16 3 L16 6" />
@@ -24,6 +27,7 @@
         v-if="example"
         class="title"
         :class="{active: active === 'example'}"
+        @mousedown.stop
         @click="active = 'example'">
         <svg id="i-code" viewBox="0 0 32 32" width="32" height="32" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="6.25%">
             <path d="M10 9 L3 17 10 25 M22 9 L29 17 22 25 M18 7 L14 27" />
@@ -35,6 +39,7 @@
           v-if="logs.length > 0 && active === 'console'"
           class="tab-action hint--top-left hint--rounded"
           aria-label="clean logs"
+          @mousedown.stop
           @click="cleanCurrentLogs">
           <svg id="i-trash" viewBox="0 0 32 32" width="32" height="32" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="6.25%">
             <path d="M28 6 L6 6 8 30 24 30 26 6 4 6 M16 12 L16 24 M21 12 L20 24 M11 12 L12 24 M12 6 L13 2 19 2 20 6" />
@@ -42,15 +47,27 @@
         </span>
       </div>
     </div>
-    <div ref="body" class="tab-body" v-if="active ==='readme'" style="padding: 10px">
+    <div
+      ref="body"
+      class="tab-body"
+      v-if="active ==='readme'"
+      :style="{padding: '10px', height: tabHeight + 'px'}">
       <div class="markdown-body" v-html="readme"></div>
     </div>
-    <div ref="body" class="tab-body console-body" v-if="active ==='console'">
+    <div
+      ref="body"
+      class="tab-body console-body"
+      v-if="active ==='console'"
+      :style="{height: tabHeight + 'px'}">
       <div v-for="log in logs" class="console-item">
         <pre><code v-html="log.data"></code></pre>
       </div>
     </div>
-    <div ref="body" class="tab-body" v-if="active === 'example'">
+    <div
+      ref="body"
+      class="tab-body"
+      v-if="active === 'example'"
+      :style="{height: tabHeight + 'px'}">
       <pre><code v-html="highlightedExample"></code></pre>
     </div>
   </div>
@@ -79,7 +96,11 @@
     },
     data() {
       return {
-        active: this.readme ? 'readme' : 'console'
+        active: this.readme ? 'readme' : 'console',
+        tabHeight: 280,
+        startY: null,
+        originalHeight: null,
+        resizing: false
       }
     },
 
@@ -91,10 +112,11 @@
     },
 
     methods: {
-      handleMouseDown({clientY}) {
+      handleMouseDown({target, clientY}) {
+        console.log(target)
         this.resizing = true
         this.startY = clientY
-        this.originHeight = parseInt(this.$refs.body.getBoundingClientRect().height, 10) || 0
+        this.originalHeight = parseInt(this.$refs.body.getBoundingClientRect().height, 10) || 0
         document.addEventListener('mousemove', this.handleMouseMove)
         document.addEventListener('mouseup', this.handleMouseUp)
         document.onselectstart = () => false
@@ -105,7 +127,7 @@
         if (!this.resizing ||
           clientY < this.boundary.min ||
           clientY > this.boundary.max) return
-        this.$refs.body.style.height = this.originHeight - clientY + this.startY + 'px'
+        this.tabHeight = this.originalHeight - clientY + this.startY
       },
 
       handleMouseUp() {

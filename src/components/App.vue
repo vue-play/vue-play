@@ -48,4 +48,16 @@
     overflow: auto;
     flex: 1;
   }
+  .resize-indicator {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    width: 80px;
+    background-color: rgba(51, 51, 51, 0.78);
+    color: white;
+    border-radius: 3px;
+    padding: 5px;
+    text-align: center;
+    z-index: 9999;
+  }
 </style>

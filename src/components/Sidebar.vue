@@ -1,5 +1,6 @@
 <template>
-  <figure class="sidebar" ref="sidebar">
+  <figure class="sidebar" ref="sidebar" :style="{width: sidebarWidth + 'px'}">
+    <div class="resize-indicator" v-if="resizing">W: {{ sidebarWidth }}px</div>
     <div class="sidebar-border" @mousedown="handleMouseDown" @mouseup="handleMouseUp"></div>
     <h1><a href="https://github.com/egoist/vue-play">Play</a></h1>
     <ul v-for="(routes, component) in paths" class="paths">
@@ -30,11 +31,20 @@
       }
     },
 
+    data() {
+      return {
+        sidebarWidth: 280,
+        resizing: false,
+        startX: null,
+        originalWidth: null
+      }
+    },
+
     methods: {
       handleMouseDown({clientX}) {
         this.resizing = true
         this.startX = clientX
-        this.originWidth = parseInt(this.$refs.sidebar.getBoundingClientRect().width, 10) || 0
+        this.originalWidth = parseInt(this.$refs.sidebar.getBoundingClientRect().width, 10) || 0
         document.addEventListener('mousemove', this.handleMouseMove)
         document.addEventListener('mouseup', this.handleMouseUp)
         document.onselectstart = () => false
@@ -45,7 +55,7 @@
         if (!this.resizing ||
           clientX < BOUNDARY.min ||
           clientX > BOUNDARY.max) return
-        this.$refs.sidebar.style.width = this.originWidth + clientX - this.startX + 'px'
+        this.sidebarWidth = this.originalWidth + clientX - this.startX
       },
 
       handleMouseUp() {
@@ -65,6 +75,7 @@
     border-right: 1px solid #e2e2e2;
     height: 100%;
     overflow: auto;
+    position: relative;
 
     .sidebar-border {
       cursor: col-resize;
