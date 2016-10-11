@@ -4,8 +4,6 @@ Play and demonstrate your Vue components, inspired by [react-storybook](https://
 
 ## Play it in seconds
 
-The only thing you need to install is `vue-play-cli`:
-
 ```bash
 $ npm install -g vue-play-cli
 ```
