@@ -47,8 +47,6 @@
         this.originalWidth = parseInt(this.$refs.sidebar.getBoundingClientRect().width, 10) || 0
         document.addEventListener('mousemove', this.handleMouseMove)
         document.addEventListener('mouseup', this.handleMouseUp)
-        document.onselectstart = () => false
-        document.ondragstart = () => false
       },
 
       handleMouseMove({clientX}) {

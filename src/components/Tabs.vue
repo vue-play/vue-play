@@ -119,8 +119,6 @@
         this.originalHeight = parseInt(this.$refs.body.getBoundingClientRect().height, 10) || 0
         document.addEventListener('mousemove', this.handleMouseMove)
         document.addEventListener('mouseup', this.handleMouseUp)
-        document.onselectstart = () => false
-        document.ondragstart = () => false
       },
 
       handleMouseMove({clientY}) {
