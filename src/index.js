@@ -1,9 +1,11 @@
-/* eslint-disable */
 import EVA from 'eva.js'
 import uid from 'uid'
+import highlight from './utils/highlight'
+
+/* eslint-disable no-unused-vars */
 import App from './components/App'
 import Tabs from './components/Tabs'
-import highlight from './utils/highlight'
+/* eslint-enable no-unused-vars */
 
 let localComponents
 
@@ -30,19 +32,15 @@ const play = toys => {
       const View = {
         name: 'view',
         render(h) {
-          return (
-            <div class="view">
-              <div class="play-ground">
-                <Component />
-              </div>
-              <Tabs example={example} readme={readme} />
-            </div>
-          )
+          return h('div', {class: 'view'}, [
+            h('div', {class: 'play-ground'}, h(Component)),
+            h(Tabs, {props: {example, readme}})
+          ])
         }
       }
       routePaths[componentName] = routePaths[componentName] || []
       routePaths[componentName].push({
-        type: type,
+        type,
         path: routeId
       })
       routeIds.push(routeId)
