@@ -38,8 +38,6 @@
     "uid": "0.0.2"
   },
   "devDependencies": {
-    "eslint": "^3.7.1",
-    "eslint-config-egoist-vue": "^2.0.2",
     "gh-pages": "^0.11.0",
     "github-markdown-css": "^2.4.1",
     "hint.css": "^2.4.0"
