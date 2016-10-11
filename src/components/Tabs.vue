@@ -76,6 +76,7 @@
 <script>
   import {mapGetters} from 'eva.js'
   import highlight from '../utils/highlight'
+  import {preventSelectStart, preventSelectStop} from '../utils/prevent-select'
 
   export default {
     name: 'console',
@@ -119,6 +120,7 @@
         this.originalHeight = parseInt(this.$refs.body.getBoundingClientRect().height, 10) || 0
         document.addEventListener('mousemove', this.handleMouseMove)
         document.addEventListener('mouseup', this.handleMouseUp)
+        preventSelectStart()
       },
 
       handleMouseMove({clientY}) {
@@ -132,6 +134,7 @@
         this.resizing = false
         document.removeEventListener('mousemove', this.handleMouseMove)
         document.removeEventListener('mouseup', this.handleMouseUp)
+        preventSelectStop()
       },
 
       cleanCurrentLogs() {

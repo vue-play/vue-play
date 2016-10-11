@@ -19,6 +19,8 @@
 </template>
 
 <script>
+  import {preventSelectStart, preventSelectStop} from '../utils/prevent-select'
+
   const BOUNDARY = {
     min: 200,
     max: 500
@@ -47,6 +49,7 @@
         this.originalWidth = parseInt(this.$refs.sidebar.getBoundingClientRect().width, 10) || 0
         document.addEventListener('mousemove', this.handleMouseMove)
         document.addEventListener('mouseup', this.handleMouseUp)
+        preventSelectStart()
       },
 
       handleMouseMove({clientX}) {
@@ -60,6 +63,7 @@
         this.resizing = false
         document.removeEventListener('mousemove', this.handleMouseMove)
         document.removeEventListener('mouseup', this.handleMouseUp)
+        preventSelectStop()
       }
     }
   }
