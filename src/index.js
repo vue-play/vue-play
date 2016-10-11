@@ -1,3 +1,4 @@
+/* eslint-disable */
 import EVA from 'eva.js'
 import uid from 'uid'
 import App from './components/App'
@@ -61,7 +62,9 @@ const play = toys => {
       })
       const consoleEl = document.querySelector('.console-body')
       if (consoleEl) {
-        Vue.nextTick(() => consoleEl.scrollTop = consoleEl.scrollHeight)
+        Vue.nextTick(() => {
+          consoleEl.scrollTop = consoleEl.scrollHeight
+        })
       }
     }
     Vue.prototype.$clear = function () {
@@ -108,7 +111,9 @@ const play = toys => {
   app.start(App, '#app')
 }
 
-const useComponents = components => localComponents = components
+const useComponents = components => {
+  localComponents = components
+}
 
 export {
   play,

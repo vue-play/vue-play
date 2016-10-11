@@ -21,7 +21,7 @@
   const BOUNDARY = {
     min: 200,
     max: 500
-  };
+  }
 
   export default {
     computed: {
@@ -31,27 +31,27 @@
     },
 
     methods: {
-      handleMouseDown({ clientX }) {
-        this.resizing = true;
-        this.startX = clientX;
-        this.originWidth = parseInt(this.$refs.sidebar.getBoundingClientRect().width, 10) || 0;
-        document.addEventListener('mousemove', this.handleMouseMove);
-        document.addEventListener('mouseup', this.handleMouseUp);
-        document.onselectstart = () => false;
-        document.ondragstart = () => false;
+      handleMouseDown({clientX}) {
+        this.resizing = true
+        this.startX = clientX
+        this.originWidth = parseInt(this.$refs.sidebar.getBoundingClientRect().width, 10) || 0
+        document.addEventListener('mousemove', this.handleMouseMove)
+        document.addEventListener('mouseup', this.handleMouseUp)
+        document.onselectstart = () => false
+        document.ondragstart = () => false
       },
 
-      handleMouseMove({ clientX }) {
+      handleMouseMove({clientX}) {
         if (!this.resizing ||
           clientX < BOUNDARY.min ||
-          clientX > BOUNDARY.max) return;
-        this.$refs.sidebar.style.width = this.originWidth + clientX - this.startX + 'px';
+          clientX > BOUNDARY.max) return
+        this.$refs.sidebar.style.width = this.originWidth + clientX - this.startX + 'px'
       },
 
       handleMouseUp() {
-        this.resizing = false;
-        document.removeEventListener('mousemove', this.handleMouseMove);
-        document.removeEventListener('mouseup', this.handleMouseUp);
+        this.resizing = false
+        document.removeEventListener('mousemove', this.handleMouseMove)
+        document.removeEventListener('mouseup', this.handleMouseUp)
       }
     }
   }

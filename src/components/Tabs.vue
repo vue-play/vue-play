@@ -87,31 +87,31 @@
       this.boundary = {
         min: this.$refs.header.getBoundingClientRect().height,
         max: this.$refs.panel.parentNode.getBoundingClientRect().height
-      };
+      }
     },
 
     methods: {
-      handleMouseDown({ clientY }) {
-        this.resizing = true;
-        this.startY = clientY;
-        this.originHeight = parseInt(this.$refs.body.getBoundingClientRect().height, 10) || 0;
-        document.addEventListener('mousemove', this.handleMouseMove);
-        document.addEventListener('mouseup', this.handleMouseUp);
-        document.onselectstart = () => false;
-        document.ondragstart = () => false;
+      handleMouseDown({clientY}) {
+        this.resizing = true
+        this.startY = clientY
+        this.originHeight = parseInt(this.$refs.body.getBoundingClientRect().height, 10) || 0
+        document.addEventListener('mousemove', this.handleMouseMove)
+        document.addEventListener('mouseup', this.handleMouseUp)
+        document.onselectstart = () => false
+        document.ondragstart = () => false
       },
 
-      handleMouseMove({ clientY }) {
+      handleMouseMove({clientY}) {
         if (!this.resizing ||
           clientY < this.boundary.min ||
-          clientY > this.boundary.max) return;
-        this.$refs.body.style.height = this.originHeight - clientY + this.startY + 'px';
+          clientY > this.boundary.max) return
+        this.$refs.body.style.height = this.originHeight - clientY + this.startY + 'px'
       },
 
       handleMouseUp() {
-        this.resizing = false;
-        document.removeEventListener('mousemove', this.handleMouseMove);
-        document.removeEventListener('mouseup', this.handleMouseUp);
+        this.resizing = false
+        document.removeEventListener('mousemove', this.handleMouseMove)
+        document.removeEventListener('mouseup', this.handleMouseUp)
       },
 
       cleanCurrentLogs() {
