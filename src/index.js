@@ -37,7 +37,7 @@ const play = toys => {
             h(Tabs, {props: {example, readme}})
           ])
         }
-      };
+      }
       routePaths[componentName] = routePaths[componentName] || []
       routePaths[componentName].push({
         type,
