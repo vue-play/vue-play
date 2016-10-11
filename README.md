@@ -22,11 +22,7 @@ For more usages , please head to the [handbook](https://egoistian.com/vue-play).
 ## Development
 
 ```bash
-# link vue-play in vue-play-cli
-$ cd vue-play
-$ npm link 
 $ cd packages/vue-play-cli
-$ npm link vue-play
 $ npm link
 
 # build vue-play
