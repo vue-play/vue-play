@@ -4,8 +4,11 @@ Play and demonstrate your Vue components, inspired by [react-storybook](https://
 
 ## Play it in seconds
 
+Install with [yarn](https://yarnpkg.com/):
+
 ```bash
-$ npm install -g vue-play-cli
+# $ npm install -g vue-play-cli
+$ yarn globall add vue-play-cli
 ```
 
 For more usages , please head to the [handbook](https://egoistian.com/vue-play).
@@ -21,10 +24,10 @@ For more usages , please head to the [handbook](https://egoistian.com/vue-play).
 
 ```bash
 $ cd packages/vue-play-cli
-$ npm link
+$ yarn link
 
 # build vue-play
-$ npm run build
+$ yarn run build
 # run example play script
 $ vue-play playspot/play.js
 ```
