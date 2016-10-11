@@ -33,7 +33,7 @@ const play = toys => {
         name: 'view',
         render(h) {
           return h('div', {class: 'view'}, [
-            h('div', {class: 'play-ground'}, h(Component)),
+            h('div', {class: 'play-ground'}, [h(Component)]),
             h(Tabs, {props: {example, readme}})
           ])
         }
