@@ -46,8 +46,8 @@ concat-map@0.0.1:
   resolved "https://registry.yarnpkg.com/concat-map/-/concat-map-0.0.1.tgz#d8a96bd77fd68df7793a73036a3ba0d5405d477b"
 
 eva.js@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/eva.js/-/eva.js-1.0.0.tgz#0b4d89a808759204887ebae06f8ac00f25fc58a1"
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/eva.js/-/eva.js-1.0.1.tgz#24495a70150ae483f4aa5657287717dd99ed0726"
   dependencies:
     object-assign "^4.1.0"
     vue "^2.0.1"
@@ -193,8 +193,8 @@ vue-router@^2.0.0:
   resolved "https://registry.yarnpkg.com/vue-router/-/vue-router-2.0.0.tgz#f3dec883a89733fef5c79f27cdab67456f7891a4"
 
 vue@^2.0.1:
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/vue/-/vue-2.0.1.tgz#ea20979eb5440ea7da086097befd598fb548dbc1"
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/vue/-/vue-2.0.2.tgz#ae1c01ce74a5d44d41ece96b82849c11e1d45e6d"
 
 vuex-router-sync@^3.0.0:
   version "3.0.0"
