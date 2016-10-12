@@ -16,6 +16,7 @@ yarn global add vue-play-cli
 Install `vue-play` package in your project:
 
 ```bash
+# npm install -D vue-play
 ~/my-project yarn add vue-play --dev
 ```
 
