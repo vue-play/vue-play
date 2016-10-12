@@ -21,8 +21,10 @@
   },
   "files": [
     "dist",
+    "src",
     "yarn.lock"
   ],
+  "jsnext:main": "src/index.js",
   "main": "dist/vue-play.js",
   "style": "dist/vue-play.css",
   "keywords": [
