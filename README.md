@@ -23,9 +23,6 @@ For more usages , please head to the [handbook](https://egoistian.com/vue-play).
 ## Development
 
 ```bash
-$ cd packages/vue-play-cli
-$ yarn link
-
 # build vue-play
 $ yarn run build
 # run example play script
