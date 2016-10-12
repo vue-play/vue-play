@@ -11,7 +11,7 @@ Install with [yarn](https://yarnpkg.com/):
 $ yarn global add vue-play-cli
 ```
 
-For more usages , please head to the [handbook](https://egoistian.com/vue-play).
+For more usages , please head to the [handbook](https://vue-play.github.io/vue-play).
 
 ## Badges
 
