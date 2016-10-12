@@ -2,13 +2,13 @@ const spawn = require('child_process').spawnSync
 
 const version = process.argv[2] || 'patch'
 
-const test = exec('npm', ['test'])
+const test = exec('yarn', ['run', 'test'])
 check(test)
 
-const bump = exec('npm', ['version', version])
+const bump = exec('yarn', ['version', '--new-version', version])
 check(bump)
 
-const publish = exec('npm', ['publish'])
+const publish = exec('yarn', ['publish'])
 check(publish)
 
 const pkg = require('../packages/vue-play-cli/package.json')

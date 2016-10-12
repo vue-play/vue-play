@@ -13,15 +13,16 @@
     "node": ">=4"
   },
   "scripts": {
-    "test": "npm run build",
-    "test:cli": "cd packages/vue-play-cli && npm t",
+    "test": "yarn run build",
+    "test:cli": "cd packages/vue-play-cli && yarn run test",
     "build": "vbuild --config vue.config.cjs.json --lint",
     "watch": "vbuild --config vue.config.cjs.json --watch",
     "surge": "vue-play playspot/play.js -p && surge -p play-dist -d vue-play-button.surge.sh",
     "gh": "gitbook build docs && gh-pages -d docs/_book"
   },
   "files": [
-    "dist"
+    "dist",
+    "yarn.lock"
   ],
   "main": "dist/vue-play.js",
   "style": "dist/vue-play.css",
