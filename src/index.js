@@ -1,11 +1,8 @@
 import EVA from 'eva.js'
 import uid from 'uid'
 import highlight from './utils/highlight'
-
-/* eslint-disable no-unused-vars */
 import App from './components/App'
 import Tabs from './components/Tabs'
-/* eslint-enable no-unused-vars */
 
 let localComponents
 
