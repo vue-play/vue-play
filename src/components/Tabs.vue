@@ -154,7 +154,6 @@
       height: 27px;
       line-height: 26px;
       padding: 0 5px;
-      padding-right: 10px;
       font-size: 12px;
       border-bottom: 1px solid #e2e2e2;
       user-select: none;
