@@ -114,7 +114,6 @@
 
     methods: {
       handleMouseDown({target, clientY}) {
-        console.log(target)
         this.resizing = true
         this.startY = clientY
         this.originalHeight = parseInt(this.$refs.body.getBoundingClientRect().height, 10) || 0
