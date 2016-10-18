@@ -36,11 +36,13 @@
   "dependencies": {
     "eva.js": "^1.0.0",
     "highlight.js": "^9.7.0",
-    "uid": "0.0.2"
+    "uid": "0.0.2",
+    "vue": "~2.0.3"
   },
   "devDependencies": {
     "gh-pages": "^0.11.0",
     "github-markdown-css": "^2.4.1",
-    "hint.css": "^2.4.0"
+    "hint.css": "^2.4.0",
+    "vbuild": "^2.2.6"
   }
 }
