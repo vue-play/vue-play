@@ -113,7 +113,7 @@
     },
 
     methods: {
-      handleMouseDown({target, clientY}) {
+      handleMouseDown({clientY}) {
         this.resizing = true
         this.startY = clientY
         this.originalHeight = parseInt(this.$refs.body.getBoundingClientRect().height, 10) || 0
