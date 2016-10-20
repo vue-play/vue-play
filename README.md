@@ -26,7 +26,7 @@ For more usages , please head to the [handbook](https://vue-play.github.io/vue-p
 # build vue-play
 $ yarn run build
 # run example play script
-$ vue-play playspot/play.js
+$ yarn run example
 ```
 
 ## License
