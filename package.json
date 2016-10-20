@@ -1,6 +1,6 @@
 {
   "name": "vue-play",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "description": "Play with your vue components.",
   "license": "MIT",
   "repository": "egoist/vue-play",
@@ -13,11 +13,12 @@
     "node": ">=4"
   },
   "scripts": {
-    "test": "yarn run build",
+    "test": "npm run build",
     "build": "vbuild --config vue.config.cjs.json --lint",
     "watch": "vbuild --config vue.config.cjs.json --watch",
-    "surge": "vue-play playspot/play.js -p && surge -p play-dist -d vue-play-button.surge.sh",
-    "gh": "gitbook build docs && gh-pages -d docs/_book"
+    "surge": "vue-play ./playspot/play.js -p && surge -p play-dist -d vue-play-button.surge.sh",
+    "gh": "gitbook build docs && gh-pages -d docs/_book",
+    "example": "vue-play ./playspot/play.js"
   },
   "files": [
     "dist",

@@ -23,10 +23,14 @@ For more usages , please head to the [handbook](https://vue-play.github.io/vue-p
 ## Development
 
 ```bash
-# build vue-play
-$ yarn run build
 # run example play script
-$ vue-play playspot/play.js
+# use local version of vue-play-cli
+$ cd vue-play-cli && npm link
+$ cd vue-play && npm run example
+
+# build vue-play
+# you don't need this when developing
+$ npm run build
 ```
 
 ## License
