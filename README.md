@@ -24,9 +24,11 @@ For more usages , please head to the [handbook](https://vue-play.github.io/vue-p
 
 ```bash
 # build vue-play
-$ yarn run build
+$ npm run build
 # run example play script
-$ yarn run example
+# use local version of vue-play-cli
+$ cd vue-play-cli && npm link
+$ cd vue-play && npm run example
 ```
 
 ## License
