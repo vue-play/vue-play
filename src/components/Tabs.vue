@@ -1,5 +1,5 @@
 <template>
-  <div class="play-tabs" ref="panel">
+  <div class="play-tabs" ref="panel" v-show="bottomPanelExpanded">
     <div class="resize-indicator" v-if="resizing">H: {{ tabHeight }}px</div>
     <div ref="header" class="tab-header" @mousedown="handleMouseDown" @mouseup="handleMouseUp">
       <span
@@ -89,7 +89,10 @@
       }
     },
     computed: {
-      ...mapGetters(['logs']),
+      ...mapGetters([
+        'logs',
+        'bottomPanelExpanded'
+      ]),
       highlightedExample() {
         if (!this.example) return
         return highlight.highlightAuto(this.example).value

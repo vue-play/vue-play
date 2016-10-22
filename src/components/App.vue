@@ -9,10 +9,28 @@
 
 <script>
   import Sidebar from './Sidebar'
+  import keyEvents from '../utils/key-events'
+  import {mapActions, mapGetters} from 'eva.js'
 
   export default {
     components: {
       Sidebar
+    },
+    mounted() {
+      keyEvents(this.$store)
+    },
+    computed: {
+      ...mapGetters(['currentPlayspot'])
+    },
+    watch: {
+      '$route': 'updatePlayspot',
+      currentPlayspot: 'changeRoute'
+    },
+    methods: {
+      ...mapActions(['updatePlayspot']),
+      changeRoute(route) {
+        this.$router.push(route)
+      }
     }
   }
 </script>

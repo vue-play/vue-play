@@ -3,6 +3,7 @@ import uid from 'uid'
 import highlight from './utils/highlight'
 import App from './components/App'
 import Tabs from './components/Tabs'
+import {registerModels} from './models'
 
 let localComponents
 
@@ -99,9 +100,18 @@ const play = toys => {
             data: highlight.highlight('json', JSON.stringify(log.data, null, 2)).value
           }
         })
+      },
+      playspotRoutes(state) {
+        return Object
+          .keys(state.paths)
+          .map(component =>
+            state.paths[component].map(playspot => playspot.path)
+          )
+          .reduce((acc, curr) => acc.concat(curr), [])
       }
     }
   })
+  registerModels(app)
   app.router(routes)
   app.start(App, '#app')
 }
