@@ -13,12 +13,16 @@ export default {
   },
   actions: {
     playNext({commit, getters, state}) {
-      const next = getters.playspotRoutes.indexOf(state.current) + 1
+      const total = getters.playspotRoutes.length
+      const current = getters.playspotRoutes.indexOf(state.current)
+      const next = (current + 1) % total
       commit(UPDATE_PLAYSPOT, getters.playspotRoutes[next])
     },
     playPrevious({commit, getters, state}) {
-      const prev = getters.playspotRoutes.indexOf(state.current) - 1
-      commit(UPDATE_PLAYSPOT, getters.playspotRoutes[prev < 0 ? 0 : prev])
+      const total = getters.playspotRoutes.length
+      const current = getters.playspotRoutes.indexOf(state.current)
+      const prev = (total + (current - 1)) % total
+      commit(UPDATE_PLAYSPOT, getters.playspotRoutes[prev])
     },
     updatePlayspot({commit, rootState}) {
       commit(UPDATE_PLAYSPOT, rootState.route.path)
