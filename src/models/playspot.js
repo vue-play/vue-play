@@ -1,6 +1,8 @@
 export const UPDATE_PLAYSPOT = 'UPDATE_PLAYSPOT'
 
-const updateCurrent = (state, payload) => state.current = payload
+const updateCurrent = (state, payload) => {
+  state.current = payload
+}
 
 export default {
   name: 'playspot',

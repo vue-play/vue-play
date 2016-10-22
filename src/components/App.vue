@@ -23,7 +23,7 @@
       ...mapGetters(['currentPlayspot'])
     },
     watch: {
-      '$route': 'updatePlayspot',
+      $route: 'updatePlayspot',
       currentPlayspot: 'changeRoute'
     },
     methods: {
