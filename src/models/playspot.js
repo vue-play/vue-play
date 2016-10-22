@@ -3,6 +3,7 @@ export const UPDATE_PLAYSPOT = 'UPDATE_PLAYSPOT'
 export default {
   name: 'playspot',
   state: {
+    // TODO: Figure out how to set this initially
     current: null
   },
   mutations: {
