@@ -40,7 +40,7 @@ export default function observeKeyEvents(store) {
   window.onkeydown = event => {
     const combination = check(event)
     if (combination) {
-      if (!(combination in validShortcuts)) {
+      if (!validShortcuts.includes(combination)) {
         console.warn(`Combination ${combination} is not a valid shortcut`)
         return
       }
