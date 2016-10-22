@@ -102,13 +102,12 @@ const play = toys => {
         })
       },
       playspotRoutes(state) {
-        let playspotRoute = Object
+        return Object
           .keys(state.paths)
           .map(component =>
             state.paths[component].map(playspot => playspot.path)
           )
           .reduce((acc, curr) => acc.concat(curr), [])
-        return playspotRoute
       }
     }
   })
