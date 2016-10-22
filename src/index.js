@@ -100,6 +100,15 @@ const play = toys => {
             data: highlight.highlight('json', JSON.stringify(log.data, null, 2)).value
           }
         })
+      },
+      playspotRoutes(state) {
+        let playspotRoute = Object
+          .keys(state.paths)
+          .map(component =>
+            state.paths[component].map(playspot => playspot.path)
+          )
+          .reduce((acc, curr) => acc.concat(curr), [])
+        return playspotRoute
       }
     }
   })
