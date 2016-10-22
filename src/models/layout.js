@@ -1,12 +1,16 @@
 export const TOGGLE_LEFT_PANEL = 'TOGGLE_LEFT_PANEL'
 export const TOGGLE_BOTTOM_PANEL = 'TOGGLE_BOTTOM_PANEL'
 export const TOGGLE_ALL_PANELS = 'TOGGLE_ALL_PANELS'
+export const SET_BOTTOM_PANEL_HEIGHT = 'SET_BOTTOM_PANEL_HEIGHT'
+
+export const defaultBottomPanelHeight = 280;
 
 export default {
   name: 'layout',
   state: {
     leftPanelExpanded: true,
-    bottomPanelExpanded: true
+    bottomPanelExpanded: true,
+    bottomPanelHeight: defaultBottomPanelHeight
   },
   mutations: {
     TOGGLE_LEFT_PANEL(state) {
@@ -14,6 +18,9 @@ export default {
     },
     TOGGLE_BOTTOM_PANEL(state) {
       state.bottomPanelExpanded = !state.bottomPanelExpanded
+    },
+    SET_BOTTOM_PANEL_HEIGHT(state, payload) {
+      state.bottomPanelHeight = payload || defaultBottomPanelHeight
     }
   },
   actions: {
@@ -35,6 +42,9 @@ export default {
           commit(TOGGLE_BOTTOM_PANEL)
         }
       }
+    },
+    setBottomPanelHeight({commit}, payload) {
+      commit(SET_BOTTOM_PANEL_HEIGHT, payload)
     }
   },
   getters: {
@@ -43,6 +53,9 @@ export default {
     },
     bottomPanelExpanded(state) {
       return state.bottomPanelExpanded
+    },
+    bottomPanelHeight(state) {
+      return state.bottomPanelHeight
     }
   }
 }
