@@ -20,9 +20,6 @@ export default {
       const prev = getters.playspotRoutes.indexOf(state.current) - 1
       commit(UPDATE_PLAYSPOT, getters.playspotRoutes[prev < 0 ? 0 : prev])
     },
-    setPlayspot({commit}, payload) {
-      commit(UPDATE_PLAYSPOT, payload)
-    },
     updatePlayspot({commit, rootState}) {
       commit(UPDATE_PLAYSPOT, rootState.route.path)
     }
