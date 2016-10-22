@@ -1,5 +1,4 @@
-export const NEXT_PLAYSPOT = 'NEXT_PLAYSPOT'
-export const PREV_PLAYSPOT = 'PREV_PLAYSPOT'
+export const UPDATE_PLAYSPOT = 'UPDATE_PLAYSPOT'
 
 export default {
   name: 'playspot',
@@ -7,19 +6,20 @@ export default {
     current: null
   },
   mutations: {
-    NEXT_PLAYSPOT() {
-      // go to next playspot
+    UPDATE_PLAYSPOT(state, payload) {
+      state.current = payload
     },
-    PREV_PLAYSPOT() {
-      // go to prev playspot
-    }
   },
   actions: {
     playNext({commit}) {
-      commit(NEXT_PLAYSPOT)
+      // TODO: Get the next playspot
+      const next = null;
+      commit(UPDATE_PLAYSPOT, next)
     },
     playPrevious({commit}) {
-      commit(PREV_PLAYSPOT)
+      // TODO: Get the previous playspot
+      const prev = null;
+      commit(PREV_PLAYSPOT, prev)
     }
   }
 }
