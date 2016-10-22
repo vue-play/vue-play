@@ -20,7 +20,7 @@
 
 <script>
   import {preventSelectStart, preventSelectStop} from '../utils/prevent-select'
-  import {leftPanelExpanded} from '../models/layout'
+  import {mapGetters} from 'eva.js'
 
   const BOUNDARY = {
     min: 200,
@@ -32,7 +32,9 @@
       paths() {
         return this.$store.state.toys.paths
       },
-      leftPanelExpanded
+      ...mapGetters([
+        'leftPanelExpanded'
+      ])
     },
 
     data() {

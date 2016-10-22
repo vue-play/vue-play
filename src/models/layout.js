@@ -36,14 +36,13 @@ export default {
         }
       }
     }
+  },
+  getters: {
+    leftPanelExpanded(state) {
+      return state.leftPanelExpanded
+    },
+    bottomPanelExpanded(state) {
+      return state.bottomPanelExpanded
+    }
   }
-}
-
-// Computed methods
-export function leftPanelExpanded() {
-  return this.$store.state.layout.leftPanelExpanded
-}
-
-export function bottomPanelExpanded() {
-  return this.$store.state.layout.bottomPanelExpanded
 }

@@ -77,7 +77,6 @@
   import {mapGetters} from 'eva.js'
   import highlight from '../utils/highlight'
   import {preventSelectStart, preventSelectStop} from '../utils/prevent-select'
-  import {bottomPanelExpanded} from '../models/layout'
 
   export default {
     name: 'console',
@@ -90,12 +89,14 @@
       }
     },
     computed: {
-      ...mapGetters(['logs']),
+      ...mapGetters([
+        'logs',
+        'bottomPanelExpanded'
+      ]),
       highlightedExample() {
         if (!this.example) return
         return highlight.highlightAuto(this.example).value
-      },
-      bottomPanelExpanded
+      }
     },
     data() {
       return {
