@@ -9,10 +9,14 @@
 
 <script>
   import Sidebar from './Sidebar'
+  import keyEvents from '../utils/key-events'
 
   export default {
     components: {
       Sidebar
+    },
+    mounted() {
+      keyEvents(this.$store)
     }
   }
 </script>

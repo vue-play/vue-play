@@ -1,5 +1,5 @@
 <template>
-  <figure class="sidebar" ref="sidebar" :style="{width: sidebarWidth + 'px'}">
+  <figure class="sidebar" ref="sidebar" v-show="leftPanelExpanded" :style="{width: sidebarWidth + 'px'}">
     <div class="resize-indicator" v-if="resizing">W: {{ sidebarWidth }}px</div>
     <div class="sidebar-border" @mousedown="handleMouseDown" @mouseup="handleMouseUp"></div>
     <h1><a href="https://github.com/egoist/vue-play">Play</a></h1>
@@ -20,6 +20,7 @@
 
 <script>
   import {preventSelectStart, preventSelectStop} from '../utils/prevent-select'
+  import {leftPanelExpanded} from '../models/layout'
 
   const BOUNDARY = {
     min: 200,
@@ -30,7 +31,8 @@
     computed: {
       paths() {
         return this.$store.state.toys.paths
-      }
+      },
+      leftPanelExpanded
     },
 
     data() {

@@ -193,8 +193,8 @@ assert@^1.1.1:
     util "0.10.3"
 
 assets-webpack-plugin@^3.4.0:
-  version "3.4.0"
-  resolved "https://registry.yarnpkg.com/assets-webpack-plugin/-/assets-webpack-plugin-3.4.0.tgz#4e74776e86b864aca490e33ee03b3b1d0f109744"
+  version "3.5.0"
+  resolved "https://registry.yarnpkg.com/assets-webpack-plugin/-/assets-webpack-plugin-3.5.0.tgz#933b16bf679c7510dd3475e4df9ba495d9dc0368"
   dependencies:
     camelcase "^1.2.1"
     escape-string-regexp "^1.0.3"
@@ -836,8 +836,8 @@ babel-types@^6.13.0, babel-types@^6.14.0, babel-types@^6.15.0, babel-types@^6.16
     to-fast-properties "^1.0.1"
 
 babylon@^6.11.0:
-  version "6.12.0"
-  resolved "https://registry.yarnpkg.com/babylon/-/babylon-6.12.0.tgz#953e6202e58062f7f5041fc8037e4bd4e17140a9"
+  version "6.13.0"
+  resolved "https://registry.yarnpkg.com/babylon/-/babylon-6.13.0.tgz#58ed40dd2a8120612be5f318c2c0bedbebde4a0b"
 
 backo2@1.0.2:
   version "1.0.2"
@@ -921,7 +921,7 @@ block-stream@*:
   dependencies:
     inherits "~2.0.0"
 
-bluebird@^3.0.5, bluebird@^3.1.1, bluebird@^3.4.1:
+bluebird@^3.0.5, bluebird@^3.1.1, bluebird@^3.4.6:
   version "3.4.6"
   resolved "https://registry.yarnpkg.com/bluebird/-/bluebird-3.4.6.tgz#01da8d821d87813d158967e743d5fe6c62cf8c0f"
 
@@ -988,8 +988,8 @@ brorand@^1.0.1:
   resolved "https://registry.yarnpkg.com/brorand/-/brorand-1.0.6.tgz#4028706b915f91f7b349a2e0bf3c376039d216e5"
 
 browser-sync-client@^2.3.3:
-  version "2.4.2"
-  resolved "https://registry.yarnpkg.com/browser-sync-client/-/browser-sync-client-2.4.2.tgz#0c510d4183c0b5dbc4044363facc3a4273f7ba28"
+  version "2.4.3"
+  resolved "https://registry.yarnpkg.com/browser-sync-client/-/browser-sync-client-2.4.3.tgz#e965033e0c83e5f06caacb516755b694836cea4f"
   dependencies:
     etag "^1.7.0"
     fresh "^0.3.0"
@@ -1122,12 +1122,6 @@ builtin-modules@^1.0.0:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/builtin-modules/-/builtin-modules-1.1.1.tgz#270f076c5a72c02f5b65a47df94c5fe3a278892f"
 
-by-yarn@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/by-yarn/-/by-yarn-1.0.0.tgz#a61acba9c1fc73b0c9caf30ee79204f6570d3c39"
-  dependencies:
-    path-exists "^3.0.0"
-
 bytes@2.2.0:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/bytes/-/bytes-2.2.0.tgz#fd35464a403f6f9117c2de3609ecff9cae000588"
@@ -1188,8 +1182,8 @@ camelcase@^3.0.0:
   resolved "https://registry.yarnpkg.com/camelcase/-/camelcase-3.0.0.tgz#32fc4b9fcdaf845fcdf7e73bb97cac2261f0ab0a"
 
 caniuse-db@^1.0.30000539, caniuse-db@^1.0.30000554:
-  version "1.0.30000560"
-  resolved "https://registry.yarnpkg.com/caniuse-db/-/caniuse-db-1.0.30000560.tgz#7f886302e912d15a6e53b81d6ab13de9dba95ee8"
+  version "1.0.30000563"
+  resolved "https://registry.yarnpkg.com/caniuse-db/-/caniuse-db-1.0.30000563.tgz#6958d81bc45e93310453dd70778e8169b7b55256"
 
 capture-stack-trace@^1.0.0:
   version "1.0.0"
@@ -2479,7 +2473,7 @@ flat-cache@^1.2.1:
     graceful-fs "^4.1.2"
     write "^0.2.1"
 
-flatten@^1.0.2, flatten@1.0.2:
+flatten@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/flatten/-/flatten-1.0.2.tgz#dae46a9d78fbe25292258cc1e780a41d95c03782"
 
@@ -2906,9 +2900,9 @@ html-entities@^1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/html-entities/-/html-entities-1.2.0.tgz#41948caf85ce82fed36e4e6a0ed371a6664379e2"
 
-html-minifier@^2.1.6:
-  version "2.1.7"
-  resolved "https://registry.yarnpkg.com/html-minifier/-/html-minifier-2.1.7.tgz#9051d6fcbbcf214ed307e1ad74f432bb9ad655cc"
+html-minifier@^3.1.0:
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/html-minifier/-/html-minifier-3.1.0.tgz#e0b35d7a1fff89ae989e2fa51c572bc0d1f2d1f6"
   dependencies:
     change-case "3.0.x"
     clean-css "3.4.x"
@@ -2916,17 +2910,17 @@ html-minifier@^2.1.6:
     he "1.1.x"
     ncname "1.0.x"
     relateurl "0.2.x"
-    uglify-js "2.6.x"
+    uglify-js "2.7.x"
 
 html-webpack-plugin@^2.22.0:
-  version "2.22.0"
-  resolved "https://registry.yarnpkg.com/html-webpack-plugin/-/html-webpack-plugin-2.22.0.tgz#7eb02ff9039da84e5ba71004d4693c04b92d2905"
+  version "2.24.0"
+  resolved "https://registry.yarnpkg.com/html-webpack-plugin/-/html-webpack-plugin-2.24.0.tgz#53697cea79a9f3cd1f8c239ac71f949d5673cacb"
   dependencies:
-    bluebird "^3.4.1"
-    html-minifier "^2.1.6"
-    loader-utils "^0.2.15"
-    lodash "^4.13.1"
-    pretty-error "^2.0.0"
+    bluebird "^3.4.6"
+    html-minifier "^3.1.0"
+    loader-utils "^0.2.16"
+    lodash "^4.16.4"
+    pretty-error "^2.0.2"
     toposort "^1.0.0"
 
 htmlparser2@^3.8.2:
@@ -3458,7 +3452,7 @@ loader-runner@^2.1.0:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/loader-runner/-/loader-runner-2.2.0.tgz#824c1b699c4e7a2b6501b85902d5b862bf45b3fa"
 
-loader-utils@^0.2.10, loader-utils@^0.2.11, loader-utils@^0.2.15, loader-utils@^0.2.16, loader-utils@^0.2.3, loader-utils@^0.2.7, loader-utils@~0.2.2, loader-utils@~0.2.5, loader-utils@0.2.x:
+loader-utils@^0.2.10, loader-utils@^0.2.11, loader-utils@^0.2.16, loader-utils@^0.2.3, loader-utils@^0.2.7, loader-utils@~0.2.2, loader-utils@~0.2.5, loader-utils@0.2.x:
   version "0.2.16"
   resolved "https://registry.yarnpkg.com/loader-utils/-/loader-utils-0.2.16.tgz#f08632066ed8282835dff88dfb52704765adee6d"
   dependencies:
@@ -3652,7 +3646,7 @@ lodash@^3.10.1:
   version "3.10.1"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-3.10.1.tgz#5bf45e8e49ba4189e17d482789dfd15bd140b7b6"
 
-lodash@^4.0.0, lodash@^4.13.1, lodash@^4.14.0, lodash@^4.2.0, lodash@^4.3.0, lodash@4.x.x:
+lodash@^4.0.0, lodash@^4.14.0, lodash@^4.16.4, lodash@^4.2.0, lodash@^4.3.0, lodash@4.x.x:
   version "4.16.4"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.16.4.tgz#01ce306b9bad1319f2a5528674f88297aeb70127"
 
@@ -4325,10 +4319,9 @@ postcss-discard-overridden@^0.1.1:
     postcss "^5.0.16"
 
 postcss-discard-unused@^2.2.1:
-  version "2.2.1"
-  resolved "https://registry.yarnpkg.com/postcss-discard-unused/-/postcss-discard-unused-2.2.1.tgz#5d021f021a6ed6cec7310d4603794a75ddd53232"
+  version "2.2.2"
+  resolved "https://registry.yarnpkg.com/postcss-discard-unused/-/postcss-discard-unused-2.2.2.tgz#5d72f7d05d11de0a9589e001958067ccae1b4931"
   dependencies:
-    flatten "1.0.2"
     postcss "^5.0.14"
     uniqs "^2.0.0"
 
@@ -4484,8 +4477,8 @@ postcss-ordered-values@^2.1.0:
     postcss-value-parser "^3.0.1"
 
 postcss-reduce-idents@^2.2.2:
-  version "2.3.0"
-  resolved "https://registry.yarnpkg.com/postcss-reduce-idents/-/postcss-reduce-idents-2.3.0.tgz#a697b52953ed6825ffea404e26a4f105d8b8d569"
+  version "2.3.1"
+  resolved "https://registry.yarnpkg.com/postcss-reduce-idents/-/postcss-reduce-idents-2.3.1.tgz#024e8e219f52773313408573db9645ba62d2d2fe"
   dependencies:
     postcss "^5.0.4"
     postcss-value-parser "^3.0.2"
@@ -4540,8 +4533,8 @@ postcss-zindex@^2.0.1:
     uniqs "^2.0.0"
 
 postcss@^5.0.10, postcss@^5.0.11, postcss@^5.0.12, postcss@^5.0.13, postcss@^5.0.14, postcss@^5.0.16, postcss@^5.0.2, postcss@^5.0.4, postcss@^5.0.5, postcss@^5.0.6, postcss@^5.0.8, postcss@^5.2.4:
-  version "5.2.4"
-  resolved "https://registry.yarnpkg.com/postcss/-/postcss-5.2.4.tgz#8eb4bee3e5c4e091585b116df32d8db24a535f21"
+  version "5.2.5"
+  resolved "https://registry.yarnpkg.com/postcss/-/postcss-5.2.5.tgz#ec428c27dffc7fac65961340a9b022fa4af5f056"
   dependencies:
     chalk "^1.1.3"
     js-base64 "^2.1.9"
@@ -4560,7 +4553,7 @@ preserve@^0.2.0:
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/preserve/-/preserve-0.2.0.tgz#815ed1f6ebc65926f865b310c0713bcb3315ce4b"
 
-pretty-error@^2.0.0:
+pretty-error@^2.0.2:
   version "2.0.2"
   resolved "https://registry.yarnpkg.com/pretty-error/-/pretty-error-2.0.2.tgz#a7db19cbb529ca9f0af3d3a2f77d5caf8e5dec23"
   dependencies:
@@ -5571,7 +5564,7 @@ ua-parser-js@^0.7.9, ua-parser-js@0.7.10:
   version "0.7.10"
   resolved "https://registry.yarnpkg.com/ua-parser-js/-/ua-parser-js-0.7.10.tgz#917559ddcce07cbc09ece7d80495e4c268f4ef9f"
 
-uglify-js@^2.6:
+uglify-js@^2.6, uglify-js@2.7.x:
   version "2.7.3"
   resolved "https://registry.yarnpkg.com/uglify-js/-/uglify-js-2.7.3.tgz#39b3a7329b89f5ec507e344c6e22568698ef4868"
   dependencies:
@@ -5580,7 +5573,7 @@ uglify-js@^2.6:
     uglify-to-browserify "~1.0.0"
     yargs "~3.10.0"
 
-uglify-js@~2.6.0, uglify-js@2.6.x:
+uglify-js@~2.6.0:
   version "2.6.4"
   resolved "https://registry.yarnpkg.com/uglify-js/-/uglify-js-2.6.4.tgz#65ea2fb3059c9394692f15fed87c2b36c16b9adf"
   dependencies:
@@ -5718,9 +5711,9 @@ vary@~1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/vary/-/vary-1.1.0.tgz#e1e5affbbd16ae768dd2674394b9ad3022653140"
 
-vbuild@^2.2.6:
-  version "2.3.3"
-  resolved "https://registry.yarnpkg.com/vbuild/-/vbuild-2.3.3.tgz#9fc8e3244931fec3f6e01f04040fc0076cc22d9a"
+vbuild:
+  version "2.3.6"
+  resolved "https://registry.yarnpkg.com/vbuild/-/vbuild-2.3.6.tgz#c30d614ed728396276f7df44ed51707b436724d8"
   dependencies:
     assets-webpack-plugin "^3.4.0"
     autoprefixer "^6.5.0"
@@ -5736,7 +5729,6 @@ vbuild@^2.2.6:
     babel-runtime "^6.11.6"
     browser-sync "^2.14.0"
     browser-sync-webpack-plugin "^1.1.2"
-    by-yarn "^1.0.0"
     cac "^2.3.2"
     chalk "^1.1.3"
     co "^4.6.0"
@@ -5757,6 +5749,7 @@ vbuild@^2.2.6:
     json-loader "^0.5.4"
     lodash.merge "^4.6.0"
     opn "^4.0.2"
+    path-exists "^3.0.0"
     pify "^2.3.0"
     postcss-loader "^1.0.0"
     postcss-nested "^1.0.0"

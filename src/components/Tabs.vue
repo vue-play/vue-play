@@ -1,5 +1,5 @@
 <template>
-  <div class="play-tabs" ref="panel">
+  <div class="play-tabs" ref="panel" v-show="bottomPanelExpanded">
     <div class="resize-indicator" v-if="resizing">H: {{ tabHeight }}px</div>
     <div ref="header" class="tab-header" @mousedown="handleMouseDown" @mouseup="handleMouseUp">
       <span
@@ -77,6 +77,7 @@
   import {mapGetters} from 'eva.js'
   import highlight from '../utils/highlight'
   import {preventSelectStart, preventSelectStop} from '../utils/prevent-select'
+  import {bottomPanelExpanded} from '../models/layout'
 
   export default {
     name: 'console',
@@ -93,7 +94,8 @@
       highlightedExample() {
         if (!this.example) return
         return highlight.highlightAuto(this.example).value
-      }
+      },
+      bottomPanelExpanded
     },
     data() {
       return {
