@@ -3,7 +3,7 @@ export const TOGGLE_BOTTOM_PANEL = 'TOGGLE_BOTTOM_PANEL'
 export const TOGGLE_ALL_PANELS = 'TOGGLE_ALL_PANELS'
 export const SET_BOTTOM_PANEL_HEIGHT = 'SET_BOTTOM_PANEL_HEIGHT'
 
-export const defaultBottomPanelHeight = 280;
+export const defaultBottomPanelHeight = 280
 
 export default {
   name: 'layout',
