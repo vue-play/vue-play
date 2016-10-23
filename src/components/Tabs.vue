@@ -74,9 +74,10 @@
 </template>
 
 <script>
-  import {mapGetters} from 'eva.js'
+  import {mapGetters, mapActions} from 'eva.js'
   import highlight from '../utils/highlight'
   import {preventSelectStart, preventSelectStop} from '../utils/prevent-select'
+  import {defaultBottomPanelHeight} from '../models/layout'
 
   export default {
     name: 'console',
@@ -91,7 +92,8 @@
     computed: {
       ...mapGetters([
         'logs',
-        'bottomPanelExpanded'
+        'bottomPanelExpanded',
+        'bottomPanelHeight'
       ]),
       highlightedExample() {
         if (!this.example) return
@@ -101,7 +103,7 @@
     data() {
       return {
         active: this.readme ? 'readme' : 'console',
-        tabHeight: 280,
+        tabHeight: defaultBottomPanelHeight,
         startY: null,
         originalHeight: null,
         resizing: false
@@ -113,9 +115,12 @@
         min: this.$refs.header.getBoundingClientRect().height,
         max: this.$refs.panel.parentNode.getBoundingClientRect().height
       }
+      console.log(this.tabHeight)
+      this.tabHeight = this.bottomPanelHeight
     },
 
     methods: {
+      ...mapActions(['setBottomPanelHeight']),
       handleMouseDown({clientY}) {
         this.resizing = true
         this.startY = clientY
@@ -134,6 +139,7 @@
 
       handleMouseUp() {
         this.resizing = false
+        this.setBottomPanelHeight(this.tabHeight)
         document.removeEventListener('mousemove', this.handleMouseMove)
         document.removeEventListener('mouseup', this.handleMouseUp)
         preventSelectStop()
