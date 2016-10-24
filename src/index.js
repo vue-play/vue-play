@@ -7,9 +7,10 @@ import {registerModels} from './models'
 
 let localComponents
 
+export const routePaths = {}
+export const routeIds = []
+
 const play = toys => {
-  const routePaths = {}
-  const routeIds = []
   const routes = route => Object.keys(toys).map(componentName => {
     return Object.keys(toys[componentName]).map(type => {
       const routeId = `/${componentName}/${type.replace(/\s/g, '_')}`
@@ -76,41 +77,6 @@ const play = toys => {
     }
   })
 
-  app.model({
-    name: 'toys',
-    state: {
-      paths: routePaths,
-      logs: []
-    },
-    mutations: {
-      ADD_LOG(state, payload) {
-        state.logs.push(payload)
-      },
-      CLEAN_CURRENT_LOGS(state, path) {
-        state.logs = state.logs.filter(log => log.path !== path)
-      }
-    },
-    getters: {
-      logs(state, getters, rootState) {
-        return state.logs.filter(log => {
-          return log.path === rootState.route.path
-        }).map(log => {
-          return {
-            ...log,
-            data: highlight.highlight('json', JSON.stringify(log.data, null, 2)).value
-          }
-        })
-      },
-      playspotRoutes(state) {
-        return Object
-          .keys(state.paths)
-          .map(component =>
-            state.paths[component].map(playspot => playspot.path)
-          )
-          .reduce((acc, curr) => acc.concat(curr), [])
-      }
-    }
-  })
   registerModels(app)
   app.router(routes)
   app.start(App, '#app')

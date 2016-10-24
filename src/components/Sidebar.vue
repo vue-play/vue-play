@@ -3,11 +3,12 @@
     <div class="resize-indicator" v-if="resizing">W: {{ sidebarWidth }}px</div>
     <div class="sidebar-border" @mousedown="handleMouseDown" @mouseup="handleMouseUp"></div>
     <h1><a href="https://github.com/egoist/vue-play">Play</a></h1>
-    <ul v-for="(routes, component) in paths" class="paths">
+    <input v-model="filterText"/>
+    <ul v-for="(routes, component) in toys" class="paths">
       <li>
         <div class="component-name">{{ component }}</div>
         <ul>
-          <li v-for="child in routes">
+          <li v-for="child in routes" v-show="filter(component, child.type)">
             <router-link :to="child.path">
               {{ child.type }}
             </router-link>
@@ -29,11 +30,9 @@
 
   export default {
     computed: {
-      paths() {
-        return this.$store.state.toys.paths
-      },
       ...mapGetters([
-        'leftPanelExpanded'
+        'leftPanelExpanded',
+        'toys'
       ])
     },
 
@@ -42,11 +41,18 @@
         sidebarWidth: 280,
         resizing: false,
         startX: null,
-        originalWidth: null
+        originalWidth: null,
+        filterText: ''
       }
     },
 
     methods: {
+      filter(component, type) {
+        if (this.filterText === '') {
+          return true
+        }
+        return `${component} ${type}`.toLowerCase().includes(this.filterText.toLowerCase())
+      },
       handleMouseDown({clientX}) {
         this.resizing = true
         this.startX = clientX
@@ -91,7 +97,7 @@
     }
 
     .paths {
-      margin: 0;
+      margin: 20px 0 0 0;
       list-style: none;
       padding-left: 0;
       > li {
@@ -130,6 +136,12 @@
         display: block;
         padding: 10px;
       }
+    }
+    input {
+      width: 100%;
+      margin: 0;
+      position: absolute;
+      top: 54px;
     }
   }
 </style>
