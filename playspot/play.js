@@ -1,8 +1,10 @@
 import {play, useComponents} from '../src'
 import MyButton from './MyButton'
+import Box from './Box'
 
 useComponents({
-  MyButton
+  MyButton,
+  Box
 })
 
 play({
@@ -23,5 +25,13 @@ play({
   <my-button color="magenta">magenta button</my-button>
 </div>
     `.trim()
+  },
+  Box: {
+    'default': {
+      template: '<box/>'
+    },
+    'red': {
+      template: '<box color="red">red</box>'
+    }
   }
 })

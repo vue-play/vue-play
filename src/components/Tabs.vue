@@ -115,7 +115,6 @@
         min: this.$refs.header.getBoundingClientRect().height,
         max: this.$refs.panel.parentNode.getBoundingClientRect().height
       }
-      console.log(this.tabHeight)
       this.tabHeight = this.bottomPanelHeight
     },
 

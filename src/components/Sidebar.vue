@@ -3,12 +3,15 @@
     <div class="resize-indicator" v-if="resizing">W: {{ sidebarWidth }}px</div>
     <div class="sidebar-border" @mousedown="handleMouseDown" @mouseup="handleMouseUp"></div>
     <h1><a href="https://github.com/egoist/vue-play">Play</a></h1>
-    <ul v-for="(routes, component) in paths" class="paths">
+    <div class="sidebar-search">
+      <input @input="filter" placeholder="Type to filter components..." />
+    </div>
+    <ul v-for="(routes, component) in toys" class="paths">
       <li>
         <div class="component-name">{{ component }}</div>
         <ul>
           <li v-for="child in routes">
-            <router-link :to="child.path">
+            <router-link :to="child.path" @click="updatePlayspot">
               {{ child.type }}
             </router-link>
           </li>
@@ -20,7 +23,8 @@
 
 <script>
   import {preventSelectStart, preventSelectStop} from '../utils/prevent-select'
-  import {mapGetters} from 'eva.js'
+  import {mapGetters, mapActions} from 'eva.js'
+  import debounce from '../utils/debounce'
 
   const BOUNDARY = {
     min: 200,
@@ -29,11 +33,9 @@
 
   export default {
     computed: {
-      paths() {
-        return this.$store.state.toys.paths
-      },
       ...mapGetters([
-        'leftPanelExpanded'
+        'leftPanelExpanded',
+        'toys'
       ])
     },
 
@@ -47,6 +49,13 @@
     },
 
     methods: {
+      ...mapActions([
+        'filterToys',
+        'updatePlayspot'
+      ]),
+      filter: debounce(function ({target}) {
+        this.filterToys(target.value)
+      }, 350),
       handleMouseDown({clientX}) {
         this.resizing = true
         this.startX = clientX
@@ -86,12 +95,14 @@
     .sidebar-border {
       cursor: col-resize;
       width: 20px;
-      float: right;
+      position: absolute;
+      top: 0;
+      right: 0;
       height: 100%;
     }
 
     .paths {
-      margin: 0;
+      margin: 10px 0 0 0;
       list-style: none;
       padding-left: 0;
       > li {
@@ -129,6 +140,20 @@
         text-decoration: none;
         display: block;
         padding: 10px;
+      }
+    }
+    .sidebar-search {
+      padding: 10px 10px 0 10px;
+      input {
+        width: 100%;
+        font-size: 16px;
+        padding: 5px;
+        outline: none;
+        border: 1px solid #e2e2e2;
+        border-radius: 3px;
+        &:focus {
+          border-color: #ccc;
+        }
       }
     }
   }
