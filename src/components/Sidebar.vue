@@ -3,12 +3,12 @@
     <div class="resize-indicator" v-if="resizing">W: {{ sidebarWidth }}px</div>
     <div class="sidebar-border" @mousedown="handleMouseDown" @mouseup="handleMouseUp"></div>
     <h1><a href="https://github.com/egoist/vue-play">Play</a></h1>
-    <input v-model="filterText"/>
+    <input @input="filter"/>
     <ul v-for="(routes, component) in toys" class="paths">
       <li>
         <div class="component-name">{{ component }}</div>
         <ul>
-          <li v-for="child in routes" v-show="filter(component, child.type)">
+          <li v-for="child in routes">
             <router-link :to="child.path">
               {{ child.type }}
             </router-link>
@@ -21,7 +21,8 @@
 
 <script>
   import {preventSelectStart, preventSelectStop} from '../utils/prevent-select'
-  import {mapGetters} from 'eva.js'
+  import {mapGetters, mapActions} from 'eva.js'
+  import debounce from '../utils/debounce'
 
   const BOUNDARY = {
     min: 200,
@@ -41,18 +42,17 @@
         sidebarWidth: 280,
         resizing: false,
         startX: null,
-        originalWidth: null,
-        filterText: ''
+        originalWidth: null
       }
     },
 
     methods: {
-      filter(component, type) {
-        if (this.filterText === '') {
-          return true
-        }
-        return `${component} ${type}`.toLowerCase().includes(this.filterText.toLowerCase())
-      },
+      ...mapActions([
+        'filterToys'
+      ]),
+      filter: debounce(function({target}) {
+        this.filterToys(target.value)
+      }, 350),
       handleMouseDown({clientX}) {
         this.resizing = true
         this.startX = clientX
