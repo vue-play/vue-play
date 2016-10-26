@@ -10,7 +10,7 @@
 <script>
   import Sidebar from './Sidebar'
   import keyEvents from '../utils/key-events'
-  import {mapActions, mapGetters} from 'eva.js'
+  import {mapGetters} from 'eva.js'
 
   export default {
     components: {
