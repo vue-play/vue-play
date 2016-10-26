@@ -23,11 +23,9 @@
       ...mapGetters(['currentPlayspot'])
     },
     watch: {
-      $route: 'updatePlayspot',
       currentPlayspot: 'changeRoute'
     },
     methods: {
-      ...mapActions(['updatePlayspot']),
       changeRoute(route) {
         this.$router.push(route)
       }

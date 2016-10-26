@@ -11,7 +11,7 @@
         <div class="component-name">{{ component }}</div>
         <ul>
           <li v-for="child in routes">
-            <router-link :to="child.path">
+            <router-link :to="child.path" @click="updatePlayspot">
               {{ child.type }}
             </router-link>
           </li>
@@ -50,7 +50,8 @@
 
     methods: {
       ...mapActions([
-        'filterToys'
+        'filterToys',
+        'updatePlayspot'
       ]),
       filter: debounce(function ({target}) {
         this.filterToys(target.value)
