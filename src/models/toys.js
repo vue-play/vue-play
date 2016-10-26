@@ -55,11 +55,12 @@ export default {
         return {...components, [component]: scenarios}
       }, {})
     },
-    playspotRoutes(state) {
+    playspotRoutes(state, getters) {
+      const toys = getters.toys
       return Object
-        .keys(state.paths)
+        .keys(toys)
         .map(component =>
-          state.paths[component].map(playspot => playspot.path)
+          toys[component].map(playspot => playspot.path)
         )
         .reduce((acc, curr) => acc.concat(curr), [])
     }
