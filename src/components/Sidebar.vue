@@ -52,7 +52,7 @@
       ...mapActions([
         'filterToys'
       ]),
-      filter: debounce(function({target}) {
+      filter: debounce(function ({target}) {
         this.filterToys(target.value)
       }, 350),
       handleMouseDown({clientX}) {

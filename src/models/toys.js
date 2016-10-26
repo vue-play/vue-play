@@ -1,5 +1,5 @@
 import highlight from '../utils/highlight'
-import { routePaths } from '../index'
+import {routePaths} from '../index'
 
 const matches = (filter, text) => {
   const f = filter.toLowerCase()
@@ -42,20 +42,19 @@ export default {
         }
       })
     },
-    toys({ paths, filter }) {
+    toys({paths, filter}) {
       if (filter === '') {
         return paths
       }
       return Object.keys(paths).reduce((components, component) => {
-        let scenarios = paths[component]
+        const scenarios = paths[component]
           .filter(({type}) => matches(filter, `${component} ${type}`))
 
         if (scenarios.length === 0 && !matches(filter, component)) {
           return components
-        } else {
-          return { ...components, [component]: scenarios }
         }
-      }, {});
+        return {...components, [component]: scenarios}
+      }, {})
     },
     playspotRoutes(state) {
       return Object
