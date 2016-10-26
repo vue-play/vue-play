@@ -34,6 +34,9 @@ play({
       template: '<box color="red"/>'
     },
     '中文': {
+      // explicitly set component name
+      // if you are using non-alphabeta chars
+      name: 'chinese',
       template: '<box color="purple">中文</box>'
     }
   }
