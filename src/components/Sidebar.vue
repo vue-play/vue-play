@@ -150,6 +150,9 @@
         outline: none;
         border: 1px solid #e2e2e2;
         border-radius: 3px;
+        &:focus {
+          border-color: #ccc;
+        }
       }
     }
   }
