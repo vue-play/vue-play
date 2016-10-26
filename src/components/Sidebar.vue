@@ -3,7 +3,9 @@
     <div class="resize-indicator" v-if="resizing">W: {{ sidebarWidth }}px</div>
     <div class="sidebar-border" @mousedown="handleMouseDown" @mouseup="handleMouseUp"></div>
     <h1><a href="https://github.com/egoist/vue-play">Play</a></h1>
-    <input @input="filter"/>
+    <div class="sidebar-search">
+      <input @input="filter" placeholder="Type to filter components..." />
+    </div>
     <ul v-for="(routes, component) in toys" class="paths">
       <li>
         <div class="component-name">{{ component }}</div>
@@ -92,12 +94,14 @@
     .sidebar-border {
       cursor: col-resize;
       width: 20px;
-      float: right;
+      position: absolute;
+      top: 0;
+      right: 0;
       height: 100%;
     }
 
     .paths {
-      margin: 20px 0 0 0;
+      margin: 10px 0 0 0;
       list-style: none;
       padding-left: 0;
       > li {
@@ -137,11 +141,16 @@
         padding: 10px;
       }
     }
-    input {
-      width: 100%;
-      margin: 0;
-      position: absolute;
-      top: 54px;
+    .sidebar-search {
+      padding: 10px 10px 0 10px;
+      input {
+        width: 100%;
+        font-size: 16px;
+        padding: 5px;
+        outline: none;
+        border: 1px solid #e2e2e2;
+        border-radius: 3px;
+      }
     }
   }
 </style>
