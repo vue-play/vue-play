@@ -4,7 +4,6 @@ import {routePaths} from '../index'
 const matches = (filter, text) => {
   const f = filter.toLowerCase()
   const t = text.toLowerCase()
-  console.log(f)
   return t.includes(f)
 }
 
