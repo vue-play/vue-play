@@ -1,18 +1,12 @@
 <template>
-  <div :class="cls">
+  <div class="box" :style="{color: 'white', backgroundColor: color}">
+    <slot></slot>
   </div>
 </template>
 
 <script>
 export default {
-  props: [
-    'color'
-  ],
-  computed: {
-    cls() {
-      return `box ${this.color}`
-    }
-  }
+  props: ['color']
 }
 </script>
 
@@ -21,8 +15,8 @@ export default {
     width: 80px;
     height: 80px;
     border: 1px solid black;
-  }
-  .red {
-    background-color: red;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 </style>

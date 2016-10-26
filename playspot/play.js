@@ -32,6 +32,9 @@ play({
     },
     'red': {
       template: '<box color="red"/>'
+    },
+    '中文': {
+      template: '<box color="purple">中文</box>'
     }
   }
 })
