@@ -14,11 +14,11 @@
   },
   "scripts": {
     "test": "npm run build",
-    "build": "vbuild --config vue.config.cjs.json --lint",
-    "watch": "vbuild --config vue.config.cjs.json --watch",
-    "surge": "vue-play ./playspot/play.js -p && surge -p play-dist -d vue-play-button.surge.sh",
+    "build": "vbuild --config vue.config.cjs.js",
+    "watch": "vbuild --config vue.config.cjs.js --watch",
+    "surge": "vbuild ./playspot/play.js --config vue.config.play.js && surge -p play-dist -d vue-play-button.surge.sh",
     "gh": "gitbook build docs && gh-pages -d docs/_book",
-    "example": "vue-play ./playspot/play.js"
+    "play": "vbuild ./playspot/play.js --dev --config vue.config.play.js"
   },
   "files": [
     "dist",
@@ -43,6 +43,6 @@
     "gh-pages": "^0.11.0",
     "github-markdown-css": "^2.4.1",
     "hint.css": "^2.4.0",
-    "vbuild": "^2.3.6"
+    "vbuild": "^3.0.2"
   }
 }

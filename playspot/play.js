@@ -1,13 +1,15 @@
-import {play, useComponents} from '../src'
+import Play from '../src'
 import MyButton from './MyButton'
 import Box from './Box'
 
-useComponents({
+const play = new Play()
+
+play.useComponents({
   MyButton,
   Box
 })
 
-play({
+play.start({
   Button: {
     'with text': {
       template: '<my-button :handleClick="log">Text</my-button>',

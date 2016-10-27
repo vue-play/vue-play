@@ -1,32 +1,47 @@
 ![logo](./media/logo.png)
 
-Play and demonstrate your Vue components, inspired by [react-storybook](https://github.com/kadirahq/react-storybook).
+A minimalistic framework for demonstrating your Vue components, inspired by [react-storybook](https://github.com/kadirahq/react-storybook).
 
-## Play it in seconds
-
-Install with [yarn](https://yarnpkg.com/):
+## Install
 
 ```bash
-# $ npm install -g vue-play-cli
-$ yarn global add vue-play-cli
+npm install --save-dev vue-play
 ```
 
-For more usages , please head to the [handbook](https://vue-play.github.io/vue-play).
+## Usage
 
-## Badges
+`vue-play` is just a framework based on `vue`, so directly import it in an entry file:
 
-|package|version|
-|---|---|
-|vue-play|[![vue-play](https://img.shields.io/npm/v/vue-play.svg?style=flat-square)](https://www.npmjs.com/package/vue-play)|
-|vue-play-cli|[![vue-play-cli](https://img.shields.io/npm/v/vue-play-cli.svg?style=flat-square)](https://www.npmjs.com/package/vue-play-cli)|
+```js
+import Play from 'vue-play'
+
+const play = new Play()
+
+// import your component
+import MyButton from './MyButton.vue'
+
+// register the component
+play.useComponents({
+  MyButton
+})
+
+play.start({
+  // The component name
+  Button: {
+    // the various scenarios
+    'with text': '<my-button>text</my-button>',
+    'with emoji': '<my-button>🌟🤔</my-button>'
+  }
+})
+```
+
+Then you can bundle this little app with your desired tool like webpack or browserify. Optionally you can use [vbuild](https://vbuild.js.org/) to finish the job faster.
 
 ## Development
 
 ```bash
 # run example play script
-# use local version of vue-play-cli
-$ cd vue-play-cli && npm link
-$ cd vue-play && npm run example
+npm run play
 
 # build vue-play
 # you don't need this when developing
