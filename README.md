@@ -23,8 +23,8 @@ npm install --save-dev vue-play
   * [play.useComponents(components)](#playusecomponentscomponents)
     + [components](#components)
   * [play.start(definitions, [selector])](#playstartdefinitions-selector)
-  * [definitions](#definitions)
-  * [selector](#selector)
+    + [definitions](#definitions)
+    + [selector](#selector)
 - [Development](#development)
 - [License](#license)
 
@@ -125,7 +125,7 @@ play.useComponents({
 
 ### play.start(definitions, [selector])
 
-### definitions
+#### definitions
 
 Type: `object`<br>
 Required: `true`
@@ -140,7 +140,7 @@ play.start({
 })
 ```
 
-### selector
+#### selector
 
 Type: `string`<br>
 Default: `#app`
