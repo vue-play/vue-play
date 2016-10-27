@@ -1,4 +1,4 @@
-import Play from '../src'
+import {Play} from '../src'
 import MyButton from './MyButton'
 import Box from './Box'
 

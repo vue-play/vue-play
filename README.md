@@ -13,7 +13,7 @@ npm install --save-dev vue-play
 `vue-play` is just a framework based on `vue`, so directly import it in an entry file:
 
 ```js
-import Play from 'vue-play'
+import {Play} from 'vue-play'
 import 'vue-play/dist/vue-play.css'
 
 const play = new Play()

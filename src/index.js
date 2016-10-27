@@ -7,7 +7,7 @@ import {registerModels} from './models'
 export const routePaths = {}
 export const routeIds = []
 
-export default class Play {
+class Play {
   useComponents(components) {
     this.localComponents = components
   }
@@ -86,3 +86,5 @@ export default class Play {
     app.start(App, selector)
   }
 }
+
+export {Play}
