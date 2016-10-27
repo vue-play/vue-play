@@ -8,6 +8,30 @@ A minimalistic framework for demonstrating your Vue components, inspired by [rea
 npm install --save-dev vue-play
 ```
 
+<details><summary>Table of Contents</summary>
+
+<!-- toc -->
+
+- [Usage](#usage)
+- [Bundler](#bundler)
+- [Component Shorthand](#component-shorthand)
+- [Additional Component Properties](#additional-component-properties)
+  * [example](#example)
+  * [readme](#readme)
+- [Showcase](#showcase)
+- [API](#api)
+  * [play.useComponents(components)](#playusecomponentscomponents)
+    + [components](#components)
+  * [play.start(definitions, [selector])](#playstartdefinitions-selector)
+  * [definitions](#definitions)
+  * [selector](#selector)
+- [Development](#development)
+- [License](#license)
+
+<!-- tocstop -->
+
+</details>
+
 ## Usage
 
 `vue-play` is just a framework based on `vue`, so directly import it in an entry file:
@@ -74,6 +98,13 @@ The example code of your component.
 Type: `HTML string`
 
 Optionally display a readme tab to show detailed usage.
+
+## Showcase
+
+Feel free to add your projects here:
+
+- [button example](http://vue-play-button.surge.sh/#/) - [source](https://github.com/vue-play/vue-play/tree/master/playspot)
+- [vue-slim-modal](https://egoistian.com/vue-slim-modal/#/) - [source](https://github.com/egoist/vue-slim-modal/tree/master/playspot)
 
 ## API
 
