@@ -58,7 +58,7 @@ play.start({
 })
 ```
 
-## Additional component properties
+## Additional Component Properties
 
 Your example component is a typical Vue component, but it can accept some additional properties for documenting its usage.
 
