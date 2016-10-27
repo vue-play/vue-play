@@ -17,7 +17,6 @@
     "build": "vbuild --config vue.config.cjs.js",
     "watch": "vbuild --config vue.config.cjs.js --watch",
     "surge": "vbuild ./playspot/play.js --config vue.config.play.js && surge -p play-dist -d vue-play-button.surge.sh",
-    "gh": "gitbook build docs && gh-pages -d docs/_book",
     "play": "vbuild ./playspot/play.js --dev --config vue.config.play.js"
   },
   "files": [
@@ -40,7 +39,6 @@
     "uid": "0.0.2"
   },
   "devDependencies": {
-    "gh-pages": "^0.11.0",
     "github-markdown-css": "^2.4.1",
     "hint.css": "^2.4.0",
     "vbuild": "^3.0.2"
