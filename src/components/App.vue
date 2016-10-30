@@ -41,8 +41,7 @@
     methods: {
       ...mapActions(['addActionLog', 'clearActionLogs', 'updatePlayspot']),
       updateRoute(route) {
-        // on page loaded it does not add history
-        // unless it's to update the route in iframe
+        // do not add browser history in iframe
         if (this.$route.name !== 'preview') {
           this.$router.push(route)
         }
@@ -59,12 +58,10 @@
         if (this.iframeLoaded) {
           updateIframeRoute()
         } else {
-          this.$nextTick(() => {
-            iframe.onload = () => {
-              updateIframeRoute()
-              this.iframeLoaded = true
-            }
-          })
+          iframe.onload = () => {
+            updateIframeRoute()
+            this.iframeLoaded = true
+          }
         }
       },
       listenChild() {
