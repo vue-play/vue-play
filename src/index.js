@@ -6,7 +6,6 @@ import Tabs from './components/Tabs'
 import {registerModels} from './models'
 
 export const routePaths = {}
-export const routeIds = []
 export const routes = []
 
 const isPreview = location.hash.indexOf('#/__preview') > -1
@@ -58,7 +57,6 @@ class Play {
           type,
           path: routeId
         })
-        routeIds.push(routeId)
         routes.push(
           {
             name: 'default',

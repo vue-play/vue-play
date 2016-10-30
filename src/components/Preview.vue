@@ -1,6 +1,5 @@
 <template>
   <div id="root">
-  <input type="hidden" :data-path="$route.path">
     <router-view></router-view>
   </div>
 </template>
@@ -16,7 +15,7 @@
           if (e.data.type === 'UPDATE_ROUTE') {
             this.$router.replace(`/__preview${e.data.payload}`)
           }
-        }, false)
+        })
       }
     }
   }
