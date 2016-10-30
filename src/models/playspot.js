@@ -26,8 +26,8 @@ export default {
       const prev = (total + (current - 1)) % total
       commit(UPDATE_PLAYSPOT, getters.playspotRoutes[prev])
     },
-    updatePlayspot({commit, rootState}) {
-      commit(UPDATE_PLAYSPOT, rootState.route.path)
+    updatePlayspot({commit}, path) {
+      commit(UPDATE_PLAYSPOT, path)
     }
   },
   getters: {

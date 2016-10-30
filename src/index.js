@@ -1,25 +1,27 @@
 import EVA from 'eva.js'
-import uid from 'uid'
-import App from './components/App'
+import action from './utils/action'
+import RouterApp from './components/App'
+import Preview from './components/Preview'
 import Tabs from './components/Tabs'
 import {registerModels} from './models'
 
 export const routePaths = {}
 export const routeIds = []
+export const routes = []
+
+const isPreview = location.hash.indexOf('#/__preview') > -1
 
 class Play {
   useComponents(components) {
     this.localComponents = components
   }
 
-  start(toys, selector = '#app') {
-    const localComponents = this.localComponents
-
-    const routes = route => Object.keys(toys).map(componentName => {
-      return Object.keys(toys[componentName]).map(type => {
+  describe(componentName, scenarios) {
+    if (scenarios) {
+      Object.keys(scenarios).forEach(type => {
         const routeId = `/${componentName}/${type.replace(/\s/g, '_')}`
 
-        const componentFn = toys[componentName][type]
+        const componentFn = scenarios[type]
         const Component = typeof componentFn === 'function' ?
           {render: componentFn} :
           typeof componentFn === 'string' ?
@@ -34,57 +36,90 @@ class Play {
 
         const View = {
           name: 'view',
+          beforeRouteEnter(to, from, next) {
+            next(vm => {
+              vm.$parent.updateIframe(to.path)
+            })
+          },
           render(h) {
-            return h('div', {class: 'view'}, [
-              h('div', {class: 'play-ground'}, [h(Component)]),
-              h(Tabs, {props: {example, readme}})
-            ])
+            return h(Tabs, {props: {example, readme}})
           }
         }
+
+        const PreviewView = {
+          name: 'preview-view',
+          render(h) {
+            return h(Component)
+          }
+        }
+
         routePaths[componentName] = routePaths[componentName] || []
         routePaths[componentName].push({
           type,
           path: routeId
         })
         routeIds.push(routeId)
-        return route(routeId, View)
+        routes.push(
+          {
+            name: 'default',
+            path: routeId,
+            component: View,
+            meta: {
+              name: type
+            }
+          },
+          {
+            path: `/__preview${routeId}`,
+            component: PreviewView,
+            name: 'preview'
+          }
+        )
       })
-    }).reduce((current, next) => current.concat(next), [])
+    }
 
+    const context = this
+    return {
+      add(scenario, component) {
+        context.describe(componentName, {[scenario]: component})
+        return this
+      }
+    }
+  }
+
+  start(selector = '#app') {
     const app = new EVA()
 
     app.use(Vue => {
-      Vue.prototype.$log = function (data) {
-        const path = this.$store.state.route.path
-        this.$store.commit('ADD_LOG', {
-          data,
-          path,
-          id: uid()
-        })
-        const consoleEl = document.querySelector('.console-body')
-        if (consoleEl) {
-          Vue.nextTick(() => {
-            consoleEl.scrollTop = consoleEl.scrollHeight
-          })
-        }
-      }
-      Vue.prototype.$clear = function () {
-        const path = this.$store.state.route.path
-        this.$store.commit('CLEAN_CURRENT_LOGS', path)
-      }
-
-      // register components
-      if (typeof localComponents === 'object') {
-        Object.keys(localComponents).forEach(name => {
-          Vue.component(name, localComponents[name])
+      if (typeof this.localComponents === 'object') {
+        Object.keys(this.localComponents).forEach(name => {
+          Vue.component(name, this.localComponents[name])
         })
       }
     })
 
+
+    app.model({
+      state: {
+        isPreview,
+        routes
+      },
+      getters: {
+        defaultRoutes(state) {
+          return state.routes.filter(route => {
+            return route.name === 'default'
+          })
+        }
+      }
+    })
     registerModels(app)
-    app.router(routes)
+    app.router({
+      routes
+    })
+
+    const App = isPreview ? Preview : RouterApp
+
     app.start(App, selector)
   }
 }
 
-export {Play}
+export {Play, action}

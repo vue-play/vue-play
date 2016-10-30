@@ -2,7 +2,10 @@
   <div id="app" class="app">
     <sidebar></sidebar>
     <div class="main">
-      <router-view></router-view>
+      <div class="view">
+        <iframe class="play-ground" ref="iframe" src="/#/__preview" frameborder="0"></iframe>
+        <router-view></router-view>
+      </div>
     </div>
   </div>
 </template>
@@ -10,24 +13,77 @@
 <script>
   import Sidebar from './Sidebar'
   import keyEvents from '../utils/key-events'
-  import {mapGetters} from 'eva.js'
+  import {mapGetters, mapActions} from 'eva.js'
 
   export default {
     components: {
       Sidebar
     },
+    data() {
+      return {
+        iframeLoaded: false
+      }
+    },
     mounted() {
       keyEvents(this.$store)
+      this.updateIframe(this.$route.path)
+      this.listenChild()
+      if (this.$route.name === 'default') {
+        this.updatePlayspot(this.$route.path)
+      }
+    },
+    watch: {
+      currentPlayspot: 'updateRoute'
     },
     computed: {
       ...mapGetters(['currentPlayspot'])
     },
-    watch: {
-      currentPlayspot: 'changeRoute'
-    },
     methods: {
-      changeRoute(route) {
-        this.$router.push(route)
+      ...mapActions(['addActionLog', 'clearActionLogs', 'updatePlayspot']),
+      updateRoute(route) {
+        // on page loaded it does not add history
+        // unless it's to update the route in iframe
+        if (this.$route.name !== 'preview') {
+          this.$router.push(route)
+        }
+      },
+      updateIframe(route) {
+        const {iframe} = this.$refs
+        const updateIframeRoute = () => {
+          iframe.contentWindow.postMessage({
+            type: 'UPDATE_ROUTE',
+            payload: route
+          }, location.origin)
+          document.title = `${this.$route.meta.name} - Vue Play`
+        }
+        if (this.iframeLoaded) {
+          updateIframeRoute()
+        } else {
+          this.$nextTick(() => {
+            iframe.onload = () => {
+              updateIframeRoute()
+              this.iframeLoaded = true
+            }
+          })
+        }
+      },
+      listenChild() {
+        window.addEventListener('message', ({data}) => {
+          if (data.type === 'ACTION_LOG') {
+            this.addActionLog({
+              data: data.payload,
+              path: this.currentPlayspot
+            })
+            const consoleEl = document.querySelector('.console-body')
+            if (consoleEl) {
+              this.$nextTick(() => {
+                consoleEl.scrollTop = consoleEl.scrollHeight
+              })
+            }
+          } else if (data.type === 'CLEAR_ACTION_LOGS') {
+            this.clearActionLogs(this.currentPlayspot)
+          }
+        })
       }
     }
   }

@@ -1,3 +1,4 @@
+import uid from 'uid'
 import highlight from '../utils/highlight'
 import {routePaths} from '../index'
 
@@ -18,7 +19,7 @@ export default {
     ADD_LOG(state, payload) {
       state.logs.push(payload)
     },
-    CLEAN_CURRENT_LOGS(state, path) {
+    CLEAR_CURRENT_LOGS(state, path) {
       state.logs = state.logs.filter(log => log.path !== path)
     },
     UPDATE_FILTER(state, payload) {
@@ -28,6 +29,16 @@ export default {
   actions: {
     filterToys({commit}, payload) {
       commit('UPDATE_FILTER', payload)
+    },
+    addActionLog({commit}, {data, path}) {
+      commit('ADD_LOG', {
+        data,
+        path,
+        id: uid()
+      })
+    },
+    clearActionLogs({commit}, payload) {
+      commit('CLEAR_CURRENT_LOGS', payload)
     }
   },
   getters: {
