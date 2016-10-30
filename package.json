@@ -17,8 +17,8 @@
     "toc": "markdown-toc -i README.md",
     "build": "vbuild --config vue.config.cjs.js",
     "watch": "vbuild --config vue.config.cjs.js --watch",
-    "surge": "vbuild ./playspot/play.js --config vue.config.play.js && surge -p play-dist -d vue-play-button.surge.sh",
-    "play": "vbuild ./playspot/play.js --dev --config vue.config.play.js"
+    "surge": "vbuild ./play --config vue.config.play.js && surge -p play-dist -d vue-play-button.surge.sh",
+    "play": "vbuild ./play --dev --config vue.config.play.js"
   },
   "files": [
     "dist",

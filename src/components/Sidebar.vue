@@ -10,10 +10,12 @@
       <li>
         <div class="component-name">{{ component }}</div>
         <ul>
-          <li v-for="child in routes">
-            <router-link :to="child.path" @click="updatePlayspot">
+          <li v-for="child in routes" @click="updatePlayspot(child.path)">
+            <div
+              class="router-link"
+              :class="{'router-link-active': $route.path === child.path}">
               {{ child.type }}
-            </router-link>
+            </div>
           </li>
         </ul>
       </li>
@@ -112,8 +114,8 @@
         ul {
           padding-left: 0;
           li {
-            a {
-              display: block;
+            .router-link {
+              cursor: pointer;
               padding: 10px;
               text-decoration: none;
               color: #42b983;

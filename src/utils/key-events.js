@@ -37,7 +37,7 @@ function check(e) {
 }
 
 export default function observeKeyEvents(store) {
-  window.onkeydown = event => {
+  window.addEventListener('keydown', event => {
     const combination = check(event)
     if (combination) {
       if (!validShortcuts.includes(combination)) {
@@ -46,5 +46,5 @@ export default function observeKeyEvents(store) {
       }
       store.dispatch(combination)
     }
-  }
+  })
 }
