@@ -116,7 +116,7 @@ Optionally display a readme tab to show detailed usage.
 
 Feel free to add your projects here:
 
-- [button example](http://vue-play-button.surge.sh/#/) - [source](https://github.com/vue-play/vue-play/tree/master/playspot)
+- [button example](http://vue-play-button.surge.sh/#/) - [source](https://github.com/vue-play/vue-play/tree/master/play)
 - [vue-slim-modal](https://egoistian.com/vue-slim-modal/#/) - [source](https://github.com/egoist/vue-slim-modal/tree/master/playspot)
 
 ## API
