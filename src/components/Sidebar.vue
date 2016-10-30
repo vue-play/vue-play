@@ -102,7 +102,7 @@
 
     .sidebar-border {
       cursor: col-resize;
-      width: 20px;
+      width: 5px;
       position: absolute;
       top: 0;
       right: 0;
