@@ -6,20 +6,22 @@
     <div class="sidebar-search">
       <input @input="filter" placeholder="Type to filter components..." />
     </div>
-    <ul v-for="(routes, component) in toys" class="paths">
-      <li>
-        <div class="component-name">{{ component }}</div>
-        <ul>
-          <li v-for="child in routes" @click="updatePlayspot(child.path)">
-            <div
-              class="router-link"
-              :class="{'router-link-active': $route.path === child.path}">
-              {{ child.type }}
-            </div>
-          </li>
-        </ul>
-      </li>
-    </ul>
+    <div class="scenarios">
+      <ul v-for="(routes, component) in toys" class="paths">
+        <li>
+          <div class="component-name">{{ component }}</div>
+          <ul>
+            <li v-for="child in routes" @click="updatePlayspot(child.path)">
+              <div
+                class="router-link"
+                :class="{'router-link-active': $route.path === child.path}">
+                {{ child.type }}
+              </div>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
   </figure>
 </template>
 
@@ -86,6 +88,9 @@
 </script>
 
 <style scoped>
+  $logoHeight: 40px;
+  $searchHeight: 50px;
+
   .sidebar {
     margin: 0;
     width: 280px;
@@ -105,7 +110,7 @@
     }
 
     .paths {
-      margin: 10px 0 0 0;
+      margin: 0;
       list-style: none;
       padding-left: 0;
       > li {
@@ -138,16 +143,22 @@
       border-bottom: 1px solid #e2e2e2;
       background-color: white;
       text-align: center;
+      height: $logoHeight;
+      line-height: $logoHeight;
+      font-size: 20px;
       a {
         color: #42b983;
         text-decoration: none;
         display: block;
-        padding: 10px;
       }
     }
     .sidebar-search {
-      padding: 10px 10px 0 10px;
+      height: $searchHeight;
+      display: flex;
+      align-items: center;
+      padding: 0 10px;
       input {
+        height: 60%;
         width: 100%;
         font-size: 16px;
         padding: 5px;
@@ -158,6 +169,10 @@
           border-color: #ccc;
         }
       }
+    }
+    .scenarios {
+      height: calc(100% - $logoHeight - $searchHeight);
+      overflow: auto;
     }
   }
 </style>

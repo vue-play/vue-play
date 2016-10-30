@@ -15,6 +15,9 @@ module.exports = {
   stats: {
     filename: '../stats.html'
   },
+  postcss: {
+    use: ['postcss-simple-vars']
+  },
   production: {
     eslint: {
       globals: ['require']
