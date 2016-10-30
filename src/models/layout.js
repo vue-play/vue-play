@@ -2,6 +2,7 @@ export const TOGGLE_LEFT_PANEL = 'TOGGLE_LEFT_PANEL'
 export const TOGGLE_BOTTOM_PANEL = 'TOGGLE_BOTTOM_PANEL'
 export const TOGGLE_ALL_PANELS = 'TOGGLE_ALL_PANELS'
 export const SET_BOTTOM_PANEL_HEIGHT = 'SET_BOTTOM_PANEL_HEIGHT'
+export const UPDATE_SIDEBAR_WIDTH = 'UPDATE_SIDEBAR_WIDTH'
 
 export const defaultBottomPanelHeight = 280
 
@@ -10,7 +11,8 @@ export default {
   state: {
     leftPanelExpanded: true,
     bottomPanelExpanded: true,
-    bottomPanelHeight: defaultBottomPanelHeight
+    bottomPanelHeight: defaultBottomPanelHeight,
+    sidebarWidth: 280
   },
   mutations: {
     TOGGLE_LEFT_PANEL(state) {
@@ -21,6 +23,9 @@ export default {
     },
     SET_BOTTOM_PANEL_HEIGHT(state, payload) {
       state.bottomPanelHeight = payload || defaultBottomPanelHeight
+    },
+    UPDATE_SIDEBAR_WIDTH(state, payload) {
+      state.sidebarWidth = payload
     }
   },
   actions: {
@@ -45,6 +50,9 @@ export default {
     },
     setBottomPanelHeight({commit}, payload) {
       commit(SET_BOTTOM_PANEL_HEIGHT, payload)
+    },
+    updateSidebarWidth({commit}, payload) {
+      commit(UPDATE_SIDEBAR_WIDTH, payload)
     }
   },
   getters: {
@@ -56,6 +64,12 @@ export default {
     },
     bottomPanelHeight(state) {
       return state.bottomPanelHeight
+    },
+    sidebarWidth(state) {
+      return state.sidebarWidth + 'px'
+    },
+    mainWidth(state, getters) {
+      return `calc(100% - ${getters.sidebarWidth})`
     }
   }
 }

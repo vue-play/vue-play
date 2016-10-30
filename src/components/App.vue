@@ -1,7 +1,7 @@
 <template>
   <div id="app" class="app">
     <sidebar></sidebar>
-    <div class="main">
+    <div class="main" :style="{width: mainWidth}">
       <div class="view">
         <iframe class="play-ground" ref="iframe" src="/#/__preview" frameborder="0"></iframe>
         <router-view></router-view>
@@ -36,10 +36,17 @@
       currentPlayspot: 'updateRoute'
     },
     computed: {
-      ...mapGetters(['currentPlayspot'])
+      ...mapGetters([
+        'currentPlayspot',
+        'mainWidth'
+      ])
     },
     methods: {
-      ...mapActions(['addActionLog', 'clearActionLogs', 'updatePlayspot']),
+      ...mapActions([
+        'addActionLog',
+        'clearActionLogs',
+        'updatePlayspot'
+      ]),
       updateRoute(route) {
         // do not add browser history in iframe
         if (this.$route.name !== 'preview') {

@@ -1,6 +1,6 @@
 <template>
-  <figure class="sidebar" ref="sidebar" v-show="leftPanelExpanded" :style="{width: sidebarWidth + 'px'}">
-    <div class="resize-indicator" v-if="resizing">W: {{ sidebarWidth }}px</div>
+  <figure class="sidebar" ref="sidebar" v-show="leftPanelExpanded" :style="{width: sidebarWidth}">
+    <div class="resize-indicator" v-if="resizing">W: {{ sidebarWidth }}</div>
     <div class="sidebar-border" @mousedown="handleMouseDown" @mouseup="handleMouseUp"></div>
     <h1><a href="https://github.com/egoist/vue-play">Play</a></h1>
     <div class="sidebar-search">
@@ -37,13 +37,13 @@
     computed: {
       ...mapGetters([
         'leftPanelExpanded',
-        'toys'
+        'toys',
+        'sidebarWidth'
       ])
     },
 
     data() {
       return {
-        sidebarWidth: 280,
         resizing: false,
         startX: null,
         originalWidth: null
@@ -53,7 +53,8 @@
     methods: {
       ...mapActions([
         'filterToys',
-        'updatePlayspot'
+        'updatePlayspot',
+        'updateSidebarWidth'
       ]),
       filter: debounce(function ({target}) {
         this.filterToys(target.value)
@@ -71,7 +72,7 @@
         if (!this.resizing ||
           clientX < BOUNDARY.min ||
           clientX > BOUNDARY.max) return
-        this.sidebarWidth = this.originalWidth + clientX - this.startX
+        this.updateSidebarWidth(this.originalWidth + clientX - this.startX)
       },
 
       handleMouseUp() {
