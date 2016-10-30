@@ -2,10 +2,7 @@
   <div id="app" class="app">
     <sidebar></sidebar>
     <div class="main" :style="{width: mainWidth}">
-      <div class="view">
-        <iframe class="play-ground" ref="iframe" src="/#/__preview" frameborder="0"></iframe>
-        <router-view></router-view>
-      </div>
+      <router-view></router-view>
     </div>
   </div>
 </template>
@@ -19,17 +16,11 @@
     components: {
       Sidebar
     },
-    data() {
-      return {
-        iframeLoaded: false
-      }
-    },
     mounted() {
       keyEvents(this.$store)
-      this.updateIframe(this.$route.path)
-      this.listenChild()
       if (this.$route.name === 'default') {
         this.updatePlayspot(this.$route.path)
+        this.updateTitle()
       }
     },
     watch: {
@@ -48,47 +39,11 @@
         'updatePlayspot'
       ]),
       updateRoute(route) {
-        // do not add browser history in iframe
-        if (this.$route.name !== 'preview') {
-          this.$router.push(route)
-        }
+        this.$router.push(route)
+        this.updateTitle()
       },
-      updateIframe(route) {
-        const {iframe} = this.$refs
-        const updateIframeRoute = () => {
-          if (this.$route.name !== 'default') return
-          iframe.contentWindow.postMessage({
-            type: 'UPDATE_ROUTE',
-            payload: route
-          }, location.origin)
-          document.title = `${this.$route.meta.name} - Vue Play`
-        }
-        if (this.iframeLoaded) {
-          updateIframeRoute()
-        } else {
-          iframe.onload = () => {
-            updateIframeRoute()
-            this.iframeLoaded = true
-          }
-        }
-      },
-      listenChild() {
-        window.addEventListener('message', ({data}) => {
-          if (data.type === 'ACTION_LOG') {
-            this.addActionLog({
-              data: data.payload,
-              path: this.currentPlayspot
-            })
-            const consoleEl = document.querySelector('.console-body')
-            if (consoleEl) {
-              this.$nextTick(() => {
-                consoleEl.scrollTop = consoleEl.scrollHeight
-              })
-            }
-          } else if (data.type === 'CLEAR_ACTION_LOGS') {
-            this.clearActionLogs(this.currentPlayspot)
-          }
-        })
+      updateTitle() {
+        document.title = `${this.$route.meta.name} - Vue Play`
       }
     }
   }

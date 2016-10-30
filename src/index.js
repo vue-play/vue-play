@@ -1,14 +1,11 @@
 import EVA from 'eva.js'
-import action from './utils/action'
-import RouterApp from './components/App'
-import Preview from './components/Preview'
+import uid from 'uid'
+import App from './components/App'
 import Tabs from './components/Tabs'
 import {registerModels} from './models'
 
 export const routePaths = {}
 export const routes = []
-
-const isPreview = location.hash.indexOf('#/__preview') > -1
 
 class Play {
   useComponents(components) {
@@ -35,20 +32,13 @@ class Play {
 
         const View = {
           name: 'view',
-          beforeRouteEnter(to, from, next) {
-            next(vm => {
-              vm.$parent.updateIframe(to.path)
-            })
-          },
           render(h) {
-            return h(Tabs, {props: {example, readme}})
-          }
-        }
-
-        const PreviewView = {
-          name: 'preview-view',
-          render(h) {
-            return h(Component)
+            return h('div', {staticClass: 'view'}, [
+              h('div', {staticClass: 'play-ground'}, [
+                h(Component)
+              ]),
+              h(Tabs, {props: {example, readme}})
+            ])
           }
         }
 
@@ -65,11 +55,6 @@ class Play {
             meta: {
               name: type
             }
-          },
-          {
-            path: `/__preview${routeId}`,
-            component: PreviewView,
-            name: 'preview'
           }
         )
       })
@@ -92,6 +77,26 @@ class Play {
     const app = new EVA()
 
     app.use(Vue => {
+      Vue.prototype.$log = function (data) {
+        const path = this.$store.state.route.path
+        this.$store.commit('ADD_LOG', {
+          data,
+          path,
+          id: uid()
+        })
+        const consoleEl = document.querySelector('.console-body')
+        if (consoleEl) {
+          Vue.nextTick(() => {
+            consoleEl.scrollTop = consoleEl.scrollHeight
+          })
+        }
+      }
+
+      Vue.prototype.$clear = function () {
+        const path = this.$store.state.route.path
+        this.$store.commit('CLEAR_CURRENT_LOGS', path)
+      }
+
       if (typeof this.localComponents === 'object') {
         Object.keys(this.localComponents).forEach(name => {
           Vue.component(name, this.localComponents[name])
@@ -101,7 +106,6 @@ class Play {
 
     app.model({
       state: {
-        isPreview,
         routes
       },
       getters: {
@@ -117,10 +121,8 @@ class Play {
       routes
     })
 
-    const App = isPreview ? Preview : RouterApp
-
     app.start(App, selector)
   }
 }
 
-export {Play, action}
+export {Play}

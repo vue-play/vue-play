@@ -1,4 +1,4 @@
-import {Play, action} from '../src'
+import {Play} from '../src'
 import MyButton from './MyButton'
 import Box from './Box'
 
@@ -14,7 +14,7 @@ play.describe('Button', add => {
     template: '<my-button :handleClick="log">Text</my-button>',
     methods: {
       log() {
-        action.log(new Date())
+        this.$log(new Date())
       }
     }
   })
