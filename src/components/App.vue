@@ -49,6 +49,7 @@
       updateIframe(route) {
         const {iframe} = this.$refs
         const updateIframeRoute = () => {
+          if (this.$route.name !== 'default') return
           iframe.contentWindow.postMessage({
             type: 'UPDATE_ROUTE',
             payload: route
