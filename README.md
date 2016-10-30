@@ -179,6 +179,16 @@ Default: `#app`
 
 Where to mount the app.
 
+### action
+
+#### action.log(data)
+
+Log data in `play app`'s console
+
+#### action.clear()
+
+Clear logs in current scenario.
+
 ## Development
 
 ```bash

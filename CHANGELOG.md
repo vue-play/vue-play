@@ -22,6 +22,8 @@ addButton('with text', '<button>text</button>')
 play.start('#root')
 ```
 
+- add `action` to replace `this.$log` and `this.$clear`
+
 ### Other
 
 - adjust the buzz words
