@@ -101,7 +101,6 @@ class Play {
       }
     })
 
-
     app.model({
       state: {
         isPreview,
