@@ -29,6 +29,9 @@ play.describe('Box', add => {
 })
 
 const playCircle = play.describe('Circle')
-playCircle('default', '<h2>just an example...</h2>')
+playCircle('default', {
+  template: '<h2>just an example...</h2>',
+  readme: '<h2>just an example...</h2>'
+})
 
 play.start('#app')

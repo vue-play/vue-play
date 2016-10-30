@@ -3,6 +3,7 @@ export const TOGGLE_BOTTOM_PANEL = 'TOGGLE_BOTTOM_PANEL'
 export const TOGGLE_ALL_PANELS = 'TOGGLE_ALL_PANELS'
 export const SET_BOTTOM_PANEL_HEIGHT = 'SET_BOTTOM_PANEL_HEIGHT'
 export const UPDATE_SIDEBAR_WIDTH = 'UPDATE_SIDEBAR_WIDTH'
+export const UPDATE_ACTIVE_TAB = 'UPDATE_ACTIVE_TAB'
 
 export const defaultBottomPanelHeight = 280
 
@@ -12,7 +13,8 @@ export default {
     leftPanelExpanded: true,
     bottomPanelExpanded: true,
     bottomPanelHeight: defaultBottomPanelHeight,
-    sidebarWidth: 280
+    sidebarWidth: 280,
+    activeTab: null
   },
   mutations: {
     TOGGLE_LEFT_PANEL(state) {
@@ -26,6 +28,9 @@ export default {
     },
     UPDATE_SIDEBAR_WIDTH(state, payload) {
       state.sidebarWidth = payload
+    },
+    UPDATE_ACTIVE_TAB(state, payload) {
+      state.activeTab = payload
     }
   },
   actions: {
@@ -53,6 +58,9 @@ export default {
     },
     updateSidebarWidth({commit}, payload) {
       commit(UPDATE_SIDEBAR_WIDTH, payload)
+    },
+    updateActiveTab({commit}, payload) {
+      commit(UPDATE_ACTIVE_TAB, payload)
     }
   },
   getters: {
@@ -70,6 +78,9 @@ export default {
     },
     mainWidth(state, getters) {
       return `calc(100% - ${getters.sidebarWidth})`
+    },
+    activeTab(state) {
+      return state.activeTab
     }
   }
 }

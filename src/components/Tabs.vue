@@ -7,7 +7,7 @@
         class="title"
         :class="{active: active === 'readme'}"
         @mousedown.stop
-        @click="active = 'readme'">
+        @click="updateActiveTab('readme')">
         <svg id="i-book" viewBox="0 0 32 32" width="32" height="32" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="6.25%">
           <path d="M16 7 C16 7 9 1 2 6 L2 28 C9 23 16 28 16 28 16 28 23 23 30 28 L30 6 C23 1 16 7 16 7 Z M16 7 L16 28" />
         </svg>
@@ -17,7 +17,7 @@
         class="title"
         :class="{active: active === 'console'}"
         @mousedown.stop
-        @click="active = 'console'">
+        @click="updateActiveTab('console')">
         <svg id="i-bell" viewBox="0 0 32 32" width="32" height="32" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="6.25%">
           <path d="M8 17 C8 12 9 6 16 6 23 6 24 12 24 17 24 22 27 25 27 25 L5 25 C5 25 8 22 8 17 Z M20 25 C20 25 20 29 16 29 12 29 12 25 12 25 M16 3 L16 6" />
         </svg>
@@ -28,7 +28,7 @@
         class="title"
         :class="{active: active === 'example'}"
         @mousedown.stop
-        @click="active = 'example'">
+        @click="updateActiveTab('example')">
         <svg id="i-code" viewBox="0 0 32 32" width="32" height="32" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="6.25%">
             <path d="M10 9 L3 17 10 25 M22 9 L29 17 22 25 M18 7 L14 27" />
         </svg>
@@ -93,16 +93,22 @@
       ...mapGetters([
         'logs',
         'bottomPanelExpanded',
-        'bottomPanelHeight'
+        'bottomPanelHeight',
       ]),
       highlightedExample() {
         if (!this.example) return
         return highlight.highlightAuto(this.example).value
+      },
+      active() {
+        const tab = this.$store.getters.activeTab
+        if (tab === 'console' || (tab && this[tab])) {
+          return tab
+        }
+        return this.readme ? 'readme' : 'console'
       }
     },
     data() {
       return {
-        active: this.readme ? 'readme' : 'console',
         tabHeight: defaultBottomPanelHeight,
         startY: null,
         originalHeight: null,
@@ -119,7 +125,11 @@
     },
 
     methods: {
-      ...mapActions(['setBottomPanelHeight', 'clearActionLogs']),
+      ...mapActions([
+        'setBottomPanelHeight',
+        'clearActionLogs',
+        'updateActiveTab'
+      ]),
       handleMouseDown({clientY}) {
         this.resizing = true
         this.startY = clientY
