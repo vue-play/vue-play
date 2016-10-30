@@ -9,36 +9,26 @@ play.useComponents({
   Box
 })
 
-play.describe('Button', {
-  'with text': {
+play.describe('Button', add => {
+  add('with text', {
     template: '<my-button :handleClick="log">Text</my-button>',
     methods: {
       log() {
         action.log(new Date())
       }
     }
-  },
-  'with emoji': '<my-button>😄🤗😃😐😲</my-button>',
-  'with colors': `
-<div class="examples">
-  <my-button color="red">red button</my-button>
-  <my-button color="blue">blue button</my-button>
-  <my-button color="magenta">magenta button</my-button>
-</div>
-  `.trim()
+  })
+  add('with emoji', '<my-button>😄🤗😃😐😲</my-button>')
+  add('with color', '<my-button color="magenta">magenta button</my-button>')
 })
 
-const playBox = play.describe('Box', {
-  'default': {
-    template: '<box/>'
-  },
-  'red': {
-    template: '<box color="red">red</box>'
-  }
+play.describe('Box', add => {
+  add('default', '<box />')
+  add('dashed border', '<box :dashed="true" />')
+  add('dotted border', '<box :dotted="true" />')
 })
 
-playBox
-  .add('dashed border', '<box :dashed="true" />')
-  .add('dotted border', '<box :dotted="true" />')
+const playCircle = play.describe('Circle')
+playCircle('default', '<h2>just an example...</h2>')
 
 play.start('#app')

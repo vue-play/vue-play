@@ -6,12 +6,13 @@
 - add `play.describe` method for adding playspot
 
 ```js
-const playButton = play.describe('Button', {
-  'with text': '<button>text</button>'
+play.describe('Button', add => {
+  add('with text', '<button>text</button>')
 })
 
-// you can also dynamically add new scenario
-playButton.add('with emoji', '<button>🌟</button>')
+// if no callback function, it returns the `add` function
+const addButton = play.describe('Button')
+addButton('with text', '<button>text</button>')
 ```
 
 - `play.start` now only needs the `selector` argument, and it defaults to `#app`
@@ -29,9 +30,9 @@ play.start('#root')
   - `play app` is the whole app
 
 ```js
-// playButton is a playspot
-const playButton = play.describe('button')
-
-// 'with text' is a scenario
-playButton.add('with text', '<button>text</button>')
+// describe a playspot
+play.describe('button', add => {
+  // add a scenario called 'with text'
+  add('with text', '<button>text</button>')
+})
 ```

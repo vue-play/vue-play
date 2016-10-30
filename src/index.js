@@ -16,7 +16,7 @@ class Play {
     this.localComponents = components
   }
 
-  describe(componentName, scenarios) {
+  addScenarios(componentName, scenarios) {
     if (scenarios) {
       Object.keys(scenarios).forEach(type => {
         const routeId = `/${componentName}/${type.replace(/\s/g, '_')}`
@@ -76,13 +76,17 @@ class Play {
         )
       })
     }
+  }
 
-    const context = this
-    return {
-      add(scenario, component) {
-        context.describe(componentName, {[scenario]: component})
-        return this
-      }
+  describe(componentName, cb) {
+    const add = (scenario, component) => {
+      this.addScenarios(componentName, {[scenario]: component})
+      return this
+    }
+    if (typeof cb === 'function') {
+      cb(add)
+    } else {
+      return add
     }
   }
 
