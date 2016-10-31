@@ -128,7 +128,7 @@ play.describe('Button', module)
   .add('full component', {
     data() {},
     methods: {},
-    return(h) {}
+    render(h) {}
     // ...
   })
 ```
