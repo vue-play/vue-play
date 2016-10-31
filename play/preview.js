@@ -1,4 +1,4 @@
 import preview from '../src/preview'
-import spots from './spots'
+import spots from './'
 
 preview(spots)

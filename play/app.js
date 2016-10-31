@@ -1,4 +1,4 @@
 import app from '../src/app'
-import spots from './spots'
+import spots from './'
 
 app(spots)

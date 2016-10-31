@@ -2,8 +2,13 @@ import Vue from 'vue'
 import qs from 'query-string'
 import findScenario from './utils/find-scenario'
 
-export default function (spots) {
+export default function ({spots, components}) {
   const query = qs.parse(location.search)
+  if (typeof components === 'object') {
+    Object.keys(components).forEach(name => {
+      Vue.component(name, components[name])
+    })
+  }
   Vue.prototype.$log = function (data) {
     parent.postMessage({
       type: 'ADD_LOG',

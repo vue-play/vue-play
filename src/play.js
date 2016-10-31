@@ -8,8 +8,10 @@ export default function (name, m) {
         component = {render: value}
       }
       component.example = component.example || component.template
-      m.exports[name] = m.exports[name] || []
-      m.exports[name].push({
+      component.name = component.name || scenario.replace(' ', '-')
+      m.exports.spots = m.exports.spots || {}
+      m.exports.spots[name] = m.exports.spots[name] || []
+      m.exports.spots[name].push({
         scenario,
         component
       })

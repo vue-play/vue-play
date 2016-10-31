@@ -69,7 +69,6 @@
         if (this.iframeLoaded) {
           this.postMessage()
         } else {
-          console.log(this.$refs)
           this.$refs.iframe.onload = () => {
             this.postMessage()
             this.iframeLoaded = true

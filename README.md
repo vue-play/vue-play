@@ -37,53 +37,85 @@ npm install --save-dev vue-play
 
 </details>
 
-## Usage
+## Getting started
 
-`vue-play` is just a framework based on `vue`, so directly import it in an entry file:
+### The hard way
+
+There're two pages in your play app, one is the app interface which has a sidebar and it can toggle examples of your components, the other page is for rendering the examples, this page will be loaded as iframe in app interface.
+
+And they both load component examples that you write in the `playspot`, let's say `./play/index.js`:
 
 ```js
-import {Play} from 'vue-play'
-import 'vue-play/dist/vue-play.css'
-
-const play = new Play()
-
-// import your component
+import play from 'vue-play'
 import MyButton from './MyButton.vue'
 
-// register the component
-play.useComponents({
-  MyButton
-})
-
-// add a playspot for MyButton
-play.describe('MyButton', add => {
-  // add various scenario
-  add('with text', '<my-button>text</my-button>')
-  add('with emoji', '<my-button>🌟🤔</my-button>')
-})
+play('MyButton', module)
+  .add('with text', h => h(MyButton, ['text']))
 ```
 
-Then you can bundle this little app with your desired tool like webpack or browserify.
+#### App interface
 
-## Bundler
+```js
+// ./play/app.js
+import app from 'vue-play/dist/app'
+// loads the examples at ./play/index.js
+import examples from './'
 
-You can use your custom webpack or browserify config to bundle your play app, but we use [vbuild](https://vbuild.js.org/) to get job done faster and easier.
+// tell app what examples you have
+app(examples)
+```
+
+#### Preview
+
+```js
+// ./play/preview.js
+import preview from 'vue-play/dist/preview'
+// loads the examples at ./play/index.js
+import examples from './'
+
+// actually render the examples in preview page
+preview(examples)
+```
+
+Add `app interface` and `preview` to your webpack entry:
+
+```js
+module.exports = {
+  // ...
+  entry: {
+    app: './play/app.js',
+    preview: './play/preview.js'
+  },
+  // don't forget to generate html output for both of them
+  plugins: [
+    HtmlWebpackPlugin({
+      filename: 'index.html',
+      chunks: ['app']
+    }),
+    HtmlWebpackPlugin({
+      filename: 'preview.html',
+      chunks: ['preview']
+    })
+  ]
+}
+```
+
+That's it, you're all set!
 
 ## Component Shorthand
 
 If you only need `template` or `render` property for your component, you can use `component shorthand`, which means you can directly set the value of scenario to a template string or render function:
 
 ```js
-play.describe('Button', add => {
-  add('template shorthand', '<my-button>text</my-button>')
-  add('render function shothand', h => h(MyButton, ['text']))
-  add('full component', {
+play.describe('Button', module)
+  .add('template shorthand', '<my-button>text</my-button>')
+  .add('render function shothand', h => h(MyButton, ['text']))
+  .add('full component', {
     data() {},
     methods: {},
     return(h) {}
     // ...
   })
-})
 ```
 
 ## Additional Component Properties
@@ -91,13 +123,14 @@ play.describe('Button', add => {
 The component for each scenario is a typical Vue component, but it can also accept some additional properties for documenting its usage, eg:
 
 ```js
-add('with text', {
-  // a valid vue component
-  ...component,
-  // additional
-  example,
-  // ...
-})
+play.describe('Button', module)
+  add('with text', {
+    // a valid vue component
+    ...component,
+    // additional
+    example,
+    // ...
+  })
 ```
 
 ### example
