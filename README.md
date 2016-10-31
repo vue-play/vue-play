@@ -76,7 +76,7 @@ If you only need `template` or `render` property for your component, you can use
 ```js
 play.describe('Button', add => {
   add('template shorthand', '<my-button>text</my-button>')
-  add('render function shothand', h => h(MyButton, ['text']))
+  add('render function shorthand', h => h(MyButton, ['text']))
   add('full component', {
     data() {},
     methods: {},
