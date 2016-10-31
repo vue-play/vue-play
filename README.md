@@ -150,6 +150,25 @@ const scenarios = load(require.context('../src/components', true, /.play.js$/))
 configure(scenarios, module)
 ```
 
+### Register Components
+
+If you are using render function you won't need to register components, you only need this when you are using the template property:
+
+```js
+// ./play/index.js
+import MyButton from './MyButton.vue'
+
+// these components will be registered globally
+module.exports.components = {
+  MyButton
+}
+
+play('MyButton', module)
+  .add('with text', '<my-button>text</my-button>')
+```
+
+You can also put the example `'<my-button>text</my-button>'` in a seperate file, like `.vue` file and register components there, locally.
+
 ## Component Shorthand
 
 If you only need `template` or `render` property for your component, you can use `component shorthand`, which means you can directly set the value of scenario to a template string or render function:
