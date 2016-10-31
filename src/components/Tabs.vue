@@ -127,7 +127,7 @@
     methods: {
       ...mapActions([
         'setBottomPanelHeight',
-        'clearActionLogs',
+        'clearLogs',
         'updateActiveTab'
       ]),
       handleMouseDown({clientY}) {
@@ -155,7 +155,8 @@
       },
 
       clearCurrentLogs() {
-        this.clearActionLogs(this.$store.state.route.path)
+        const {scenario, spot} = this.$route.query
+        this.clearLogs({scenario, spot})
       }
     }
   }
@@ -163,6 +164,7 @@
 
 <style src="highlight.js/styles/github"></style>
 <style src="github-markdown-css"></style>
+<style src="hint.css/hint.css"></style>
 <style scoped>
   .play-tabs {
     border-top: 1px solid #e2e2e2;

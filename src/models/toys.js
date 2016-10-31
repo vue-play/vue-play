@@ -1,6 +1,6 @@
 import uid from 'uid'
 import highlight from '../utils/highlight'
-import {routePaths} from '../index'
+import shallowEqual from '../utils/shallow-equal'
 
 const matches = (filter, text) => {
   const f = filter.toLowerCase()
@@ -11,7 +11,6 @@ const matches = (filter, text) => {
 export default {
   name: 'toys',
   state: {
-    paths: routePaths,
     logs: [],
     filter: ''
   },
@@ -19,8 +18,8 @@ export default {
     ADD_LOG(state, payload) {
       state.logs.push(payload)
     },
-    CLEAR_CURRENT_LOGS(state, path) {
-      state.logs = state.logs.filter(log => log.path !== path)
+    CLEAR_CURRENT_LOGS(state, logs) {
+      state.logs = logs
     },
     UPDATE_FILTER(state, payload) {
       state.filter = payload
@@ -30,21 +29,23 @@ export default {
     filterToys({commit}, payload) {
       commit('UPDATE_FILTER', payload)
     },
-    addActionLog({commit}, {data, path}) {
+    addLog({commit}, {data, route}) {
       commit('ADD_LOG', {
         data,
-        path,
+        route,
         id: uid()
       })
     },
-    clearActionLogs({commit}, payload) {
-      commit('CLEAR_CURRENT_LOGS', payload)
+    clearLogs({commit, state}, payload) {
+      commit('CLEAR_CURRENT_LOGS', state.logs.filter(log => {
+        return !shallowEqual(payload, log.route)
+      }))
     }
   },
   getters: {
-    logs(state, getters, rootState) {
+    logs(state, getters) {
       return state.logs.filter(log => {
-        return log.path === rootState.route.path
+        return shallowEqual(log.route, getters.currentScenario)
       }).map(log => {
         return {
           ...log,
@@ -52,28 +53,29 @@ export default {
         }
       })
     },
-    toys({paths, filter}) {
-      if (filter === '') {
-        return paths
+    visibleScenarios({filter}, getters, {spots}) {
+      if (!filter) return spots
+      const result = {}
+      for (const name in spots) {
+        const scenarios = spots[name]
+        result[name] = scenarios.filter(scenario => {
+          return matches(filter, `${name} ${scenario.scenario}`)
+        })
       }
-      return Object.keys(paths).reduce((components, component) => {
-        const scenarios = paths[component]
-          .filter(({type}) => matches(filter, `${component} ${type}`))
-
-        if (scenarios.length === 0 && !matches(filter, component)) {
-          return components
-        }
-        return {...components, [component]: scenarios}
-      }, {})
+      return result
     },
-    playspotRoutes(state, getters) {
-      const toys = getters.toys
-      return Object
-        .keys(toys)
-        .map(component =>
-          toys[component].map(playspot => playspot.path)
-        )
-        .reduce((acc, curr) => acc.concat(curr), [])
+    playspotRoutes(state, {visibleScenarios}) {
+      return Object.keys(visibleScenarios).reduce((current, next) => {
+        const currentRoutes = visibleScenarios[current] || []
+        const nextRoutes = visibleScenarios[next].map(route => ({
+          spot: next,
+          scenario: route.scenario
+        }))
+        return [
+          ...currentRoutes,
+          ...nextRoutes
+        ]
+      }, '')
     }
   }
 }

@@ -17,8 +17,9 @@
     "toc": "markdown-toc -i README.md",
     "build": "vbuild --config vue.config.cjs.js",
     "watch": "vbuild --config vue.config.cjs.js --watch",
-    "surge": "vbuild ./play --config vue.config.play.js && surge -p play-dist -d vue-play-button.surge.sh",
-    "play": "vbuild ./play --dev --config vue.config.play.js"
+    "surge": "vbuild --config vue.config.play.js && surge -p play-dist -d vue-play-button.surge.sh",
+    "play": "vbuild --dev --config vue.config.play.js",
+    "play:build": "vbuild --config vue.config.play.js"
   },
   "files": [
     "dist",
@@ -35,15 +36,18 @@
     "ui"
   ],
   "dependencies": {
+    "array-find-index": "^1.0.2",
     "eva.js": "^1.0.0",
     "highlight.js": "^9.7.0",
-    "uid": "0.0.2"
+    "lodash.findindex": "^4.6.0",
+    "query-string": "^4.2.3",
+    "uid": "0.0.2",
+    "vue-slim-modal": "^0.2.1"
   },
   "devDependencies": {
     "github-markdown-css": "^2.4.1",
     "hint.css": "^2.4.0",
     "markdown-toc": "^0.13.0",
-    "postcss-simple-vars": "^3.0.0",
-    "vbuild": "^3.0.2"
+    "postcss-simple-vars": "^3.0.0"
   }
 }

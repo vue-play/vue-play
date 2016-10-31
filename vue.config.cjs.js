@@ -4,14 +4,17 @@ module.exports = {
   compress: false,
   devtool: false,
   externals: [
+    'vue',
     'eva.js',
     'highlight.js/lib/highlight',
     'highlight.js/lib/languages/javascript',
     'highlight.js/lib/languages/json',
     'highlight.js/lib/languages/xml',
-    'uid'
+    'uid',
+    'vue-slim-modal',
+    'query-string',
+    'array-find-index'
   ],
-  filename: 'vue-play',
   stats: {
     filename: '../stats.html'
   },
@@ -22,5 +25,10 @@ module.exports = {
     eslint: {
       globals: ['require']
     }
+  },
+  entry: {
+    index: './src/index.js',
+    app: './src/app.js',
+    preview: './src/preview.js'
   }
 }
