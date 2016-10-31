@@ -10,3 +10,6 @@ play('Button', module)
       }, ['hello world'])
     }
   })
+
+play('Box', module)
+  .add('default', '<div style="height:30px;width:100px;border:1px solid;"></div>')

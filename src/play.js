@@ -1,5 +1,4 @@
 export default function (name, m) {
-  const exports = m.exports = {}
   return {
     add(scenario, value) {
       let component = value
@@ -9,8 +8,8 @@ export default function (name, m) {
         component = {render: value}
       }
       component.example = component.example || component.template
-      exports[name] = exports[name] || []
-      exports[name].push({
+      m.exports[name] = m.exports[name] || []
+      m.exports[name].push({
         scenario,
         component
       })
