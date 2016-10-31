@@ -45,6 +45,7 @@
     "github-markdown-css": "^2.4.1",
     "hint.css": "^2.4.0",
     "markdown-toc": "^0.13.0",
-    "postcss-simple-vars": "^3.0.0"
+    "postcss-simple-vars": "^3.0.0",
+    "vbuild": "egoist/vbuild"
   }
 }
