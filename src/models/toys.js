@@ -65,17 +65,13 @@ export default {
       return result
     },
     playspotRoutes(state, {visibleScenarios}) {
-      return Object.keys(visibleScenarios).reduce((current, next) => {
-        const currentRoutes = visibleScenarios[current] || []
-        const nextRoutes = visibleScenarios[next].map(route => ({
-          spot: next,
-          scenario: route.scenario
+      return Object.keys(visibleScenarios).map(name => {
+        const scenarios = visibleScenarios[name]
+        return scenarios.map(scenario => ({
+          scenario: scenario.scenario,
+          spot: name
         }))
-        return [
-          ...currentRoutes,
-          ...nextRoutes
-        ]
-      }, '')
+      }).reduce((current, next) => [...current, ...next], [])
     }
   }
 }
