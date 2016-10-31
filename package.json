@@ -25,9 +25,7 @@
     "dist",
     "src"
   ],
-  "jsnext:main": "src/index.js",
-  "main": "dist/vue-play.js",
-  "style": "dist/vue-play.css",
+  "main": "dist/play.js",
   "keywords": [
     "vue",
     "play",
@@ -39,7 +37,6 @@
     "array-find-index": "^1.0.2",
     "eva.js": "^1.0.0",
     "highlight.js": "^9.7.0",
-    "lodash.findindex": "^4.6.0",
     "query-string": "^4.2.3",
     "uid": "0.0.2",
     "vue-slim-modal": "^0.2.1"

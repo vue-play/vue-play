@@ -27,7 +27,7 @@ module.exports = {
     }
   },
   entry: {
-    index: './src/index.js',
+    play: './src/play.js',
     app: './src/app.js',
     preview: './src/preview.js'
   }
