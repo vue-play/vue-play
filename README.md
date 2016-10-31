@@ -2,18 +2,15 @@
 
 A minimalistic framework for demonstrating your Vue components, inspired by [react-storybook](https://github.com/kadirahq/react-storybook).
 
-## Install
-
-```bash
-npm install --save-dev vue-play
-```
-
 <details><summary>Table of Contents</summary>
 
 <!-- toc -->
 
-- [Usage](#usage)
-- [Bundler](#bundler)
+- [Getting started](#getting-started)
+  * [The easy way](#the-easy-way)
+  * [The hard way](#the-hard-way)
+    + [App interface](#app-interface)
+    + [Preview](#preview)
 - [Component Shorthand](#component-shorthand)
 - [Additional Component Properties](#additional-component-properties)
   * [example](#example)
@@ -30,6 +27,9 @@ npm install --save-dev vue-play
         * [component](#component)
   * [play.start([selector])](#playstartselector)
     + [selector](#selector)
+  * [action](#action)
+    + [action.log(data)](#actionlogdata)
+    + [action.clear()](#actionclear)
 - [Development](#development)
 - [License](#license)
 
@@ -38,6 +38,20 @@ npm install --save-dev vue-play
 </details>
 
 ## Getting started
+
+### The easy way
+
+```bash
+# use npm or yarn
+npm install -g vue-play-cli
+cd my-vue-project
+# run this to configure your project
+vue-play
+# to start developing `play app`
+npm run play
+# to build the `play app`
+npm run play:build
+```
 
 ### The hard way
 
