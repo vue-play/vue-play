@@ -1,5 +1,4 @@
 const play = (name, m) => {
-  console.log(name)
   return {
     add(scenario, value) {
       let component = value
