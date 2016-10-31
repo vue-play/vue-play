@@ -58,6 +58,7 @@ play('MyButton', module)
 ```js
 // ./play/app.js
 import app from 'vue-play/dist/app'
+import 'vue-play/dist/app.css'
 // loads the examples at ./play/index.js
 import examples from './'
 
