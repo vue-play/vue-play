@@ -1,4 +1,5 @@
-export default function (name, m) {
+const play = (name, m) => {
+  console.log(name)
   return {
     add(scenario, value) {
       let component = value
@@ -18,4 +19,18 @@ export default function (name, m) {
       return this
     }
   }
+}
+
+const configure = (array, m) => {
+  m.exports.spots = m.exports.spots || {}
+  m.exports.components = m.exports.components || {}
+  array.forEach(item => {
+    m.exports.spots = {...m.exports.spots, ...item.spots}
+    m.exports.components = {...m.exports.components, ...item.components}
+  })
+}
+
+export {
+  play,
+  configure
 }

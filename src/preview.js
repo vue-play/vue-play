@@ -4,7 +4,7 @@ import findScenario from './utils/find-scenario'
 
 export default function ({spots, components}) {
   const query = qs.parse(location.search)
-  if (typeof components === 'object') {
+  if (components) {
     Object.keys(components).forEach(name => {
       Vue.component(name, components[name])
     })

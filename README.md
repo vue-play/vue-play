@@ -55,9 +55,9 @@ npm run play:build
 
 ### The hard way
 
-There're two pages in your play app, one is the app interface which has a sidebar and it can toggle examples of your components, the other page is for rendering the examples, this page will be loaded as iframe in app interface.
+There're two pages in your play app, one is the app interface which has a sidebar and it can toggle scenarios of your components, the other page is for rendering the examples, this page will be loaded as iframe in app interface.
 
-And they both load component examples that you write in the `playspot`, let's say `./play/index.js`:
+And they both load scenarios that you write in the `playspot`, let's say `./play/index.js`:
 
 ```js
 import play from 'vue-play'
@@ -73,11 +73,11 @@ play('MyButton', module)
 // ./play/app.js
 import app from 'vue-play/dist/app'
 import 'vue-play/dist/app.css'
-// loads the examples at ./play/index.js
-import examples from './'
+// loads scenarioss at ./play/index.js
+import scenarios from './'
 
-// tell app what examples you have
-app(examples)
+// tell app what scenarios you have
+app(scenarios)
 ```
 
 #### Preview
@@ -85,11 +85,11 @@ app(examples)
 ```js
 // ./play/preview.js
 import preview from 'vue-play/dist/preview'
-// loads the examples at ./play/index.js
-import examples from './'
+// loads the scenarios at ./play/index.js
+import scenarios from './'
 
-// actually render the examples in preview page
-preview(examples)
+// actually render the scenarios in preview page
+preview(scenarios)
 ```
 
 Add `app interface` and `preview` to your webpack entry:
@@ -117,12 +117,45 @@ module.exports = {
 
 That's it, you're all set!
 
+## Writing Scenarios
+
+A scenario is a Vue component or a [component shorthand](#component-shorthand).
+
+### Keeping Scenarios
+
+You can keep scenarios anywhere you want, by default we keep them all at `./play/index.js`, you can also use separate files for them, or even name them `*.play.js` in your component directory and load them dynamically.
+
+### Writing Scenarios
+
+```js
+import { play } from 'vue-play'
+import MyButton from '../src/components/MyButton.vue'
+
+play('MyButton', module)
+  .add('with text', h => h(MyButton, ['hello world']))
+  .add('with emoji', h => h(MyButton, ['😃🍻']))
+```
+
+### Loading Scenarios Dynamically
+
+We can use Webpack's [require.context](https://webpack.github.io/docs/context.html#require-context) to load modules dynamically.
+
+```js
+import { configure } from 'vue-play'
+
+const load = requireContext => requireContext.keys().map(requireContext)
+
+const scenarios = load(require.context('../src/components', true, /.play.js$/))
+
+configure(scenarios, module)
+```
+
 ## Component Shorthand
 
 If you only need `template` or `render` property for your component, you can use `component shorthand`, which means you can directly set the value of scenario to a template string or render function:
 
 ```js
-play.describe('Button', module)
+play('Button', module)
   .add('template shorthand', '<my-button>text</my-button>')
   .add('render function shorthand', h => h(MyButton, ['text']))
   .add('full component', {
@@ -138,7 +171,7 @@ play.describe('Button', module)
 The component for each scenario is a typical Vue component, but it can also accept some additional properties for documenting its usage, eg:
 
 ```js
-play.describe('Button', module)
+play('Button', module)
   add('with text', {
     // a valid vue component
     ...component,
@@ -166,76 +199,6 @@ Feel free to add your projects here:
 
 - [button example](http://vue-play-button.surge.sh/#/) - [source](https://github.com/vue-play/vue-play/tree/master/play)
 - [vue-slim-modal](https://egoistian.com/vue-slim-modal/#/) - [source](https://github.com/egoist/vue-slim-modal/tree/master/playspot)
-
-## API
-
-### play.useComponents(components)
-
-#### components
-
-Type: `object`<br>
-Required: `true`
-
-Just like the way you register local components in Vue.
-
-```js
-play.useComponents({
-  'my-component-name': MyComponent
-})
-```
-
-### play.describe(name, [callback])
-
-#### name
-
-Type: `string`<br>
-Required: `true`
-
-The name of the playspot, eg: `MyButton`.
-
-#### callback
-
-Type: `function`<br>
-Param: `add`
-
-If no callback function, `play.describe` will return the `add` function.
-
-##### add(scenario, component)
-
-The param `add` lets you add scenario to the playspot, one at a time.
-
-###### scenario
-
-Type: `string`<br>
-Required: `true`
-
-The scenario name, eg: `with text`
-
-###### component
-
-Type: `VueComponent`<br>
-Required: `true`
-
-Example component to render in this senario.
-
-### play.start([selector])
-
-#### selector
-
-Type: `string`<br>
-Default: `#app`
-
-Where to mount the app.
-
-### action
-
-#### action.log(data)
-
-Log data in `play app`'s console
-
-#### action.clear()
-
-Clear logs in current scenario.
 
 ## Development
 
