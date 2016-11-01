@@ -11,25 +11,16 @@ A minimalistic framework for demonstrating your Vue components, inspired by [rea
   * [The hard way](#the-hard-way)
     + [App interface](#app-interface)
     + [Preview](#preview)
+- [Writing Scenarios](#writing-scenarios)
+  * [Keeping Scenarios](#keeping-scenarios)
+  * [Writing Scenarios](#writing-scenarios-1)
+  * [Loading Scenarios Dynamically](#loading-scenarios-dynamically)
+  * [Register Components](#register-components)
 - [Component Shorthand](#component-shorthand)
 - [Additional Component Properties](#additional-component-properties)
   * [example](#example)
   * [readme](#readme)
 - [Showcase](#showcase)
-- [API](#api)
-  * [play.useComponents(components)](#playusecomponentscomponents)
-    + [components](#components)
-  * [play.describe(name, [callback])](#playdescribename-callback)
-    + [name](#name)
-    + [callback](#callback)
-      - [add(scenario, component)](#addscenario-component)
-        * [scenario](#scenario)
-        * [component](#component)
-  * [play.start([selector])](#playstartselector)
-    + [selector](#selector)
-  * [action](#action)
-    + [action.log(data)](#actionlogdata)
-    + [action.clear()](#actionclear)
 - [Development](#development)
 - [License](#license)
 
@@ -37,7 +28,7 @@ A minimalistic framework for demonstrating your Vue components, inspired by [rea
 
 </details>
 
-## Getting started
+## Getting Started
 
 ### The easy way
 
@@ -53,8 +44,7 @@ npm run play
 npm run play:build
 ```
 
-### The hard way
-
+<details><summary>The hard way</summary>
 There're two pages in your play app, one is the app interface which has a sidebar and it can toggle scenarios of your components, the other page is for rendering the examples, this page will be loaded as iframe in app interface.
 
 And they both load scenarios that you write in the `playspot`, let's say `./play/index.js`:
@@ -116,6 +106,7 @@ module.exports = {
 ```
 
 That's it, you're all set!
+</details>
 
 ## Writing Scenarios
 
