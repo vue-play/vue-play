@@ -45,6 +45,7 @@ npm run play:build
 ```
 
 <details><summary>The hard way</summary>
+
 There're two pages in your play app, one is the app interface which has a sidebar and it can toggle scenarios of your components, the other page is for rendering the examples, this page will be loaded as iframe in app interface.
 
 And they both load scenarios that you write in the `playspot`, let's say `./play/index.js`:
