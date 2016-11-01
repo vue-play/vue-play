@@ -1,37 +1,17 @@
-import {Play} from '../src'
-import MyButton from './MyButton'
-import Box from './Box'
+import {configure} from '../src/play'
 
-const play = new Play()
+import MyButton from './MyButton.vue'
+import Box from './Box.vue'
 
-play.useComponents({
+const load = requireContext => {
+  return requireContext.keys().map(requireContext)
+}
+
+const scenarios = load(require.context('./', true, /.play.js$/))
+
+module.exports.components = {
   MyButton,
   Box
-})
+}
 
-play.describe('Button', add => {
-  add('with text', {
-    template: '<my-button :handleClick="log">Text</my-button>',
-    methods: {
-      log() {
-        this.$log(new Date())
-      }
-    }
-  })
-  add('with emoji', '<my-button>😄🤗😃😐😲</my-button>')
-  add('with color', '<my-button color="magenta">magenta button</my-button>')
-})
-
-play.describe('Box', add => {
-  add('default', '<box />')
-  add('dashed border', '<box :dashed="true" />')
-  add('dotted border', '<box :dotted="true" />')
-})
-
-const playCircle = play.describe('Circle')
-playCircle('default', {
-  template: '<h2>just an example...</h2>',
-  readme: '<h2>just an example...</h2>'
-})
-
-play.start('#app')
+configure(scenarios, module)

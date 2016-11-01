@@ -1,4 +1,7 @@
-export const UPDATE_PLAYSPOT = 'UPDATE_PLAYSPOT'
+import findIndex from 'array-find-index'
+import shallowEqual from '../utils/shallow-equal'
+
+export const UPDATE_CURRENT_SCENARIO = 'UPDATE_CURRENT_SCENARIO'
 
 const updateCurrent = (state, payload) => {
   state.current = payload
@@ -10,29 +13,33 @@ export default {
     current: null
   },
   mutations: {
-    NEXT_PLAYSPOT: updateCurrent,
-    UPDATE_PLAYSPOT: updateCurrent
+    UPDATE_CURRENT_SCENARIO: updateCurrent
   },
   actions: {
     playNext({commit, getters, state}) {
       const total = getters.playspotRoutes.length
-      const current = getters.playspotRoutes.indexOf(state.current)
+      const current = findIndex(getters.playspotRoutes, element => {
+        return shallowEqual(state.current, element)
+      })
       const next = (current + 1) % total
-      commit(UPDATE_PLAYSPOT, getters.playspotRoutes[next])
+      commit(UPDATE_CURRENT_SCENARIO, getters.playspotRoutes[next])
     },
     playPrevious({commit, getters, state}) {
       const total = getters.playspotRoutes.length
-      const current = getters.playspotRoutes.indexOf(state.current)
+      const current = findIndex(getters.playspotRoutes, element => {
+        return shallowEqual(state.current, element)
+      })
       const prev = (total + (current - 1)) % total
-      commit(UPDATE_PLAYSPOT, getters.playspotRoutes[prev])
+      commit(UPDATE_CURRENT_SCENARIO, getters.playspotRoutes[prev])
     },
-    updatePlayspot({commit}, path) {
-      commit(UPDATE_PLAYSPOT, path)
+    updateCurrentScenario({commit}, path) {
+      commit(UPDATE_CURRENT_SCENARIO, path)
     }
   },
   getters: {
-    currentPlayspot(state, getters, rootState) {
-      return state.current || rootState.route.path
+    currentScenario(state, getters, rootState) {
+      const {spot, scenario} = rootState.route.query
+      return state.current || {spot, scenario}
     }
   }
 }

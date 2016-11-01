@@ -1,0 +1,42 @@
+html, body, .app {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font: 14px -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica Neue,sans-serif;
+  overflow: hidden;
+}
+* {
+  box-sizing: border-box;
+}
+.app {
+  display: flex;
+}
+.main {
+  width: 100%;
+  height: 100%;
+  flex: 1;
+}
+.view {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.resize-indicator {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  width: 80px;
+  background-color: rgba(51, 51, 51, 0.78);
+  color: white;
+  border-radius: 3px;
+  padding: 5px;
+  text-align: center;
+  z-index: 9999;
+}
+.play-ground {
+  height: 100%;
+  padding: 10px;
+  overflow: auto;
+  flex: 1;
+}

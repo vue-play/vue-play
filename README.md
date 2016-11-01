@@ -2,34 +2,25 @@
 
 A minimalistic framework for demonstrating your Vue components, inspired by [react-storybook](https://github.com/kadirahq/react-storybook).
 
-## Install
-
-```bash
-npm install --save-dev vue-play
-```
-
 <details><summary>Table of Contents</summary>
 
 <!-- toc -->
 
-- [Usage](#usage)
-- [Bundler](#bundler)
+- [Getting started](#getting-started)
+  * [The easy way](#the-easy-way)
+  * [The hard way](#the-hard-way)
+    + [App interface](#app-interface)
+    + [Preview](#preview)
+- [Writing Scenarios](#writing-scenarios)
+  * [Keeping Scenarios](#keeping-scenarios)
+  * [Writing Scenarios](#writing-scenarios-1)
+  * [Loading Scenarios Dynamically](#loading-scenarios-dynamically)
+  * [Register Components](#register-components)
 - [Component Shorthand](#component-shorthand)
 - [Additional Component Properties](#additional-component-properties)
   * [example](#example)
   * [readme](#readme)
 - [Showcase](#showcase)
-- [API](#api)
-  * [play.useComponents(components)](#playusecomponentscomponents)
-    + [components](#components)
-  * [play.describe(name, [callback])](#playdescribename-callback)
-    + [name](#name)
-    + [callback](#callback)
-      - [add(scenario, component)](#addscenario-component)
-        * [scenario](#scenario)
-        * [component](#component)
-  * [play.start([selector])](#playstartselector)
-    + [selector](#selector)
 - [Development](#development)
 - [License](#license)
 
@@ -37,53 +28,153 @@ npm install --save-dev vue-play
 
 </details>
 
-## Usage
+## Getting Started
 
-`vue-play` is just a framework based on `vue`, so directly import it in an entry file:
+### The easy way
 
-```js
-import {Play} from 'vue-play'
-import 'vue-play/dist/vue-play.css'
-
-const play = new Play()
-
-// import your component
-import MyButton from './MyButton.vue'
-
-// register the component
-play.useComponents({
-  MyButton
-})
-
-// add a playspot for MyButton
-play.describe('MyButton', add => {
-  // add various scenario
-  add('with text', '<my-button>text</my-button>')
-  add('with emoji', '<my-button>🌟🤔</my-button>')
-})
+```bash
+# use npm or yarn
+npm install -g vue-play-cli
+cd my-vue-project
+# run this to configure your project
+vue-play init
+# to start developing `play app`
+npm run play
+# to build the `play app`
+npm run play:build
 ```
 
-Then you can bundle this little app with your desired tool like webpack or browserify.
+<details><summary>The hard way</summary>
 
-## Bundler
+There're two pages in your play app, one is the app interface which has a sidebar and it can toggle scenarios of your components, the other page is for rendering the examples, this page will be loaded as iframe in app interface.
 
-You can use your custom webpack or browserify config to bundle your play app, but we use [vbuild](https://vbuild.js.org/) to get job done faster and easier.
+And they both load scenarios that you write in the `playspot`, let's say `./play/index.js`:
+
+```js
+import play from 'vue-play'
+import MyButton from './MyButton.vue'
+
+play('MyButton', module)
+  .add('with text', h => h(MyButton, ['text']))
+```
+
+#### App interface
+
+```js
+// ./play/app.js
+import app from 'vue-play/dist/app'
+import 'vue-play/dist/app.css'
+// loads scenarioss at ./play/index.js
+import scenarios from './'
+
+// tell app what scenarios you have
+app(scenarios)
+```
+
+#### Preview
+
+```js
+// ./play/preview.js
+import preview from 'vue-play/dist/preview'
+// loads the scenarios at ./play/index.js
+import scenarios from './'
+
+// actually render the scenarios in preview page
+preview(scenarios)
+```
+
+Add `app interface` and `preview` to your webpack entry:
+
+```js
+module.exports = {
+  // ...
+  entry: {
+    app: './play/app.js',
+    preview: './play/preview.js'
+  },
+  // don't forget to generate html output for both of them
+  plugins: [
+    HtmlWebpackPlugin({
+      filename: 'index.html',
+      chunks: ['app']
+    }),
+    HtmlWebpackPlugin({
+      filename: 'preview.html',
+      chunks: ['preview']
+    })
+  ]
+}
+```
+
+That's it, you're all set!
+</details>
+
+## Writing Scenarios
+
+A scenario is a Vue component or a [component shorthand](#component-shorthand).
+
+### Keeping Scenarios
+
+You can keep scenarios anywhere you want, by default we keep them all at `./play/index.js`, you can also use separate files for them, or even name them `*.play.js` in your component directory and load them dynamically.
+
+### Writing Scenarios
+
+```js
+import { play } from 'vue-play'
+import MyButton from '../src/components/MyButton.vue'
+
+play('MyButton', module)
+  .add('with text', h => h(MyButton, ['hello world']))
+  .add('with emoji', h => h(MyButton, ['😃🍻']))
+```
+
+### Loading Scenarios Dynamically
+
+We can use Webpack's [require.context](https://webpack.github.io/docs/context.html#require-context) to load modules dynamically.
+
+```js
+import { configure } from 'vue-play'
+
+const load = requireContext => requireContext.keys().map(requireContext)
+
+const scenarios = load(require.context('../src/components', true, /.play.js$/))
+
+configure(scenarios, module)
+```
+
+### Register Components
+
+If you are using render function you won't need to register components, you only need this when you are using the template property:
+
+```js
+// ./play/index.js
+import MyButton from './MyButton.vue'
+
+// these components will be registered globally
+module.exports.components = {
+  MyButton
+}
+
+play('MyButton', module)
+  .add('with text', '<my-button>text</my-button>')
+```
+
+You can also put the example `'<my-button>text</my-button>'` in a seperate file, like `.vue` file and register components there, locally.
 
 ## Component Shorthand
 
 If you only need `template` or `render` property for your component, you can use `component shorthand`, which means you can directly set the value of scenario to a template string or render function:
 
 ```js
-play.describe('Button', add => {
-  add('template shorthand', '<my-button>text</my-button>')
-  add('render function shorthand', h => h(MyButton, ['text']))
-  add('full component', {
+play('Button', module)
+  .add('template shorthand', '<my-button>text</my-button>')
+  .add('render function shorthand', h => h(MyButton, ['text']))
+  .add('full component', {
     data() {},
     methods: {},
-    return(h) {}
+    render(h) {}
     // ...
   })
-})
 ```
 
 ## Additional Component Properties
@@ -91,13 +182,14 @@ play.describe('Button', add => {
 The component for each scenario is a typical Vue component, but it can also accept some additional properties for documenting its usage, eg:
 
 ```js
-add('with text', {
-  // a valid vue component
-  ...component,
-  // additional
-  example,
-  // ...
-})
+play('Button', module)
+  add('with text', {
+    // a valid vue component
+    ...component,
+    // additional
+    example,
+    // ...
+  })
 ```
 
 ### example
@@ -118,76 +210,6 @@ Feel free to add your projects here:
 
 - [button example](http://vue-play-button.surge.sh/#/) - [source](https://github.com/vue-play/vue-play/tree/master/play)
 - [vue-slim-modal](https://egoistian.com/vue-slim-modal/#/) - [source](https://github.com/egoist/vue-slim-modal/tree/master/playspot)
-
-## API
-
-### play.useComponents(components)
-
-#### components
-
-Type: `object`<br>
-Required: `true`
-
-Just like the way you register local components in Vue.
-
-```js
-play.useComponents({
-  'my-component-name': MyComponent
-})
-```
-
-### play.describe(name, [callback])
-
-#### name
-
-Type: `string`<br>
-Required: `true`
-
-The name of the playspot, eg: `MyButton`.
-
-#### callback
-
-Type: `function`<br>
-Param: `add`
-
-If no callback function, `play.describe` will return the `add` function.
-
-##### add(scenario, component)
-
-The param `add` lets you add scenario to the playspot, one at a time.
-
-###### scenario
-
-Type: `string`<br>
-Required: `true`
-
-The scenario name, eg: `with text`
-
-###### component
-
-Type: `VueComponent`<br>
-Required: `true`
-
-Example component to render in this senario.
-
-### play.start([selector])
-
-#### selector
-
-Type: `string`<br>
-Default: `#app`
-
-Where to mount the app.
-
-### action
-
-#### action.log(data)
-
-Log data in `play app`'s console
-
-#### action.clear()
-
-Clear logs in current scenario.
 
 ## Development
 

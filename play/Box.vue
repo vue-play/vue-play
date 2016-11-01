@@ -8,9 +8,9 @@
 </template>
 
 <script>
-export default {
-  props: ['color', 'dashed', 'dotted']
-}
+  export default {
+    props: ['color', 'dashed', 'dotted']
+  }
 </script>
 
 <style scoped>

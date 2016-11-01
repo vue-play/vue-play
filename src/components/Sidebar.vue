@@ -2,21 +2,21 @@
   <figure class="sidebar" ref="sidebar" v-show="leftPanelExpanded" :style="{width: sidebarWidth}">
     <div class="resize-indicator" v-if="resizing">W: {{ sidebarWidth }}</div>
     <div class="sidebar-border" @mousedown="handleMouseDown" @mouseup="handleMouseUp"></div>
-    <h1><a href="https://github.com/egoist/vue-play">Play</a></h1>
+    <h1 @click="toggleHelp">Play</h1>
     <div class="sidebar-search">
       <input @input="filter" placeholder="Type to filter components..." />
     </div>
     <div class="scenarios">
-      <ul v-for="(routes, component) in toys" class="paths">
+      <ul v-for="(scenarios, name) in visibleScenarios" class="paths">
         <li>
-          <div class="component-name">{{ component }}</div>
+          <div class="component-name" v-if="scenarios.length > 0">{{ name }}</div>
           <ul>
-            <li v-for="child in routes" @click="updatePlayspot(child.path)">
-              <div
-                class="router-link"
-                :class="{'router-link-active': $route.path === child.path}">
-                {{ child.type }}
-              </div>
+            <li v-for="scenario in scenarios">
+              <router-link
+                exact
+                :to="{query: {spot: name, scenario: scenario.scenario}}">
+                {{ scenario.scenario }}
+              </router-link>
             </li>
           </ul>
         </li>
@@ -39,7 +39,7 @@
     computed: {
       ...mapGetters([
         'leftPanelExpanded',
-        'toys',
+        'visibleScenarios',
         'sidebarWidth'
       ])
     },
@@ -48,15 +48,17 @@
       return {
         resizing: false,
         startX: null,
-        originalWidth: null
+        originalWidth: null,
+        keyword: ''
       }
     },
 
     methods: {
       ...mapActions([
-        'filterToys',
         'updatePlayspot',
-        'updateSidebarWidth'
+        'updateSidebarWidth',
+        'toggleHelp',
+        'filterToys'
       ]),
       filter: debounce(function ({target}) {
         this.filterToys(target.value)
@@ -120,7 +122,8 @@
         ul {
           padding-left: 0;
           li {
-            .router-link {
+            a {
+              display: block;
               cursor: pointer;
               padding: 10px;
               text-decoration: none;
@@ -146,11 +149,8 @@
       height: $logoHeight;
       line-height: $logoHeight;
       font-size: 20px;
-      a {
-        color: #42b983;
-        text-decoration: none;
-        display: block;
-      }
+      color: #42b983;
+      cursor: pointer;
     }
     .sidebar-search {
       height: $searchHeight;

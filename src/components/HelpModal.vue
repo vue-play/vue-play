@@ -1,20 +1,26 @@
 <template>
-  <SlimModal class="help-modal" :is-open="showHelp" :click-outside="toggleHelp">
+  <slim-modal :is-open="showHelp" :click-outside="toggleHelp">
+    <h2 class="modal-header">
+      Help
+    </h2>
     <div class="markdown-body">
       <div class="shortcut">
-        <kbd>Command Shift L</kbd> <span>Toggle Left Panel</span>
+        <kbd>Command/Ctrl + Shift + L</kbd> <span>Toggle Left Panel</span>
       </div>
       <div class="shortcut">
-        <kbd>Command Shift D</kbd> <span>Toggle Down Panel</span>
+        <kbd>Command/Ctrl + Shift + D</kbd> <span>Toggle Down Panel</span>
       </div>
       <div class="shortcut">
-        <kbd>Command Shift K</kbd> <span>Toggle All Panel</span>
+        <kbd>Command/Ctrl + Shift + K</kbd> <span>Toggle All Panels</span>
       </div>
     </div>
-    <div class="actions">
-      <button class="button" @click="toggleHelp">Close</button>
+    <div class="modal-footer">
+      <button @click="toggleHelp" class="play-button">Close</button>
+      <a class="play-repo" href="https://github.com/vue-play/vue-play">
+        Check out vue-play on GitHub
+      </a>
     </div>
-  </SlimModal>
+  </slim-modal>
 </template>
 
 <script>
