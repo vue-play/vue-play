@@ -46,7 +46,7 @@ A minimalistic framework for demonstrating your Vue components, inspired by [rea
 npm install -g vue-play-cli
 cd my-vue-project
 # run this to configure your project
-vue-play
+vue-play init
 # to start developing `play app`
 npm run play
 # to build the `play app`
