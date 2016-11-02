@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import qs from 'query-string'
 import findScenario from './utils/find-scenario'
+import {parseKey} from './utils/key-events'
 
 export default function ({spots, components}) {
   const query = qs.parse(location.search)
@@ -37,6 +38,12 @@ export default function ({spots, components}) {
           }
         }
       })
+      window.onkeydown = e => {
+        parent.postMessage({
+          type: 'APPLY_SHORTCUT',
+          payload: JSON.stringify(parseKey(e))
+        }, location.origin)
+      }
       parent.postMessage({
         type: 'SET_SPOTS',
         payload: JSON.stringify(spots)

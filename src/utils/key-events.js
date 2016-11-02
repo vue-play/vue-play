@@ -1,4 +1,5 @@
 import {validShortcuts} from 'store/modules/shortcuts'
+import store from 'store'
 
 // Key codes
 const keyK = 75
@@ -8,11 +9,11 @@ const keyLeft = 37
 const keyRight = 39
 const keyWindows = 91
 
-export function isModifierPressed(e) {
+export const isModifierPressed = e => {
   return (e.ctrlKey || e.keyCode === keyWindows || e.metaKey) && e.shiftKey
 }
 
-function check(e) {
+export const parseKey = e => {
   if (!isModifierPressed(e)) return false
 
   switch (e.keyCode) {
@@ -36,15 +37,19 @@ function check(e) {
   }
 }
 
-export default function observeKeyEvents(store) {
-  window.addEventListener('keydown', event => {
-    const combination = check(event)
-    if (combination) {
-      if (!validShortcuts.includes(combination)) {
-        console.warn(`Combination ${combination} is not a valid shortcut`)
-        return
-      }
-      store.dispatch(combination)
+export const executeShortcut = combination => {
+  if (combination) {
+    if (!validShortcuts.includes(combination)) {
+      console.warn(`Combination ${combination} is not a valid shortcut`)
+      return
     }
-  })
+    store.dispatch(combination)
+  }
+}
+
+export const observeKeyEvents = () => {
+  window.onkeydown = e => {
+    const combination = parseKey(e)
+    executeShortcut(combination)
+  }
 }

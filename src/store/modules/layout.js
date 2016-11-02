@@ -1,18 +1,15 @@
 export const TOGGLE_LEFT_PANEL = 'TOGGLE_LEFT_PANEL'
 export const TOGGLE_BOTTOM_PANEL = 'TOGGLE_BOTTOM_PANEL'
 export const TOGGLE_ALL_PANELS = 'TOGGLE_ALL_PANELS'
-export const SET_BOTTOM_PANEL_HEIGHT = 'SET_BOTTOM_PANEL_HEIGHT'
 export const UPDATE_SIDEBAR_WIDTH = 'UPDATE_SIDEBAR_WIDTH'
 export const UPDATE_ACTIVE_TAB = 'UPDATE_ACTIVE_TAB'
 export const TOGGLE_HELP = 'TOGGLE_HELP'
 
-export const defaultBottomPanelHeight = 200
 
 export default {
   state: {
     leftPanelExpanded: true,
     bottomPanelExpanded: true,
-    bottomPanelHeight: defaultBottomPanelHeight,
     sidebarWidth: 280,
     activeTab: null,
     showHelp: false
@@ -23,9 +20,6 @@ export default {
     },
     TOGGLE_BOTTOM_PANEL(state) {
       state.bottomPanelExpanded = !state.bottomPanelExpanded
-    },
-    SET_BOTTOM_PANEL_HEIGHT(state, payload) {
-      state.bottomPanelHeight = payload || defaultBottomPanelHeight
     },
     UPDATE_SIDEBAR_WIDTH(state, payload) {
       state.sidebarWidth = payload
@@ -56,9 +50,6 @@ export default {
           commit(TOGGLE_BOTTOM_PANEL)
         }
       }
-    },
-    setBottomPanelHeight({commit}, payload) {
-      commit(SET_BOTTOM_PANEL_HEIGHT, payload)
     },
     updateSidebarWidth({commit}, payload) {
       commit(UPDATE_SIDEBAR_WIDTH, payload)

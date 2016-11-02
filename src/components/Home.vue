@@ -10,7 +10,6 @@
   import Sidebar from './Sidebar.vue'
   import AppMain from './AppMain.vue'
   import HelpModal from './HelpModal.vue'
-  import keyEvents from 'utils/key-events'
 
   export default {
     name: 'home',
@@ -18,9 +17,6 @@
       Sidebar,
       AppMain,
       HelpModal
-    },
-    mounted() {
-      keyEvents(this.$store)
     }
   }
 </script>

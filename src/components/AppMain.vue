@@ -14,6 +14,7 @@
 <script>
   import {mapGetters, mapActions} from 'vuex'
   import findScenario from 'utils/find-scenario'
+  import {observeKeyEvents, executeShortcut} from 'utils/key-events'
   import Tabs from './Tabs.vue'
 
   export default {
@@ -28,6 +29,7 @@
     mounted() {
       this.updateIframe()
       this.listenChild()
+      observeKeyEvents()
     },
     computed: {
       ...mapGetters(['mainWidth']),
@@ -73,6 +75,9 @@
         window.addEventListener('message', ({data}) => {
           if (data.type === 'SET_SPOTS') {
             this.setSpots(JSON.parse(data.payload))
+          }
+          if (data.type === 'APPLY_SHORTCUT') {
+            executeShortcut(JSON.parse(data.payload))
           }
           if (data.type === 'ADD_LOG') {
             const {spot, scenario} = this.current

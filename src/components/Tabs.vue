@@ -43,7 +43,27 @@
           @click="clearCurrentLogs">
           <svg id="i-trash" viewBox="0 0 32 32" width="32" height="32" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="6.25%">
             <path d="M28 6 L6 6 8 30 24 30 26 6 4 6 M16 12 L16 24 M21 12 L20 24 M11 12 L12 24 M12 6 L13 2 19 2 20 6" />
-        </svg>
+          </svg>
+        </span>
+        <span
+        class="tab-action hint--top-left hint--rounded"
+        aria-label="Minimize the tab"
+        v-if="tabHeight !== 0"
+        @mousedown.stop
+        @click="setTabHeight(0)">
+          <svg id="i-external" viewBox="0 0 32 32" width="32" height="32" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="4.25%">
+            <path d="M5 5 L28 5 L28 28 L5 28 L5 5 M10 22 L23 22" />
+          </svg>
+        </span>
+        <span
+          class="tab-action hint--top-left hint--rounded"
+          aria-label="Reset the tab height"
+          v-else
+          @mousedown.stop
+          @click="setTabHeight(200)">
+          <svg viewBox="0 0 32 32" width="32" height="32" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="4.25%">
+            <path d="M5 5 L28 5 L28 28 L5 28 L5 5 M10 10 L23 10 L23 20 L10 20 L10 10" />
+          </svg>
         </span>
       </div>
     </div>
@@ -77,7 +97,6 @@
   import {mapGetters, mapActions} from 'vuex'
   import highlight from 'utils/highlight'
   import {preventSelectStart, preventSelectStop} from 'utils/prevent-select'
-  import {defaultBottomPanelHeight} from 'store/modules/layout'
 
   export default {
     name: 'console',
@@ -92,8 +111,7 @@
     computed: {
       ...mapGetters([
         'logs',
-        'bottomPanelExpanded',
-        'bottomPanelHeight',
+        'bottomPanelExpanded'
       ]),
       highlightedExample() {
         if (!this.example) return
@@ -109,7 +127,7 @@
     },
     data() {
       return {
-        tabHeight: defaultBottomPanelHeight,
+        tabHeight: 200,
         startY: null,
         originalHeight: null,
         resizing: false
@@ -121,7 +139,6 @@
         min: this.$refs.header.getBoundingClientRect().height,
         max: this.$refs.panel.parentNode.getBoundingClientRect().height
       }
-      this.tabHeight = this.bottomPanelHeight
     },
 
     methods: {
@@ -143,12 +160,13 @@
         if (!this.resizing ||
           clientY < this.boundary.min ||
           clientY > this.boundary.max) return
-        this.tabHeight = this.originalHeight - clientY + this.startY
+        const height = this.originalHeight - clientY + this.startY
+        this.setTabHeight(height)
       },
 
       handleMouseUp() {
         this.resizing = false
-        this.setBottomPanelHeight(this.tabHeight)
+        this.setTabHeight(this.tabHeight)
         document.removeEventListener('mousemove', this.handleMouseMove)
         document.removeEventListener('mouseup', this.handleMouseUp)
         preventSelectStop()
@@ -157,6 +175,10 @@
       clearCurrentLogs() {
         const {scenario, spot} = this.$route.query
         this.clearLogs({scenario, spot})
+      },
+
+      setTabHeight(height) {
+        this.tabHeight = height
       }
     }
   }
