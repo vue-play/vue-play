@@ -48,7 +48,7 @@ npm run play:build
 
 There're two pages in your play app, one is the app interface which has a sidebar and it can toggle scenarios of your components, the other page is for rendering the examples, this page will be loaded as iframe in app interface.
 
-And only the latter needs to load scenarios that you write in the `playspot`, let's say `./play/index.js`:
+And only the latter needs to load scenarios that you write in the `play entry`, let's say `./play/index.js`:
 
 ```js
 import {play} from 'vue-play'
