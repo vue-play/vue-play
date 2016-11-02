@@ -128,7 +128,7 @@
             a {
               display: block;
               cursor: pointer;
-              padding: 10px;
+              padding: 8px 10px;
               text-decoration: none;
               color: #666;
               &:hover {

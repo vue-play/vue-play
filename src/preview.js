@@ -38,7 +38,7 @@ export default function ({spots, components}) {
       }, location.origin)
     },
     render(h) {
-      return h(this.current)
+      return h('div', {attrs: {id: 'app'}}, [h(this.current)])
     }
   })
 }
