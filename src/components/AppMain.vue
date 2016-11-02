@@ -1,7 +1,7 @@
 <template>
   <div class="main" :style="{width: mainWidth}">
     <div class="view">
-      <iframe class="play-ground" ref="iframe" src="/preview.html" frameborder="0"></iframe>
+      <iframe class="play-ground" ref="iframe" src="preview.html" frameborder="0"></iframe>
       <tabs
         v-if="current.component"
         :example="current.component.example"
