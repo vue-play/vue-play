@@ -34,10 +34,10 @@ A minimalistic framework for demonstrating your Vue components, inspired by [rea
 
 ```bash
 # use npm or yarn
-npm install -g vue-play-cli
+npm install -g getplay
 cd my-vue-project
 # run this to configure your project
-vue-play init
+getplay
 # to start developing `play app`
 npm run play
 # to build the `play app`
