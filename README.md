@@ -51,7 +51,7 @@ There're two pages in your play app, one is the app interface which has a sideba
 And only the latter needs to load scenarios that you write in the `playspot`, let's say `./play/index.js`:
 
 ```js
-import play from 'vue-play'
+import {play} from 'vue-play'
 import MyButton from './MyButton.vue'
 
 play('MyButton', module)
