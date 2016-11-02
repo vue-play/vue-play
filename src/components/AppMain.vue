@@ -18,8 +18,7 @@
 
   export default {
     watch: {
-      current: 'updateIframe',
-      currentScenario: 'updateRoute'
+      current: 'updateIframe'
     },
     data() {
       return {
@@ -31,7 +30,7 @@
       this.listenChild()
     },
     computed: {
-      ...mapGetters(['mainWidth', 'currentScenario']),
+      ...mapGetters(['mainWidth']),
       current() {
         const {spot} = this.$route.query
         const {scenario, component} = findScenario(this.$store.state.spots, this.$route.query) || {}
@@ -41,6 +40,12 @@
         return {
           spot, scenario, component
         }
+      },
+      currentScenario() {
+        return {
+          spot: this.current.spot,
+          scenario: this.current.scenario
+        }
       }
     },
     methods: {
@@ -48,24 +53,13 @@
       postMessage() {
         this.$refs.iframe.contentWindow.postMessage({
           type: 'UPDATE_ROUTE',
-          payload: {
-            spot: this.current.spot,
-            scenario: this.current.scenario
-          }
+          payload: this.currentScenario
         }, location.origin)
-      },
-      updateRoute() {
-        this.$router.push({
-          query: this.currentScenario
-        })
       },
       updateIframe() {
         if (this.current.scenario) document.title = `${this.current.scenario} - Vue Play`
         else document.title = 'Vue Play'
-        this.updateCurrentScenario({
-          spot: this.current.spot,
-          scenario: this.current.scenario
-        })
+        this.updateCurrentScenario(this.currentScenario)
         if (this.iframeLoaded) {
           this.postMessage()
         } else {

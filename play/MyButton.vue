@@ -18,7 +18,7 @@
 
 <style>
   .button {
-    border: 2px solid;
+    border: 10px solid;
     padding: 10px 20px;
     border-radius: 3px;
     background-color: white;
