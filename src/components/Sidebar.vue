@@ -15,9 +15,6 @@
               <router-link
                 exact
                 :to="{query: {spot: name, scenario: scenario.scenario}}">
-                <svg style="height:10px;" id="i-chevron-right" viewBox="0 0 32 32" width="32" height="32" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="6.25%">
-                  <path d="M12 30 L24 16 12 2" />
-                </svg>
                 {{ scenario.scenario }}
               </router-link>
             </li>
@@ -129,6 +126,7 @@
               display: block;
               cursor: pointer;
               padding: 8px 10px;
+              padding-left: 20px;
               text-decoration: none;
               color: #666;
               &:hover {
