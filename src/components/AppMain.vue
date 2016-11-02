@@ -44,7 +44,7 @@
       }
     },
     methods: {
-      ...mapActions(['addLog', 'updateCurrentScenario']),
+      ...mapActions(['addLog', 'updateCurrentScenario', 'setSpots']),
       postMessage() {
         this.$refs.iframe.contentWindow.postMessage({
           type: 'UPDATE_ROUTE',
@@ -77,6 +77,9 @@
       },
       listenChild() {
         window.addEventListener('message', ({data}) => {
+          if (data.type === 'SET_SPOTS') {
+            this.setSpots(JSON.parse(data.payload))
+          }
           if (data.type === 'ADD_LOG') {
             const {spot, scenario} = this.current
             this.addLog({

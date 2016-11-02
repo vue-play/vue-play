@@ -32,6 +32,10 @@ export default function ({spots, components}) {
           }
         }
       })
+      parent.postMessage({
+        type: 'SET_SPOTS',
+        payload: JSON.stringify(spots)
+      }, location.origin)
     },
     render(h) {
       return h(this.current)
