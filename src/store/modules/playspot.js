@@ -38,6 +38,10 @@ export default {
     },
     updateCurrentScenario({commit}, path) {
       commit(UPDATE_CURRENT_SCENARIO, path)
+    },
+    activateSpot({commit, getters}, spot) {
+      const {scenario} = getters.visibleScenarios[spot][0]
+      router.push({query: {spot, scenario}})
     }
   },
   getters: {

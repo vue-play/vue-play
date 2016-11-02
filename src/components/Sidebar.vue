@@ -7,11 +7,19 @@
       <input @input="filter" placeholder="Type to filter components..." />
     </div>
     <div class="scenarios">
-      <ul v-for="(scenarios, name) in visibleScenarios" class="paths">
-        <li>
-          <div class="component-name" v-if="scenarios.length > 0">{{ name }}</div>
-          <ul>
-            <li v-for="scenario in scenarios">
+      <ul
+        v-for="(scenarios, name, index) in visibleScenarios"
+        class="nav-spots"
+        :class="{active: isActiveSpot(name, index)}">
+        <li class="nav-spot">
+          <div
+          class="component-name"
+          v-if="scenarios.length > 0"
+          @click="activateSpot(name)">
+            {{ name }}
+          </div>
+          <ul class="nav-scenarios">
+            <li v-for="scenario in scenarios" class="nav-scenario">
               <router-link
                 exact
                 :to="{query: {spot: name, scenario: scenario.scenario}}">
@@ -40,7 +48,8 @@
       ...mapGetters([
         'leftPanelExpanded',
         'visibleScenarios',
-        'sidebarWidth'
+        'sidebarWidth',
+        'currentScenario'
       ])
     },
 
@@ -58,7 +67,8 @@
         'updatePlayspot',
         'updateSidebarWidth',
         'toggleHelp',
-        'filterToys'
+        'filterToys',
+        'activateSpot'
       ]),
       filter: debounce(function ({target}) {
         this.filterToys(target.value)
@@ -84,6 +94,11 @@
         document.removeEventListener('mousemove', this.handleMouseMove)
         document.removeEventListener('mouseup', this.handleMouseUp)
         preventSelectStop()
+      },
+
+      isActiveSpot(name, index) {
+        if (!this.currentScenario.spot && index === 0) return true
+        return this.currentScenario.spot === name
       }
     }
   }
@@ -111,21 +126,38 @@
       height: 100%;
     }
 
-    .paths {
+    .nav-spots {
       margin: 0;
       list-style: none;
       padding-left: 0;
-      > li {
-        .component-name {
-          padding: 10px;
+      margin-bottom: 10px;
+      &.active {
+        .nav-spot {
+          .nav-scenarios {
+            display: block;
+          }
+          .component-name {
+            font-weight: bold;
+          }
         }
-        ul {
+      }
+      .nav-spot {
+        .component-name {
+          cursor: pointer;
+          margin: 10px;
+          margin-bottom: 0;
+          padding-bottom: 10px;
+          border-bottom: 1px solid #ececec;
+        }
+        .nav-scenarios {
+          display: none;
           padding-left: 0;
-          li {
+          .nav-scenario {
             a {
+              font-size: 14px;
               display: block;
               cursor: pointer;
-              padding: 8px 10px;
+              padding: 5px 10px;
               padding-left: 20px;
               text-decoration: none;
               color: #666;
@@ -133,7 +165,8 @@
                 color: #333;
               }
               &.router-link-active {
-                color: #42b983;
+                color: #333;
+                font-weight: bold;
               }
             }
           }
