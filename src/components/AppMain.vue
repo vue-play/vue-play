@@ -12,8 +12,8 @@
 </template>
 
 <script>
-  import {mapGetters, mapActions} from 'eva.js'
-  import findScenario from '../utils/find-scenario'
+  import {mapGetters, mapActions} from 'vuex'
+  import findScenario from 'utils/find-scenario'
   import Tabs from './Tabs.vue'
 
   export default {
@@ -33,7 +33,7 @@
       ...mapGetters(['mainWidth']),
       current() {
         const {spot} = this.$route.query
-        const {scenario, component} = findScenario(this.$store.state.spots, this.$route.query) || {}
+        const {scenario, component} = findScenario(this.$store.state.app.spots, this.$route.query) || {}
 
         if (!component) return {}
 

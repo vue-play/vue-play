@@ -74,10 +74,10 @@
 </template>
 
 <script>
-  import {mapGetters, mapActions} from 'eva.js'
-  import highlight from '../utils/highlight'
-  import {preventSelectStart, preventSelectStop} from '../utils/prevent-select'
-  import {defaultBottomPanelHeight} from '../models/layout'
+  import {mapGetters, mapActions} from 'vuex'
+  import highlight from 'utils/highlight'
+  import {preventSelectStart, preventSelectStop} from 'utils/prevent-select'
+  import {defaultBottomPanelHeight} from 'store/modules/layout'
 
   export default {
     name: 'console',

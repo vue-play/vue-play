@@ -9,7 +9,6 @@ export const TOGGLE_HELP = 'TOGGLE_HELP'
 export const defaultBottomPanelHeight = 240
 
 export default {
-  name: 'layout',
   state: {
     leftPanelExpanded: true,
     bottomPanelExpanded: true,

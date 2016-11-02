@@ -10,7 +10,7 @@
   import Sidebar from './Sidebar.vue'
   import AppMain from './AppMain.vue'
   import HelpModal from './HelpModal.vue'
-  import keyEvents from '../utils/key-events'
+  import keyEvents from 'utils/key-events'
 
   export default {
     name: 'home',

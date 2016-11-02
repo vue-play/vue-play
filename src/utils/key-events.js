@@ -1,4 +1,4 @@
-import {validShortcuts} from '../models/shortcuts'
+import {validShortcuts} from 'store/modules/shortcuts'
 
 // Key codes
 const keyK = 75

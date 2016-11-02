@@ -1,6 +1,6 @@
 import uid from 'uid'
-import highlight from '../utils/highlight'
-import shallowEqual from '../utils/shallow-equal'
+import highlight from 'utils/highlight'
+import shallowEqual from 'utils/shallow-equal'
 
 const matches = (filter, text) => {
   const f = filter.toLowerCase()
@@ -9,7 +9,6 @@ const matches = (filter, text) => {
 }
 
 export default {
-  name: 'toys',
   state: {
     logs: [],
     filter: ''
@@ -53,11 +52,11 @@ export default {
         }
       })
     },
-    visibleScenarios({filter}, getters, {spots}) {
-      if (!filter) return spots
+    visibleScenarios({filter}, getters, {app}) {
+      if (!filter) return app.spots
       const result = {}
-      for (const name in spots) {
-        const scenarios = spots[name]
+      for (const name in app.spots) {
+        const scenarios = app.spots[name]
         result[name] = scenarios.filter(scenario => {
           return matches(filter, `${name} ${scenario.scenario}`)
         })

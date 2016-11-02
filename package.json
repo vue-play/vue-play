@@ -35,11 +35,14 @@
   ],
   "dependencies": {
     "array-find-index": "^1.0.2",
-    "eva.js": "^1.0.0",
     "highlight.js": "^9.7.0",
     "query-string": "^4.2.3",
     "uid": "0.0.2",
-    "vue-slim-modal": "^0.2.1"
+    "vue": "^2.0.3",
+    "vue-router": "^2.0.1",
+    "vue-slim-modal": "^0.2.1",
+    "vuex": "^2.0.0",
+    "vuex-router-sync": "next"
   },
   "devDependencies": {
     "github-markdown-css": "^2.4.1",

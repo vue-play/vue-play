@@ -1,5 +1,6 @@
 import findIndex from 'array-find-index'
-import shallowEqual from '../utils/shallow-equal'
+import shallowEqual from 'utils/shallow-equal'
+import router from 'router'
 
 export const UPDATE_CURRENT_SCENARIO = 'UPDATE_CURRENT_SCENARIO'
 
@@ -8,7 +9,6 @@ const updateCurrent = (state, payload) => {
 }
 
 export default {
-  name: 'playspot',
   state: {
     current: null
   },
@@ -21,16 +21,20 @@ export default {
       const current = findIndex(getters.playspotRoutes, element => {
         return shallowEqual(state.current, element)
       })
-      const next = (current + 1) % total
-      commit(UPDATE_CURRENT_SCENARIO, getters.playspotRoutes[next])
+      const nextIndex = (current + 1) % total
+      const next = getters.playspotRoutes[nextIndex]
+      commit(UPDATE_CURRENT_SCENARIO, next)
+      router.push({query: next})
     },
     playPrevious({commit, getters, state}) {
       const total = getters.playspotRoutes.length
       const current = findIndex(getters.playspotRoutes, element => {
         return shallowEqual(state.current, element)
       })
-      const prev = (total + (current - 1)) % total
-      commit(UPDATE_CURRENT_SCENARIO, getters.playspotRoutes[prev])
+      const prevIndex = (total + (current - 1)) % total
+      const prev = getters.playspotRoutes[prevIndex]
+      commit(UPDATE_CURRENT_SCENARIO, prev)
+      router.push({query: prev})
     },
     updateCurrentScenario({commit}, path) {
       commit(UPDATE_CURRENT_SCENARIO, path)

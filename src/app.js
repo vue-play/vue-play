@@ -1,19 +1,10 @@
-import EVA from 'eva.js'
-import {registerModels} from './models'
-import Home from './components/Home.vue'
+import Vue from 'vue'
+import {sync} from 'vuex-router-sync'
+import store from './store'
+import router from './router'
 
 export default function ({spots = []} = {}) {
-  const app = new EVA()
-  app.router({
-    mode: 'history',
-    routes: [
-      {
-        path: '/',
-        component: Home
-      }
-    ]
-  })
-  app.model({
+  store.registerModule('app', {
     state: {
       spots
     },
@@ -28,10 +19,15 @@ export default function ({spots = []} = {}) {
       }
     }
   })
-  registerModels(app)
-  app.start({
+
+  sync(store, router)
+
+  return new Vue({
+    el: '#app',
+    store,
+    router,
     render(h) {
       return h('router-view')
     }
-  }, '#app')
+  })
 }

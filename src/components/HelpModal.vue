@@ -25,7 +25,7 @@
 
 <script>
   import SlimModal from 'vue-slim-modal'
-  import {mapGetters, mapActions} from 'eva.js'
+  import {mapGetters, mapActions} from 'vuex'
 
   export default {
     computed: {

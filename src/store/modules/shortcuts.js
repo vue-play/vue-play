@@ -1,5 +1,4 @@
 const model = {
-  name: 'shortcuts',
   actions: {
     cmdShiftK({dispatch}) {
       dispatch('toggleAllPanels')

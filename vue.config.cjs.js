@@ -3,9 +3,12 @@ module.exports = {
   vendor: false,
   compress: false,
   devtool: false,
+  resolve: true,
   externals: [
     'vue',
-    'eva.js',
+    'vuex',
+    'vue-router',
+    'vuex-router-sync',
     'highlight.js/lib/highlight',
     'highlight.js/lib/languages/javascript',
     'highlight.js/lib/languages/json',
