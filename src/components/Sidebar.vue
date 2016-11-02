@@ -49,7 +49,8 @@
         'leftPanelExpanded',
         'visibleScenarios',
         'sidebarWidth',
-        'currentScenario'
+        'currentScenario',
+        'filterKeyword'
       ])
     },
 
@@ -97,6 +98,7 @@
       },
 
       isActiveSpot(name, index) {
+        if (this.filterKeyword) return true
         if (!this.currentScenario.spot && index === 0) return true
         return this.currentScenario.spot === name
       }

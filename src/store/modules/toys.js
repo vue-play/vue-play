@@ -71,6 +71,9 @@ export default {
           spot: name
         }))
       }).reduce((current, next) => [...current, ...next], [])
+    },
+    filterKeyword(state) {
+      return state.filter
     }
   }
 }
