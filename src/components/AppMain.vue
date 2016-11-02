@@ -29,7 +29,7 @@
     mounted() {
       this.updateIframe()
       this.listenChild()
-      observeKeyEvents()
+      observeKeyEvents(this.$store)
     },
     computed: {
       ...mapGetters(['mainWidth']),
@@ -77,7 +77,7 @@
             this.setSpots(JSON.parse(data.payload))
           }
           if (data.type === 'APPLY_SHORTCUT') {
-            executeShortcut(JSON.parse(data.payload))
+            executeShortcut(this.$store, JSON.parse(data.payload))
           }
           if (data.type === 'ADD_LOG') {
             const {spot, scenario} = this.current

@@ -1,5 +1,4 @@
 import {validShortcuts} from 'store/modules/shortcuts'
-import store from 'store'
 
 // Key codes
 const keyK = 75
@@ -37,7 +36,7 @@ export const parseKey = e => {
   }
 }
 
-export const executeShortcut = combination => {
+export const executeShortcut = (store, combination) => {
   if (combination) {
     if (!validShortcuts.includes(combination)) {
       console.warn(`Combination ${combination} is not a valid shortcut`)
@@ -47,9 +46,9 @@ export const executeShortcut = combination => {
   }
 }
 
-export const observeKeyEvents = () => {
+export const observeKeyEvents = store => {
   window.onkeydown = e => {
     const combination = parseKey(e)
-    executeShortcut(combination)
+    executeShortcut(store, combination)
   }
 }
