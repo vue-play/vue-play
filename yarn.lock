@@ -5323,9 +5323,9 @@ vue-router:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/vue-router/-/vue-router-2.0.1.tgz#88b83cdc9497bad5b20b579e847a7e7240e221dd"
 
-vue-slim-modal:
-  version "0.2.1"
-  resolved "https://registry.yarnpkg.com/vue-slim-modal/-/vue-slim-modal-0.2.1.tgz#04560bb3bd2f39140bd1edb6e6dab6fee0f42011"
+vue-slim-modal@^0.3.0:
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/vue-slim-modal/-/vue-slim-modal-0.3.0.tgz#e9d84f60956d36a3b2760d5808edb2a9653d1d72"
   dependencies:
     babel-helper-vue-jsx-merge-props "^2.0.1"
     object-assign "^4.1.0"

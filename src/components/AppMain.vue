@@ -99,14 +99,6 @@
 </script>
 
 <style>
-  .modal-header {
-    margin: 0;
-    padding: 10px 0;
-    margin-bottom: 10px;
-  }
-  .modal-footer {
-    margin-top: 20px;
-  }
   .play-button {
     border: 1px solid #ccc;
     background-color: white;
