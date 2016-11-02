@@ -48,7 +48,7 @@ npm run play:build
 
 There're two pages in your play app, one is the app interface which has a sidebar and it can toggle scenarios of your components, the other page is for rendering the examples, this page will be loaded as iframe in app interface.
 
-And they both load scenarios that you write in the `playspot`, let's say `./play/index.js`:
+And only `preview` needs to load scenarios that you write in the `playspot`, let's say `./play/index.js`:
 
 ```js
 import play from 'vue-play'
@@ -64,11 +64,9 @@ play('MyButton', module)
 // ./play/app.js
 import app from 'vue-play/dist/app'
 import 'vue-play/dist/app.css'
-// loads scenarioss at ./play/index.js
-import scenarios from './'
 
-// tell app what scenarios you have
-app(scenarios)
+// bootstrap app
+app()
 ```
 
 #### Preview
@@ -80,6 +78,8 @@ import preview from 'vue-play/dist/preview'
 import scenarios from './'
 
 // actually render the scenarios in preview page
+// when the preview page is ready
+// it will tell the app interface what scenarios we have
 preview(scenarios)
 ```
 
