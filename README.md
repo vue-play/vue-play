@@ -111,11 +111,11 @@ That's it, you're all set!
 
 ## Writing Scenarios
 
-A scenario is a Vue component or a [component shorthand](#component-shorthand).
+`scenario`, a.k.a. story in react-storybook, it's usually an example for demostrating your real component.
 
 ### Keeping Scenarios
 
-You can keep scenarios anywhere you want, by default we keep them all at `./play/index.js`, you can also use separate files for them, or even name them `*.play.js` in your component directory and load them dynamically.
+You can keep scenarios anywhere you want, for example you can keep them all at `./play/index.js`, you can also use separate files for them, or even name them `*.play.js` in your component directory and load them dynamically.
 
 ### Writing Scenarios
 
@@ -123,6 +123,8 @@ You can keep scenarios anywhere you want, by default we keep them all at `./play
 import { play } from 'vue-play'
 import MyButton from '../src/components/MyButton.vue'
 
+// Use `play` to describe component title
+// use .add to add scenario for that component
 play('MyButton', module)
   .add('with text', h => h(MyButton, ['hello world']))
   .add('with emoji', h => h(MyButton, ['😃🍻']))

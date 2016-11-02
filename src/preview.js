@@ -19,8 +19,13 @@ export default function ({spots, components}) {
     el: '#app',
     data() {
       const scenario = findScenario(spots, query)
+      const component = scenario && scenario.component
+      if (component) {
+        component.example = undefined
+        component.readme = undefined
+      }
       return {
-        current: scenario && scenario.component
+        current: component
       }
     },
     created() {
