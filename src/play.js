@@ -8,7 +8,7 @@ const play = (name, m) => {
         component = {render: value}
       }
       component.example = component.example || component.template
-      component.name = component.name || scenario.replace(' ', '-')
+
       m.exports.spots = m.exports.spots || {}
       m.exports.spots[name] = m.exports.spots[name] || []
       m.exports.spots[name].push({
