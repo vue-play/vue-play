@@ -55,6 +55,7 @@ Add npm scripts:
 Write `play entry` to load your examples:
 
 ```js
+// ./play/index.js
 import {play} from 'vue-play'
 import MyButton from './components/MyButton.vue'
 
