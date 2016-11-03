@@ -132,7 +132,7 @@
       margin: 0;
       list-style: none;
       padding-left: 0;
-      margin-bottom: 10px;
+      margin-bottom: 15px;
       &.active {
         .nav-spot {
           .nav-scenarios {
@@ -147,7 +147,7 @@
         .component-name {
           cursor: pointer;
           margin: 10px;
-          margin-bottom: 0;
+          margin-bottom: 5px;
           padding-bottom: 10px;
           border-bottom: 1px solid #ececec;
         }
