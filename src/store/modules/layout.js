@@ -5,7 +5,6 @@ export const UPDATE_SIDEBAR_WIDTH = 'UPDATE_SIDEBAR_WIDTH'
 export const UPDATE_ACTIVE_TAB = 'UPDATE_ACTIVE_TAB'
 export const TOGGLE_HELP = 'TOGGLE_HELP'
 
-
 export default {
   state: {
     leftPanelExpanded: true,
