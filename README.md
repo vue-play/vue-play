@@ -94,11 +94,11 @@ module.exports = {
   },
   // don't forget to generate html output for both of them
   plugins: [
-    HtmlWebpackPlugin({
+    new HtmlWebpackPlugin({
       filename: 'index.html',
       chunks: ['app']
     }),
-    HtmlWebpackPlugin({
+    new HtmlWebpackPlugin({
       filename: 'preview.html',
       chunks: ['preview']
     })
@@ -158,16 +158,17 @@ module.exports.components = {
 }
 
 play('MyButton', module)
-  .add('with text', '<my-button>text</my-button>')
+  .add('with text', h => h(MyButton, 'hello world'))
 ```
 
-You can also put the example `'<my-button>text</my-button>'` in a seperate file, like `.vue` file and register components there, locally.
+You can also put the example `h => h(MyButton, 'hello world')` in a seperate file, like `.vue` file and register components there, locally.
 
 ## Component Shorthand
 
 If you only need `template` or `render` property for your component, you can use `component shorthand`, which means you can directly set the value of scenario to a template string or render function:
 
 ```js
+import Example from './Example.vue'
 play('Button', module)
   .add('template shorthand', '<my-button>text</my-button>')
   .add('render function shorthand', h => h(MyButton, ['text']))
@@ -176,8 +177,11 @@ play('Button', module)
     methods: {},
     render(h) {}
     // ...
-  })
+  }).
+  add('single file', Example)
 ```
+
+**note:** If you are using `template` shorthand, you should use [Vue standalone build](https://vuejs.org/guide/installation.html#Standalone-vs-Runtime-only-Build) as well.
 
 ## Additional Component Properties
 
@@ -211,7 +215,7 @@ Optionally display a readme tab to show detailed usage.
 Feel free to add your projects here:
 
 - [button example](http://vue-play-button.surge.sh/#/) - [source](https://github.com/vue-play/vue-play/tree/master/play)
-- [vue-slim-modal](https://egoistian.com/vue-slim-modal/#/) - [source](https://github.com/egoist/vue-slim-modal/tree/master/playspot)
+- [vue-slim-modal](https://egoistian.com/vue-slim-modal/#/) - [source](https://github.com/egoist/vue-slim-modal/tree/master/play)
 
 ## Development
 
