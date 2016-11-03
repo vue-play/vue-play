@@ -1,3 +1,14 @@
+## v2.0.0 (2016/11/03)
+
+### Core
+
+- Set preview to an independent webpack entry and load it in iframe
+- Update `play entry` syntax to be more similar to react-storybook
+
+### Other
+
+- Update `vue-play-cli` to support new core changes
+
 ## v2.0.0-beta.1 (2016/10/30)
 
 ### Core
