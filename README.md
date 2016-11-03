@@ -61,7 +61,7 @@ import MyButton from './components/MyButton.vue'
 
 play('Button', module)
   .add('with text', h => h(MyButton, 'hello'))
-  .add('with emoji', h => h(MyButton, '💫')
+  .add('with emoji', h => h(MyButton, '💫'))
 ```
 
 Then just run `npm run play` and go to `http://localhost:5000`
