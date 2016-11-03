@@ -10,9 +10,7 @@ A minimalistic framework for demonstrating your Vue components, inspired by [rea
 
 <!-- toc -->
 
-- [Getting started](#getting-started)
-  * [The easy way](#the-easy-way)
-  * [The hard way](#the-hard-way)
+- [Getting Started](#getting-started)
     + [App interface](#app-interface)
     + [Preview](#preview)
 - [Writing Scenarios](#writing-scenarios)
@@ -24,6 +22,8 @@ A minimalistic framework for demonstrating your Vue components, inspired by [rea
 - [Additional Component Properties](#additional-component-properties)
   * [example](#example)
   * [readme](#readme)
+- [Component Injection](#component-injection)
+  * [this.$log(data)](#thislogdata)
 - [Showcase](#showcase)
 - [Development](#development)
 - [License](#license)
