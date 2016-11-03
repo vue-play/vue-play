@@ -4,6 +4,8 @@
 
 A minimalistic framework for demonstrating your Vue components, inspired by [react-storybook](https://github.com/kadirahq/react-storybook).
 
+![preview](./media/preview.gif)
+
 <details><summary>Table of Contents</summary>
 
 <!-- toc -->
