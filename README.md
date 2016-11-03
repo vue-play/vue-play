@@ -204,7 +204,7 @@ play('Button', module)
     render(h) {}
     // ...
   }).
-  add('single file', Example)
+  .add('single file', Example)
 ```
 
 **note:** If you are using `template` shorthand, you should use [Vue standalone build](https://vuejs.org/guide/installation.html#Standalone-vs-Runtime-only-Build) as well.
@@ -215,7 +215,7 @@ The component for each scenario is a typical Vue component, but it can also acce
 
 ```js
 play('Button', module)
-  add('with text', {
+  .add('with text', {
     // a valid vue component
     ...component,
     // additional
