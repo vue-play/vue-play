@@ -1,4 +1,6 @@
-![logo](./media/logo.png)
+# vue-play
+
+[![NPM version](https://img.shields.io/npm/v/vue-play.svg?style=flat-square)](https://npmjs.com/package/vue-play) [![NPM downloads](https://img.shields.io/npm/dm/vue-play.svg?style=flat-square)](https://npmjs.com/package/vue-play) [![Build Status](https://img.shields.io/circleci/project/vue-play/vue-play/master.svg?style=flat-square)](https://circleci.com/gh/egoist/vue-play) [![gitter](https://img.shields.io/gitter/room/vue-play/vue-play.svg?style=flat-square)](https://gitter.im/vue-play/vue-play)
 
 A minimalistic framework for demonstrating your Vue components, inspired by [react-storybook](https://github.com/kadirahq/react-storybook).
 
@@ -34,17 +36,17 @@ A minimalistic framework for demonstrating your Vue components, inspired by [rea
 
 ```bash
 # use npm or yarn
-yarn global add getplay
+yarn global add vue-play
 cd my-vue-project
 # run this to configure your project
-getplay
+vue-play
 # to start developing `play app`
 npm run play
 # to build the `play app`
 npm run play:build
 ```
 
-`getplay` simply adds boilerplate files into your project and also adds `vue-play-cli` commands to your npm scripts, for more usages on vue-play-cli, please head to [vue-play/vue-play-cli](https://github.com/vue-play/vue-play-cli).
+`vue-play` simply adds boilerplate files into your project and also adds `vue-play-cli` commands to your npm scripts, for more usages on vue-play-cli, please head to [vue-play/vue-play-cli](https://github.com/vue-play/vue-play-cli).
 
 <details><summary>The hard way</summary>
 
