@@ -238,6 +238,12 @@ Type: `HTML string`
 
 Optionally display a readme tab to show detailed usage.
 
+## Component Injection
+
+### this.$log(data)
+
+Log data to app console.
+
 ## Showcase
 
 Feel free to add your projects here:
