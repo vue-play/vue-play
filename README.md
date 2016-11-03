@@ -34,7 +34,7 @@ A minimalistic framework for demonstrating your Vue components, inspired by [rea
 
 ```bash
 # use npm or yarn
-npm install -g getplay
+yarn global add getplay
 cd my-vue-project
 # run this to configure your project
 getplay
@@ -43,6 +43,8 @@ npm run play
 # to build the `play app`
 npm run play:build
 ```
+
+`getplay` simply adds boilerplate files into your project and also adds `vue-play-cli` commands to your npm scripts, for more usages on vue-play-cli, please head to [vue-play/vue-play-cli](https://github.com/vue-play/vue-play-cli).
 
 <details><summary>The hard way</summary>
 
