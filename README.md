@@ -32,21 +32,40 @@ A minimalistic framework for demonstrating your Vue components, inspired by [rea
 
 ## Getting Started
 
-### The easy way
+Install it:
 
 ```bash
-# use npm or yarn
-yarn global add getplay
-cd my-vue-project
-# run this to configure your project
-getplay
-# to start developing `play app`
-npm run play
-# to build the `play app`
-npm run play:build
+cd my-project
+npm install --save-dev vue-play vue-play-cli
+# vue-play-cli gives you the `vue-play` command
+# vue-play is the UI utils.
 ```
 
-`getplay` simply adds boilerplate files into your project and also adds `vue-play-cli` commands to your npm scripts, for more usages on vue-play-cli, please head to [vue-play/vue-play-cli](https://github.com/vue-play/vue-play-cli).
+Add npm scripts:
+
+```json
+{
+  "scripts": {
+    "play": "vue-play start",
+    "play:build": "vue-play build"
+  }
+}
+```
+
+Write `play entry` to load your examples:
+
+```js
+import {play} from 'vue-play'
+import MyButton from './components/MyButton.vue'
+
+play('Button', module)
+  .add('with text', h => h(MyButton, 'hello'))
+  .add('with emoji', h => h(MyButton, '💫')
+```
+
+Then just run `npm run play` and go to `http://localhost:5000`
+
+For more usages on vue-play-cli, please head to [vue-play/vue-play-cli](https://github.com/vue-play/vue-play-cli).
 
 <details><summary>The hard way</summary>
 
