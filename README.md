@@ -182,10 +182,12 @@ module.exports.components = {
 }
 
 play('MyButton', module)
-  .add('with text', h => h(MyButton, 'hello world'))
+  .add('with text', {
+    template: '<my-button>text</my-button>'
+  })
 ```
 
-You can also put the example `h => h(MyButton, 'hello world')` in a seperate file, like `.vue` file and register components there, locally.
+You can also put the example component in a seperate file, like `.vue` file and register components there, locally.
 
 ## Component Shorthand
 
