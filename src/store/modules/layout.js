@@ -81,6 +81,19 @@ export default {
     },
     showHelp(state) {
       return state.showHelp
+    },
+    layoutQuery(state) {
+      let query = {};
+      if(!state.leftPanelExpanded) {
+        query.leftClosed=1
+      }
+      if(!state.bottomPanelExpanded) {
+        query.bottomClosed=1
+      }
+      if(state.activeTab != null) {
+        query.activeTab = state.activeTab
+      }
+      return query
     }
   }
 }

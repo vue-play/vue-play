@@ -24,7 +24,13 @@ export default {
       const nextIndex = (current + 1) % total
       const next = getters.playspotRoutes[nextIndex]
       commit(UPDATE_CURRENT_SCENARIO, next)
-      router.push({query: next})
+      router.push({
+        query: {
+          ...next,
+          ...getters.layoutQuery,
+          ...getters.filterQuery
+        }
+      })
     },
     playPrevious({commit, getters, state}) {
       const total = getters.playspotRoutes.length
@@ -34,14 +40,25 @@ export default {
       const prevIndex = (total + (current - 1)) % total
       const prev = getters.playspotRoutes[prevIndex]
       commit(UPDATE_CURRENT_SCENARIO, prev)
-      router.push({query: prev})
+      router.push({
+        query: {
+          ...prev,
+          ...getters.layoutQuery,
+          ...getters.filterQuery
+        }
+      })
     },
     updateCurrentScenario({commit}, path) {
       commit(UPDATE_CURRENT_SCENARIO, path)
     },
     activateSpot({commit, getters}, spot) {
       const {scenario} = getters.visibleScenarios[spot][0]
-      router.push({query: {spot, scenario}})
+      router.push({query: {
+        spot,
+        scenario,
+        ...getters.layoutQuery,
+        ...getters.filterQuery
+      }})
     }
   },
   getters: {
