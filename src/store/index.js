@@ -5,6 +5,7 @@ import layout from './modules/layout'
 import playspot from './modules/playspot'
 import shortcuts from './modules/shortcuts'
 import toys from './modules/toys'
+import query from './modules/query'
 
 Vue.use(Vuex)
 
@@ -13,7 +14,8 @@ const store = new Vuex.Store({
     layout,
     playspot,
     shortcuts,
-    toys
+    toys,
+    query
   }
 })
 
