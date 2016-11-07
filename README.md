@@ -6,7 +6,7 @@ A minimalistic framework for demonstrating your Vue components, inspired by [rea
 
 ![preview](./media/preview.gif)
 
-<details><summary>Table of Contents</summary>
+## Table of Contents
 
 <!-- toc -->
 
@@ -18,6 +18,7 @@ A minimalistic framework for demonstrating your Vue components, inspired by [rea
   * [Writing Scenarios](#writing-scenarios-1)
   * [Loading Scenarios Dynamically](#loading-scenarios-dynamically)
   * [Register Components](#register-components)
+  * [Use Component as `play()` argument](#use-component-as-play-argument)
 - [Component Shorthand](#component-shorthand)
 - [Additional Component Properties](#additional-component-properties)
   * [example](#example)
@@ -29,8 +30,6 @@ A minimalistic framework for demonstrating your Vue components, inspired by [rea
 - [License](#license)
 
 <!-- tocstop -->
-
-</details>
 
 ## Getting Started
 
@@ -190,6 +189,43 @@ play('MyButton', module)
 ```
 
 You can also put the example component in a seperate file, like `.vue` file and register components there, locally.
+
+### Use Component as `play()` argument
+
+```js
+import MyButton from './MyButton.vue'
+
+// assuming MyButton.name is 'my-button'
+play(MyButton, module)
+  // MyButton will be automatially registered in scenarios
+  // so you don't have to use module.exports.components = {MyButton}
+  .add('with text', '<my-button></my-button>')
+
+// then the app sidebar will look like:
+// - my-button
+//    - with text
+```
+
+To customize the `displayName` in sidebar and the `componentName` which is used to register itself in scenarios, you can simply set them in your component:
+
+```vue
+<!-- ./MyButton.vue -->
+<script>
+  export default {
+    name: 'my-other-button',
+    displayName: 'Show off my cute button'
+  }
+</script>
+```
+
+Or use methods:
+
+```js
+play(MyButton, module)
+  .name('my-other-button')
+  .displayName('Show off my cute button')
+  .add('with text', '<my-other-button>text</my-other-button>')
+```
 
 ## Component Shorthand
 
