@@ -51,7 +51,7 @@ const play = (spot, m) => {
       return this
     },
 
-    // update the spot component name for registering in scenarion component
+    // update the spot component name for registering in scenario component
     name(name) {
       if (isSpotComponent) {
         componentName = name
