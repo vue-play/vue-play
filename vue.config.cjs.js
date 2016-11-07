@@ -26,7 +26,10 @@ module.exports = {
   },
   production: {
     eslint: {
-      globals: ['require']
+      globals: ['require', 'process'],
+      rules: {
+        'no-unused-expressions': ['error', {'allowShortCircuit': true}]
+      }
     }
   },
   entry: {
