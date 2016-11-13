@@ -1,3 +1,20 @@
+## v2.1.0 (2016/11/13)
+
+### Core
+
+- allow to use component as play() argument
+
+```js
+// before 2.1.0 we can do
+play('this is my component', module)
+  .add('with text', h => h(MyCompoent))
+
+// now we can also
+play(MyComponent, module)
+  .displayName('this is my component')
+  .add('with text', h => h(MyCompoent))
+```
+
 ## v2.0.0 (2016/11/03)
 
 ### Core
