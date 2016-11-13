@@ -25,6 +25,9 @@ const play = (spot, m) => {
       // register spot component inscenario component
       if (isSpotComponent) {
         if (componentName) {
+          // remove pre initialized component
+          // since vue-loader uses vue.extend automatically
+          delete component._Ctor
           component.components = component.components || {}
           if (component.components[componentName]) {
             DEV && console.error(`${componentName} is already registered in your scenario`)
