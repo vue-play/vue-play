@@ -40,7 +40,6 @@ h1, h2, h3, h4, h5 {
 }
 .play-ground {
   height: 100%;
-  padding: 10px;
   overflow: auto;
   flex: 1;
 }
