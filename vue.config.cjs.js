@@ -26,6 +26,7 @@ module.exports = {
   },
   production: {
     eslint: {
+      configFile: require.resolve('eslint-config-egoist-vue'),
       globals: ['require', 'process'],
       rules: {
         'no-unused-expressions': ['error', {'allowShortCircuit': true}]

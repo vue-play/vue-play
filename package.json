@@ -35,20 +35,22 @@
   ],
   "dependencies": {
     "array-find-index": "^1.0.2",
-    "highlight.js": "^9.7.0",
+    "highlight.js": "^9.8.0",
     "query-string": "^4.2.3",
     "uid": "0.0.2",
-    "vue": "^2.0.3",
-    "vue-router": "^2.0.1",
+    "vue": "^2.1.3",
+    "vue-router": "^2.0.3",
     "vue-slim-modal": "^0.3.0",
     "vuex": "^2.0.0",
     "vuex-router-sync": "next"
   },
   "devDependencies": {
+    "eslint-config-egoist-vue": "^2.0.6",
+    "eslint-config-rem": "^2.0.2",
     "github-markdown-css": "^2.4.1",
-    "hint.css": "^2.4.0",
+    "hint.css": "^2.4.1",
     "markdown-toc": "^0.13.0",
     "postcss-simple-vars": "^3.0.0",
-    "vbuild": "egoist/vbuild"
+    "vbuild": "^4.1.2"
   }
 }
