@@ -9,7 +9,6 @@ module.exports = {
     vue: 'vue/dist/vue'
   },
   postcss: config.postcss,
-  vendor: false,
   entry: {
     app: './play/app.js',
     preview: './play/preview.js'

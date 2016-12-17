@@ -1,6 +1,5 @@
 module.exports = {
   cjs: true,
-  vendor: false,
   compress: false,
   devtool: false,
   resolve: true,
