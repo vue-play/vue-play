@@ -1,6 +1,6 @@
 # vue-play
 
-[![NPM version](https://img.shields.io/npm/v/vue-play.svg?style=flat-square)](https://npmjs.com/package/vue-play) [![NPM downloads](https://img.shields.io/npm/dm/vue-play.svg?style=flat-square)](https://npmjs.com/package/vue-play) [![Build Status](https://img.shields.io/circleci/project/vue-play/vue-play/master.svg?style=flat-square)](https://circleci.com/gh/egoist/vue-play) [![gitter](https://img.shields.io/gitter/room/vue-play/vue-play.svg?style=flat-square)](https://gitter.im/vue-play/vue-play)
+[![NPM version](https://img.shields.io/npm/v/vue-play.svg?style=flat-square)](https://npmjs.com/package/vue-play) [![NPM downloads](https://img.shields.io/npm/dm/vue-play.svg?style=flat-square)](https://npmjs.com/package/vue-play) [![Build Status](https://img.shields.io/circleci/project/vue-play/vue-play/master.svg?style=flat-square)](https://circleci.com/gh/vue-play/vue-play) [![gitter](https://img.shields.io/gitter/room/vue-play/vue-play.svg?style=flat-square)](https://gitter.im/vue-play/vue-play)
 
 A minimalistic framework for demonstrating your Vue components, inspired by [react-storybook](https://github.com/kadirahq/react-storybook).
 
