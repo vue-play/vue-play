@@ -188,7 +188,7 @@ play('MyButton', module)
   })
 ```
 
-You can also put the example component in a seperate file, like `.vue` file and register components there, locally. Don't forget to use the `--standalone` option if you're using vue-play-cli.
+You can also put the example component in a seperate file, like `.vue` file and register components there, locally. Don't forget to use the `--standalone` option if if you're using the vue-play-cli and template option in the component.
 
 ### Use Component as `play()` argument
 
