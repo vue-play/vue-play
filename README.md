@@ -245,7 +245,7 @@ play('Button', module)
   .add('single file', Example)
 ```
 
-**note:** If you are using `template` shorthand, you should use [Vue standalone build](https://vuejs.org/guide/installation.html#Standalone-vs-Runtime-only-Build) as well.
+**note:** If you are using `template` shorthand or `template` property in component options, you should use [Vue standalone build](https://vuejs.org/guide/installation.html#Standalone-vs-Runtime-only-Build) as well. For `vue-play-cli`, it's as simple as using `--standalone` option.
 
 ## Additional Component Properties
 
