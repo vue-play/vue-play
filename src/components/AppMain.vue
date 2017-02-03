@@ -122,4 +122,7 @@
     border-bottom: 1px solid;
     font-size: 12px;
   }
+  .play-tabs {
+    background-color: rgb(247, 247, 247);
+  }
 </style>
