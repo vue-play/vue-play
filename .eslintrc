@@ -1,0 +1,13 @@
+{
+  "extends": "xo",
+  "plugins": ["vue"],
+  "rules": {
+    "semi": ["error", "never"],
+    "indent": [2, 2, {"SwitchCase": 1}],
+    "no-unused-expressions": 0,
+    "guard-for-in": 0
+  },
+  "env": {
+    "browser": true
+  }
+}

@@ -15,17 +15,21 @@
   "scripts": {
     "test": "npm run build",
     "toc": "markdown-toc -i README.md",
-    "build": "vbuild --config vue.config.cjs.js",
-    "watch": "vbuild --config vue.config.cjs.js --watch",
-    "surge": "vbuild --config vue.config.play.js && surge -p play-dist -d vue-play-button.surge.sh",
-    "play": "vbuild --dev --config vue.config.play.js",
-    "play:build": "vbuild --config vue.config.play.js"
+    "build": "vue build --prod --config config/config.cjs.js",
+    "surge": "npm run play:build && surge -p dist-play -d vue-play-button.surge.sh",
+    "play": "vue build --config config/config.play.js",
+    "play:build": "vue build --config config/config.play.js --prod"
   },
   "files": [
-    "dist",
-    "src"
+    "dist/play.js",
+    "dist/app.js",
+    "dist/preview.js",
+    "dist/app.css",
+    "index.js",
+    "app.js",
+    "preview.js"
   ],
-  "main": "dist/play.js",
+  "main": "index.js",
   "keywords": [
     "vue",
     "play",
@@ -38,21 +42,20 @@
     "highlight.js": "^9.8.0",
     "query-string": "^4.2.3",
     "uid": "0.0.2",
-    "vue": "^2.1.5",
     "vue-router": "^2.0.3",
     "vue-slim-modal": "^0.3.0",
     "vuex": "^2.0.0",
     "vuex-router-sync": "next"
   },
   "devDependencies": {
-    "eslint-config-egoist-vue": "^2.0.6",
-    "eslint-config-rem": "^2.0.2",
+    "eslint": "^3.15.0",
+    "eslint-config-xo": "^0.17.0",
+    "eslint-loader": "^1.6.1",
+    "eslint-plugin-vue": "^2.0.1",
     "github-markdown-css": "^2.4.1",
     "hint.css": "^2.4.1",
     "markdown-toc": "^0.13.0",
-    "postcss-simple-vars": "^3.0.0",
-    "vbuild": "4.3.2",
-    "vue-loader": "^10.0.2",
-    "vue-template-compiler": "^2.1.6"
+    "postcss-nested": "^1.0.0",
+    "postcss-simple-vars": "^3.0.0"
   }
 }

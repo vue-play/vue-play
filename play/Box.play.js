@@ -1,7 +1,7 @@
 import {play} from '../src/play'
 import Box from './Box.vue'
 
-play(Box, module)
+play(Box)
   .name('Box')
   .displayName('The Box Component')
   .add('default', '<Box />')

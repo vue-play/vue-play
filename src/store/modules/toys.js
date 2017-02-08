@@ -53,7 +53,9 @@ export default {
       })
     },
     visibleScenarios({filter}, getters, {app}) {
-      if (!filter) return app.spots
+      if (!filter) {
+        return app.spots
+      }
       const result = {}
       for (const name in app.spots) {
         const scenarios = app.spots[name]

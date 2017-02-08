@@ -9,8 +9,4 @@ const load = requireContext => {
 
 const scenarios = load(require.context('./', true, /.play.js$/))
 
-module.exports.components = {
-  MyButton
-}
-
-configure(scenarios, module)
+configure(scenarios)

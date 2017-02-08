@@ -1,7 +1,10 @@
+import Vue from 'vue'
 import {play} from '../src/play'
 import MyButton from './MyButton.vue'
 
-play('Button', module)
+Vue.component('my-button', MyButton)
+
+play('Button')
   .add('with text', {
     template: `<my-button :handle-click="log">text</my-button>`,
     methods: {

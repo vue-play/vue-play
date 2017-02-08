@@ -1,7 +1,7 @@
 node_modules
 *.log
 .DS_Store
-/dist
-play-dist
+dist
+dist-play
 /stats.html
 _book

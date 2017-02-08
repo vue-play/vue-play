@@ -1,6 +1,8 @@
 const DEV = process.env.NODE_ENV === 'development'
 
-const play = (spot, m) => {
+let spots = {}
+
+const play = spot => {
   const isSpotComponent = typeof spot === 'object'
 
   let componentName
@@ -39,9 +41,8 @@ const play = (spot, m) => {
         }
       }
 
-      m.exports.spots = m.exports.spots || {}
-      m.exports.spots[displayName] = m.exports.spots[displayName] || []
-      m.exports.spots[displayName].push({
+      spots[displayName] = spots[displayName] || []
+      spots[displayName].push({
         scenario,
         component
       })
@@ -58,7 +59,9 @@ const play = (spot, m) => {
     name(name) {
       if (isSpotComponent) {
         componentName = name
-        if (!displayName) displayName = name
+        if (!displayName) {
+          displayName = name
+        }
       } else {
         DEV && console.error('.name() is only available when you use a component as play() argument')
       }
@@ -67,16 +70,16 @@ const play = (spot, m) => {
   }
 }
 
-const configure = (array, m) => {
-  m.exports.spots = m.exports.spots || {}
-  m.exports.components = m.exports.components || {}
+const configure = array => {
   array.forEach(item => {
-    m.exports.spots = {...m.exports.spots, ...item.spots}
-    m.exports.components = {...m.exports.components, ...item.components}
+    spots = {...spots, ...item.spots}
   })
 }
 
+const getSpots = () => spots
+
 export {
   play,
-  configure
+  configure,
+  getSpots
 }

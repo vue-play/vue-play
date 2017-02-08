@@ -13,7 +13,9 @@ export const isModifierPressed = e => {
 }
 
 export const parseKey = e => {
-  if (!isModifierPressed(e)) return false
+  if (!isModifierPressed(e)) {
+    return false
+  }
 
   switch (e.keyCode) {
     case keyK:

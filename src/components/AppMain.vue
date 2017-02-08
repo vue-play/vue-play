@@ -37,7 +37,9 @@
         const {spot} = this.$route.query
         const {scenario, component} = findScenario(this.$store.state.app.spots, this.$route.query) || {}
 
-        if (!component) return {}
+        if (!component) {
+          return {}
+        }
 
         return {
           spot, scenario, component
@@ -59,8 +61,11 @@
         }, location.origin)
       },
       updateIframe() {
-        if (this.current.scenario) document.title = `${this.current.scenario} - Vue Play`
-        else document.title = 'Vue Play'
+        if (this.current.scenario) {
+          document.title = `${this.current.scenario} - Vue Play`
+        } else {
+          document.title = 'Vue Play'
+        }
         this.updateCurrentScenario(this.currentScenario)
         if (this.iframeLoaded) {
           this.postMessage()

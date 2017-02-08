@@ -114,7 +114,9 @@
         'bottomPanelExpanded'
       ]),
       highlightedExample() {
-        if (!this.example) return
+        if (!this.example) {
+          return
+        }
         return highlight.highlightAuto(this.example).value
       },
       active() {
@@ -159,7 +161,9 @@
       handleMouseMove({clientY}) {
         if (!this.resizing ||
           clientY < this.boundary.min ||
-          clientY > this.boundary.max) return
+          clientY > this.boundary.max) {
+          return
+        }
         const height = this.originalHeight - clientY + this.startY
         this.setTabHeight(height)
       },

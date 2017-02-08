@@ -57,10 +57,10 @@ Write `play entry` to load your examples:
 
 ```js
 // ./play/index.js
-import {play} from 'vue-play'
+import { play } from 'vue-play'
 import MyButton from './components/MyButton.vue'
 
-play('Button', module)
+play('Button')
   .add('with text', h => h(MyButton, 'hello'))
   .add('with emoji', h => h(MyButton, '💫'))
 ```
@@ -76,10 +76,10 @@ There're two pages in your play app, one is the app interface which has a sideba
 And only the latter needs to load scenarios that you write in the `play entry`, let's say `./play/index.js`:
 
 ```js
-import {play} from 'vue-play'
+import { play } from 'vue-play'
 import MyButton from './MyButton.vue'
 
-play('MyButton', module)
+play('MyButton')
   .add('with text', h => h(MyButton, ['text']))
 ```
 
@@ -87,8 +87,7 @@ play('MyButton', module)
 
 ```js
 // ./play/app.js
-import app from 'vue-play/dist/app'
-import 'vue-play/dist/app.css'
+import app from 'vue-play/app'
 
 // bootstrap app
 app()
@@ -98,14 +97,13 @@ app()
 
 ```js
 // ./play/preview.js
-import preview from 'vue-play/dist/preview'
-// loads the scenarios at ./play/index.js
-import scenarios from './'
+import './' // which is ./play/index.js
+import preview from 'vue-play/preview'
 
 // actually render the scenarios in preview page
 // when the preview page is ready
 // it will tell the app interface what scenarios we have
-preview(scenarios)
+preview()
 ```
 
 Add `app interface` and `preview` to your webpack entry:
@@ -150,7 +148,7 @@ import MyButton from '../src/components/MyButton.vue'
 
 // Use `play` to describe component title
 // use .add to add scenario for that component
-play('MyButton', module)
+play('MyButton')
   .add('with text', h => h(MyButton, ['hello world']))
   .add('with emoji', h => h(MyButton, ['😃🍻']))
 ```
@@ -166,29 +164,28 @@ const load = requireContext => requireContext.keys().map(requireContext)
 
 const scenarios = load(require.context('../src/components', true, /.play.js$/))
 
-configure(scenarios, module)
+configure(scenarios)
 ```
 
 ### Register Components
 
-If you are using render function you won't need to register components, you only need this when you are using the template property:
+If you are using render function you won't need to register components, you only need this when you are using the template property, and it's same way as you do in other Vue app:
 
 ```js
 // ./play/index.js
+import Vue from 'vue'
 import MyButton from './MyButton.vue'
 
-// these components will be registered globally
-module.exports.components = {
-  MyButton
-}
+// register globally
+Vue.component('my-button', MyButton)
 
-play('MyButton', module)
+play('MyButton')
   .add('with text', {
     template: '<my-button>text</my-button>'
   })
 ```
 
-You can also put the example component in a seperate file, like `.vue` file and register components there, locally.
+You can also [register components locally](https://vuejs.org/v2/guide/components.html#Local-Registration).
 
 ### Use Component as `play()` argument
 
@@ -196,9 +193,9 @@ You can also put the example component in a seperate file, like `.vue` file and 
 import MyButton from './MyButton.vue'
 
 // assuming MyButton.name is 'my-button'
-play(MyButton, module)
+play(MyButton)
   // MyButton will be automatially registered in scenarios
-  // so you don't have to use module.exports.components = {MyButton}
+  // so you don't have to register it again
   .add('with text', '<my-button></my-button>')
 
 // then the app sidebar will look like:
@@ -221,7 +218,7 @@ To customize the `displayName` in sidebar and the `componentName` which is used 
 Or use methods:
 
 ```js
-play(MyButton, module)
+play(MyButton)
   .name('my-other-button')
   .displayName('Show off my cute button')
   .add('with text', '<my-other-button>text</my-other-button>')
@@ -233,7 +230,7 @@ If you only need `template` or `render` property for your component, you can use
 
 ```js
 import Example from './Example.vue'
-play('Button', module)
+play('Button')
   .add('template shorthand', '<my-button>text</my-button>')
   .add('render function shorthand', h => h(MyButton, ['text']))
   .add('full component', {
@@ -252,7 +249,7 @@ play('Button', module)
 The component for each scenario is a typical Vue component, but it can also accept some additional properties for documenting its usage, eg:
 
 ```js
-play('Button', module)
+play('Button')
   .add('with text', {
     // a valid vue component
     ...component,

@@ -86,7 +86,9 @@
       handleMouseMove({clientX}) {
         if (!this.resizing ||
           clientX < BOUNDARY.min ||
-          clientX > BOUNDARY.max) return
+          clientX > BOUNDARY.max) {
+          return
+        }
         this.updateSidebarWidth(this.originalWidth + clientX - this.startX)
       },
 
@@ -98,8 +100,12 @@
       },
 
       isActiveSpot(name, index) {
-        if (this.filterKeyword) return true
-        if (!this.currentScenario.spot && index === 0) return true
+        if (this.filterKeyword) {
+          return true
+        }
+        if (!this.currentScenario.spot && index === 0) {
+          return true
+        }
         return this.currentScenario.spot === name
       }
     }
