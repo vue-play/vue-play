@@ -70,16 +70,9 @@ const play = spot => {
   }
 }
 
-const configure = array => {
-  array.forEach(item => {
-    spots = {...spots, ...item.spots}
-  })
-}
-
 const getSpots = () => spots
 
 export {
   play,
-  configure,
   getSpots
 }

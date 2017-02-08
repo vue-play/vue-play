@@ -56,6 +56,7 @@
     "hint.css": "^2.4.1",
     "markdown-toc": "^0.13.0",
     "postcss-nested": "^1.0.0",
-    "postcss-simple-vars": "^3.0.0"
+    "postcss-simple-vars": "^3.0.0",
+    "vue-cli": "vuejs/vue-cli"
   }
 }

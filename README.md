@@ -158,13 +158,10 @@ play('MyButton')
 We can use Webpack's [require.context](https://webpack.github.io/docs/context.html#require-context) to load modules dynamically.
 
 ```js
-import { configure } from 'vue-play'
-
 const load = requireContext => requireContext.keys().map(requireContext)
 
-const scenarios = load(require.context('../src/components', true, /.play.js$/))
-
-configure(scenarios)
+// load files which end with `.play.js` in `../src/components` folder
+load(require.context('../src/components', true, /.play.js$/))
 ```
 
 ### Register Components
