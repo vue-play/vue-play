@@ -11,6 +11,7 @@ module.exports = {
     js: '[name].js',
     css: '[name].css'
   },
+  html: false,
   disableCompress: true,
   postcss: config.postcss,
   webpack: {
@@ -53,7 +54,8 @@ module.exports = {
       'uid',
       'vue-slim-modal',
       'query-string',
-      'array-find-index'
+      'array-find-index',
+      './play'
     ]
   }
 }
