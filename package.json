@@ -15,10 +15,10 @@
   "scripts": {
     "test": "npm run build",
     "toc": "markdown-toc -i README.md",
-    "build": "vue build --prod --config config/config.cjs.js",
+    "build": "vbuild -c config/config.cjs.js",
     "surge": "npm run play:build && surge -p dist-play -d vue-play-button.surge.sh",
-    "play": "vue build --config config/config.play.js",
-    "play:build": "vue build --config config/config.play.js --prod"
+    "play": "vbuild -c config/config.play.js -d",
+    "play:build": "vbuild --config config/config.play.js"
   },
   "files": [
     "dist/play.js",
@@ -57,6 +57,6 @@
     "markdown-toc": "^0.13.0",
     "postcss-nested": "^1.0.0",
     "postcss-simple-vars": "^3.0.0",
-    "vue-cli": "vuejs/vue-cli#d74a135b981"
+    "vbuild": "^6.12.1"
   }
 }

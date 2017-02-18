@@ -12,13 +12,11 @@ module.exports = {
     css: '[name].css'
   },
   html: false,
-  disableCompress: true,
+  minimize: false,
+  format: 'cjs',
+  sourceMap: false,
   postcss: config.postcss,
   webpack: {
-    devtool: false,
-    output: {
-      libraryTarget: 'commonjs2'
-    },
     resolve: {
       modules: [
         path.resolve('src')
@@ -27,34 +25,7 @@ module.exports = {
         vue: 'vue/dist/vue'
       }
     },
-    module: {
-      rules: [
-        {
-          test: /\.(js|vue)$/,
-          loader: 'eslint-loader',
-          enforce: 'pre',
-          exclude: [/node_modules/],
-          options: {
-            configFile: path.resolve('.eslintrc'),
-            useEslintrc: false,
-            fix: true
-          }
-        }
-      ]
-    },
     externals: [
-      'vue',
-      'vuex',
-      'vue-router',
-      'vuex-router-sync',
-      'highlight.js/lib/highlight',
-      'highlight.js/lib/languages/javascript',
-      'highlight.js/lib/languages/json',
-      'highlight.js/lib/languages/xml',
-      'uid',
-      'vue-slim-modal',
-      'query-string',
-      'array-find-index',
       './play'
     ]
   }

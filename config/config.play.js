@@ -19,7 +19,7 @@ module.exports = {
     }
   },
   // add hmr client to these entries
-  hmrEntries: ['app', 'preview'],
+  hmrEntry: ['app', 'preview'],
   // produce html files for these entries
   html: [
     {title: 'Vue-Play Panel', chunks: ['app']},
