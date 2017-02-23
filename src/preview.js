@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import qs from 'query-string'
+import get from 'lodash/get'
 import findScenario from './utils/find-scenario'
+import filterVuex from './utils/filter-vuex'
 import {parseKey} from './utils/key-events'
 import {getSpots} from './play'
 
@@ -33,6 +35,12 @@ export default function () {
           const scenario = findScenario(spots, data.payload)
           if (scenario) {
             this.current = scenario.component
+
+            // Handle Vuex state if found
+            // If we have a cached initial state, use that
+            if (get(this.current, 'store.constructor.name') === 'Store' && this.current._initialState) {
+              this.current.store.replaceState(JSON.parse(this.current._initialState))
+            }
           }
         }
       })
@@ -44,10 +52,15 @@ export default function () {
       }
       parent.postMessage({
         type: 'SET_SPOTS',
-        payload: JSON.stringify(spots)
+        payload: JSON.stringify(spots, filterVuex)
       }, location.origin)
     },
     render(h) {
+      // Save original store state on the first render
+      if (get(this.current, 'store.constructor.name') === 'Store' && !this.current._initialState) {
+        this.current._initialState = JSON.stringify(this.current.store.state)
+      }
+
       return h('div', {attrs: {id: 'app'}}, [h(this.current)])
     }
   })
