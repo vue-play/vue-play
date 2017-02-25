@@ -1,4 +1,5 @@
 import Vue from 'vue'
+import Vuex from 'vuex'
 import {play} from '../src/play'
 import MyButton from './MyButton.vue'
 
@@ -6,10 +7,13 @@ Vue.component('my-button', MyButton)
 
 play('Button')
   .add('with text', {
-    template: `<my-button :handle-click="log">text</my-button>`,
+    template: `<my-button :handle-click="log">{{ $store.state.count }}</my-button>`,
+    store: new Vuex.Store({
+      state: {count: 0}
+    }),
     methods: {
       log() {
-        this.$log(new Date())
+        this.$store.state.count++
       }
     }
   })
