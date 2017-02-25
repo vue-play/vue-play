@@ -44,11 +44,25 @@ export default function () {
       }
       parent.postMessage({
         type: 'SET_SPOTS',
-        payload: JSON.stringify(spots)
+        payload: JSON.stringify(purify(spots))
       }, location.origin)
     },
     render(h) {
       return h('div', {attrs: {id: 'app'}}, [h(this.current)])
     }
   })
+}
+
+function purify(spots) {
+  const result = {}
+  for (const name in spots) {
+    result[name] = spots[name].map(spot => ({
+      scenario: spot.scenario,
+      component: {
+        example: spot.component.example,
+        template: spot.component.template
+      }
+    }))
+  }
+  return result
 }
