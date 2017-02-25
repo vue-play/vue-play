@@ -19,6 +19,7 @@ A minimalistic framework for demonstrating your Vue components, inspired by [rea
   * [Loading Scenarios Dynamically](#loading-scenarios-dynamically)
   * [Register Components](#register-components)
   * [Use Component as `play()` argument](#use-component-as-play-argument)
+  * [Using with Vuex](#using-with-vuex)
 - [Component Shorthand](#component-shorthand)
 - [Additional Component Properties](#additional-component-properties)
   * [example](#example)
@@ -220,6 +221,54 @@ play(MyButton)
   .displayName('Show off my cute button')
   .add('with text', '<my-other-button>text</my-other-button>')
 ```
+
+### Using with [Vuex](https://github.com/vuejs/vuex)
+
+If your component is using [Vuex](https://github.com/vuejs/vuex) data store, you can pass store as an argument for a full component, just like you would in a normal Vue instance.
+
+First, load Vuex in your `./play/index.js` file:
+
+```js
+import Vue from 'vue'
+import Vuex from 'vuex'
+
+Vue.use(Vuex)
+```
+
+And then pass a Vuex Store instance like so:
+
+```js
+import Vuex from 'vuex'
+
+play('Monster', module)
+  .add('mutating tentacle monster', {
+    store: new Vuex.store({
+      state: {
+        type: 'TENTACLE_MONSTER',
+        tentacles: 12
+      },
+      getters: {
+        attack: state => tentacles * TENTACLE_DAMAGE
+      },
+      mutations: {
+        mutateTentacle(state, mutagenStrength) {
+          state.tentacles = state.tentacles * mutagenStrength
+        }
+      }, 
+      actions: {
+        mutateTentacle({ commit }, data) {
+          asyncServerOperation(data, (err, mutagenStrength) => {
+            commit('mutateTentacle', mutagenStrength)
+          })
+        }
+      }
+    }),
+    render(h) {}
+    // ...
+  })
+```
+
+You can use multiple Vuex Store instances. State always resets to the initial value when you switch between scenarios.
 
 ## Component Shorthand
 

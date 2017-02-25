@@ -40,6 +40,7 @@
   "dependencies": {
     "array-find-index": "^1.0.2",
     "highlight.js": "^9.8.0",
+    "lodash": "^4.17.4",
     "query-string": "^4.2.3",
     "uid": "0.0.2",
     "vue-router": "^2.0.3",

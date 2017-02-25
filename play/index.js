@@ -1,8 +1,8 @@
+import Vue from 'vue'
+import Vuex from 'vuex'
+
 import MyButton from './MyButton.vue'
 import Box from './Box.vue'
-
-import Vuex from 'vuex'
-import Vue from 'vue'
 
 Vue.use(Vuex)
 
