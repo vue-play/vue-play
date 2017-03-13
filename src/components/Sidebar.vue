@@ -22,7 +22,7 @@
             <li v-for="scenario in scenarios" class="nav-scenario">
               <router-link
                 exact
-                :to="{query: {spot: name, scenario: scenario.scenario}}">
+                :to="{query: buildQuery(name, scenario.scenario)}">
                 {{ scenario.scenario }}
               </router-link>
             </li>
@@ -50,7 +50,9 @@
         'visibleScenarios',
         'sidebarWidth',
         'currentScenario',
-        'filterKeyword'
+        'filterKeyword',
+        'layoutQuery',
+        'filterQuery'
       ])
     },
 
@@ -71,9 +73,11 @@
         'filterToys',
         'activateSpot'
       ]),
+
       filter: debounce(function ({target}) {
         this.filterToys(target.value)
       }, 350),
+
       handleMouseDown({clientX}) {
         this.resizing = true
         this.startX = clientX
@@ -107,6 +111,15 @@
           return true
         }
         return this.currentScenario.spot === name
+      },
+
+      buildQuery(spot, scenario) {
+        return {
+          spot,
+          scenario,
+          ...this.layoutQuery,
+          ...this.filterQuery
+        }
       }
     }
   }

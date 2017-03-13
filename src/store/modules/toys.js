@@ -76,6 +76,9 @@ export default {
     },
     filterKeyword(state) {
       return state.filter
+    },
+    filterQuery(state) {
+      return state.filter === '' ? {} : {filter: state.filter}
     }
   }
 }

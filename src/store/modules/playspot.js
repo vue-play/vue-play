@@ -4,16 +4,14 @@ import router from 'router'
 
 export const UPDATE_CURRENT_SCENARIO = 'UPDATE_CURRENT_SCENARIO'
 
-const updateCurrent = (state, payload) => {
-  state.current = payload
-}
-
 export default {
   state: {
     current: null
   },
   mutations: {
-    UPDATE_CURRENT_SCENARIO: updateCurrent
+    UPDATE_CURRENT_SCENARIO(state, payload) {
+      state.current = payload
+    }
   },
   actions: {
     playNext({commit, getters, state}) {
@@ -24,7 +22,14 @@ export default {
       const nextIndex = (current + 1) % total
       const next = getters.playspotRoutes[nextIndex]
       commit(UPDATE_CURRENT_SCENARIO, next)
-      router.push({query: next})
+      router.push(getters.getQuery)
+      // router.push({
+      //   query: {
+      //     ...next,
+      //     ...getters.layoutQuery,
+      //     ...getters.filterQuery
+      //   }
+      // })
     },
     playPrevious({commit, getters, state}) {
       const total = getters.playspotRoutes.length
@@ -34,14 +39,28 @@ export default {
       const prevIndex = (total + (current - 1)) % total
       const prev = getters.playspotRoutes[prevIndex]
       commit(UPDATE_CURRENT_SCENARIO, prev)
-      router.push({query: prev})
+      router.push(getters.getQuery)
+      // router.push({
+      //   query: {
+      //     ...prev,
+      //     ...getters.layoutQuery,
+      //     ...getters.filterQuery
+      //   }
+      // })
     },
     updateCurrentScenario({commit}, path) {
       commit(UPDATE_CURRENT_SCENARIO, path)
     },
     activateSpot({commit, getters}, spot) {
       const {scenario} = getters.visibleScenarios[spot][0]
-      router.push({query: {spot, scenario}})
+      commit(UPDATE_CURRENT_SCENARIO, {spot, scenario})
+      router.push(getters.getQuery)
+      // router.push({query: {
+      //   spot,
+      //   scenario,
+      //   ...getters.layoutQuery,
+      //   ...getters.filterQuery
+      // }})
     }
   },
   getters: {
