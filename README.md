@@ -11,8 +11,6 @@ A minimalistic framework for demonstrating your Vue components, inspired by [rea
 <!-- toc -->
 
 - [Getting Started](#getting-started)
-    + [App interface](#app-interface)
-    + [Preview](#preview)
 - [Writing Scenarios](#writing-scenarios)
   * [Keeping Scenarios](#keeping-scenarios)
   * [Writing Scenarios](#writing-scenarios-1)
@@ -33,112 +31,32 @@ A minimalistic framework for demonstrating your Vue components, inspired by [rea
 
 ## Getting Started
 
-Install it:
+Integrate `vue-play` into your project using [get-play](https://github.com/vue-play/getplay):
 
 ```bash
+yarn global add getplay
 cd my-project
-npm install --save-dev vue-play vue-play-cli
-# vue-play-cli gives you the `vue-play` command
-# vue-play is the UI utils.
+getplay
 ```
 
-Add npm scripts:
+Then you can run `yarn play` and go to `http://localhost:5000`
 
-```json
-{
-  "scripts": {
-    "play": "vue-play start",
-    "play:build": "vue-play build"
-  }
-}
-```
+So far we got:
 
-Write `play entry` to load your examples:
+- npm scripts `yarn play` & `yarn build:play`
+- A `./play` folder where you write scenarios for your component
+- A `./play.config.js` file which helps you configure webpack easily using [vbuild](https://vbuild.js.org)
 
-```js
-// ./play/index.js
-import { play } from 'vue-play'
-import MyButton from './components/MyButton.vue'
 
-play('Button')
-  .add('with text', h => h(MyButton, 'hello'))
-  .add('with emoji', h => h(MyButton, '💫'))
-```
-
-Then just run `npm run play` and go to `http://localhost:5000`
-
-For more usages on vue-play-cli, please head to [vue-play/vue-play-cli](https://github.com/vue-play/vue-play-cli).
-
-<details><summary>The hard way</summary>
-
-There're two pages in your play app, one is the app interface which has a sidebar and it can toggle scenarios of your components, the other page is for rendering the examples, this page will be loaded as iframe in app interface.
-
-And only the latter needs to load scenarios that you write in the `play entry`, let's say `./play/index.js`:
-
-```js
-import { play } from 'vue-play'
-import MyButton from './MyButton.vue'
-
-play('MyButton')
-  .add('with text', h => h(MyButton, ['text']))
-```
-
-#### App interface
-
-```js
-// ./play/app.js
-import app from 'vue-play/app'
-
-// bootstrap app
-app()
-```
-
-#### Preview
-
-```js
-// ./play/preview.js
-import './' // which is ./play/index.js
-import preview from 'vue-play/preview'
-
-// actually render the scenarios in preview page
-// when the preview page is ready
-// it will tell the app interface what scenarios we have
-preview()
-```
-
-Add `app interface` and `preview` to your webpack entry:
-
-```js
-module.exports = {
-  // ...
-  entry: {
-    app: './play/app.js',
-    preview: './play/preview.js'
-  },
-  // don't forget to generate html output for both of them
-  plugins: [
-    new HtmlWebpackPlugin({
-      filename: 'index.html',
-      chunks: ['app']
-    }),
-    new HtmlWebpackPlugin({
-      filename: 'preview.html',
-      chunks: ['preview']
-    })
-  ]
-}
-```
-
-That's it, you're all set!
-</details>
+The only thing you really need to worry about is `./play/index.js`, since you will write scenarios or dynamically load scenarios there.
 
 ## Writing Scenarios
 
-`scenario`, a.k.a. story in react-storybook, it's usually an example for demostrating your real component.
+`scenario`, a.k.a. story in react-storybook, it's usually an example component for demostrating your real component.
 
 ### Keeping Scenarios
 
-You can keep scenarios anywhere you want, for example you can keep them all at `./play/index.js`, you can also use separate files for them, or even name them `*.play.js` in your component directory and load them dynamically.
+You can keep scenarios anywhere you want, by default keep them all at `./play/index.js`, you can also use separate files for them, or even name them `*.play.js` in your component directory and load them dynamically.
 
 ### Writing Scenarios
 
