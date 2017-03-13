@@ -16,14 +16,12 @@ module.exports = {
   format: 'cjs',
   sourceMap: false,
   postcss: config.postcss,
+  templateCompiler: true,
   webpack: {
     resolve: {
       modules: [
         path.resolve('src')
-      ],
-      alias: {
-        vue: 'vue/dist/vue'
-      }
+      ]
     },
     externals: [
       './play'

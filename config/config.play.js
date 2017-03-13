@@ -8,14 +8,12 @@ module.exports = {
   },
   dist: 'dist-play',
   postcss: config.postcss,
+  templateCompiler: true,
   webpack: {
     resolve: {
       modules: [
         path.resolve('src')
-      ],
-      alias: {
-        vue: 'vue/dist/vue'
-      }
+      ]
     }
   },
   // add hmr client to these entries
