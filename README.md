@@ -31,7 +31,7 @@ A minimalistic framework for demonstrating your Vue components, inspired by [rea
 
 ## Getting Started
 
-Integrate `vue-play` into your project using [get-play](https://github.com/vue-play/getplay):
+Integrate `vue-play` into your project using [getplay](https://github.com/vue-play/getplay):
 
 ```bash
 yarn global add getplay
