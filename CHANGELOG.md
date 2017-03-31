@@ -1,3 +1,11 @@
+## [Version 3.1.2](https://github.com/egoist/vue-play/releases/tag/v3.1.2) (2017-3-31)
+
+### Bug fixes
+
+- [Hotfix] fix readme not showing: [`5d251c2`](https://github.com/egoist/vue-play/commit/5d251c2) ([#55](https://github.com/egoist/vue-play/issues/55))
+
+[...full changes](https://github.com/egoist/vue-play/compare/v3.1.1...v3.1.2)
+
 ## v2.1.0 (2016/11/13)
 
 ### Core
