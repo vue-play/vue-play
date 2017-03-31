@@ -60,7 +60,8 @@ function purify(spots) {
       scenario: spot.scenario,
       component: {
         example: spot.component.example,
-        template: spot.component.template
+        template: spot.component.template,
+        readme: spot.component.readme
       }
     }))
   }
