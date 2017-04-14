@@ -1,7 +1,8 @@
 <template>
   <div class="main" :style="{width: mainWidth}">
+    <device-toolbar v-if='showDeviceToolbar' />
     <div class="view">
-      <iframe class="play-ground" ref="iframe" src="preview.html" frameborder="0"></iframe>
+      <iframe :style='{width: frameSize.width, height: frameSize.height}' class="play-ground" ref="iframe" src="preview.html" frameborder="0"></iframe>
       <tabs
         v-if="current.component"
         :example="current.component.example"
@@ -16,6 +17,7 @@
   import findScenario from 'utils/find-scenario'
   import {observeKeyEvents, executeShortcut} from 'utils/key-events'
   import Tabs from './Tabs.vue'
+  import DeviceToolbar from './DeviceToolbar'
 
   export default {
     watch: {
@@ -32,7 +34,7 @@
       observeKeyEvents(this.$store)
     },
     computed: {
-      ...mapGetters(['mainWidth']),
+      ...mapGetters(['mainWidth', 'showDeviceToolbar', 'frameSize']),
       current() {
         const {spot} = this.$route.query
         const {scenario, component} = findScenario(this.$store.state.app.spots, this.$route.query) || {}
@@ -103,7 +105,7 @@
       }
     },
     components: {
-      Tabs
+      Tabs, DeviceToolbar
     }
   }
 </script>

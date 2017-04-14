@@ -3,6 +3,9 @@
     <div class="resize-indicator" v-if="resizing">W: {{ sidebarWidth }}</div>
     <div class="sidebar-border" @mousedown="handleMouseDown" @mouseup="handleMouseUp"></div>
     <h1 @click="toggleHelp">Vue Play</h1>
+    <a class="sidebar-mobile" @click="toggleDeviceToolbar">
+      <mobile-icon :size="'2em'"/>
+    </a>
     <div class="sidebar-search">
       <input @input="filter" placeholder="Type to filter components..." />
     </div>
@@ -37,6 +40,7 @@
   import {preventSelectStart, preventSelectStop} from 'utils/prevent-select'
   import {mapGetters, mapActions} from 'vuex'
   import debounce from 'utils/debounce'
+  import MobileIcon from './MobileIcon';
 
   const BOUNDARY = {
     min: 200,
@@ -63,13 +67,16 @@
       }
     },
 
+    components: { MobileIcon },
+
     methods: {
       ...mapActions([
         'updatePlayspot',
         'updateSidebarWidth',
         'toggleHelp',
         'filterToys',
-        'activateSpot'
+        'activateSpot',
+        'toggleDeviceToolbar'
       ]),
       filter: debounce(function ({target}) {
         this.filterToys(target.value)
@@ -218,6 +225,12 @@
     .scenarios {
       height: calc(100% - $logoHeight - $searchHeight);
       overflow: auto;
+    }
+    .sidebar-mobile {
+      position: absolute;
+      right: 0;
+      top: 5px;
+      cursor: pointer;
     }
   }
 </style>
