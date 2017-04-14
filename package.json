@@ -14,6 +14,7 @@
   },
   "scripts": {
     "test": "npm run build",
+    "prepublish": "npm t",
     "toc": "markdown-toc -i README.md",
     "build": "vbuild -c config/config.cjs.js",
     "surge": "npm run play:build && surge -p dist-play -d vue-play-button.surge.sh",
