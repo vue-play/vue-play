@@ -30,8 +30,13 @@
           { name: 'iPhone 6 Plus', width: 414,  height: 736,  userAgent: iPhoneUserAgent },
           { name: 'iPad',          width: 768,  height: 1024, userAgent: iPadUserAgent   },
           { name: 'iPad Pro',      width: 1024, height: 1366, userAgent: iPadUserAgent   }
-        ]
+        ],
+        defaultUserAgent: global.navigator.userAgent
       }
+    },
+    created() {
+      this.defineUserAgent(global);
+      this.defineUserAgent(global.document.querySelector('iframe').contentWindow);
     },
     methods: {
       ...mapActions(['setFrameSize']),
@@ -41,6 +46,20 @@
           this.setFrameSize({ width: device.width + "px", height: device.height + "px" })
         } else {
           this.setFrameSize()
+        }
+      },
+      defineUserAgent(window) {
+        if (window.navigator) {
+          const userAgentProp = { get: () => {
+            return this.selectedDevice ? this.selectedDevice.userAgent : this.defaultUserAgent
+          }}
+          try {
+            Object.defineProperty(window.navigator, 'userAgent', userAgentProp)
+          } catch (e) {
+            window.navigator = Object.create(window.navigator, {
+              userAgent: userAgentProp
+            })
+          }
         }
       }
     },
