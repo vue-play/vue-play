@@ -4,6 +4,8 @@ export const TOGGLE_ALL_PANELS = 'TOGGLE_ALL_PANELS'
 export const UPDATE_SIDEBAR_WIDTH = 'UPDATE_SIDEBAR_WIDTH'
 export const UPDATE_ACTIVE_TAB = 'UPDATE_ACTIVE_TAB'
 export const TOGGLE_HELP = 'TOGGLE_HELP'
+export const TOGGLE_DEVICE_TOOLBAR = 'TOGGLE_DEVICE_TOOLBAR'
+export const SET_FRAME_SIZE = 'SET_FRAME_SIZE'
 
 export default {
   state: {
@@ -11,7 +13,12 @@ export default {
     bottomPanelExpanded: true,
     sidebarWidth: 280,
     activeTab: null,
-    showHelp: false
+    showHelp: false,
+    showDeviceToolbar: false,
+    frameSize: {
+      width: '100%',
+      height: '100%'
+    }
   },
   mutations: {
     TOGGLE_LEFT_PANEL(state) {
@@ -28,6 +35,17 @@ export default {
     },
     TOGGLE_HELP(state) {
       state.showHelp = !state.showHelp
+    },
+    TOGGLE_DEVICE_TOOLBAR(state) {
+      state.showDeviceToolbar = !state.showDeviceToolbar
+    },
+    SET_FRAME_SIZE(state, payload) {
+      if (payload) {
+        state.frameSize.width = payload.width
+        state.frameSize.height = payload.height
+      } else {
+        state.frameSize.width = state.frameSize.height = '100%'
+      }
     }
   },
   actions: {
@@ -58,6 +76,12 @@ export default {
     },
     toggleHelp({commit}) {
       commit(TOGGLE_HELP)
+    },
+    toggleDeviceToolbar({commit}) {
+      commit(TOGGLE_DEVICE_TOOLBAR)
+    },
+    setFrameSize({commit}, payload) {
+      commit(SET_FRAME_SIZE, payload)
     }
   },
   getters: {
@@ -81,6 +105,12 @@ export default {
     },
     showHelp(state) {
       return state.showHelp
+    },
+    showDeviceToolbar(state) {
+      return state.showDeviceToolbar
+    },
+    frameSize(state) {
+      return state.frameSize
     }
   }
 }
