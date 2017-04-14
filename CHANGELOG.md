@@ -1,3 +1,11 @@
+## [Version 3.2.1](https://github.com/egoist/vue-play/releases/tag/v3.2.1) (2017-4-14)
+
+### Bug fixes
+
+- fix npm script: [`ef2dcda`](https://github.com/egoist/vue-play/commit/ef2dcda)
+
+[...full changes](https://github.com/egoist/vue-play/compare/v3.2.0...v3.2.1)
+
 ## [Version 3.2.0](https://github.com/egoist/vue-play/releases/tag/v3.2.0) (2017-4-14)
 
 ### New features
