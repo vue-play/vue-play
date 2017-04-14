@@ -64,7 +64,7 @@ module.exports =
 /******/ 	__webpack_require__.p = "/";
 
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 64);
+/******/ 	return __webpack_require__(__webpack_require__.s = 65);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -281,7 +281,7 @@ var _vue = __webpack_require__(2);
 
 var _vue2 = _interopRequireDefault(_vue);
 
-var _vueRouter = __webpack_require__(61);
+var _vueRouter = __webpack_require__(62);
 
 var _vueRouter2 = _interopRequireDefault(_vueRouter);
 
@@ -312,15 +312,15 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _highlight = __webpack_require__(55);
+var _highlight = __webpack_require__(56);
 
 var _highlight2 = _interopRequireDefault(_highlight);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-_highlight2.default.registerLanguage('json', __webpack_require__(57));
-_highlight2.default.registerLanguage('javascript', __webpack_require__(56));
-_highlight2.default.registerLanguage('xml', __webpack_require__(58));
+_highlight2.default.registerLanguage('json', __webpack_require__(58));
+_highlight2.default.registerLanguage('javascript', __webpack_require__(57));
+_highlight2.default.registerLanguage('xml', __webpack_require__(59));
 
 exports.default = _highlight2.default;
 
@@ -451,7 +451,7 @@ var _vue = __webpack_require__(2);
 
 var _vue2 = _interopRequireDefault(_vue);
 
-var _vuexRouterSync = __webpack_require__(63);
+var _vuexRouterSync = __webpack_require__(64);
 
 var _store = __webpack_require__(22);
 
@@ -644,7 +644,7 @@ exports.default = {
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-
+/* WEBPACK VAR INJECTION */(function(global) {
 
 Object.defineProperty(exports, "__esModule", {
   value: true
@@ -683,8 +683,13 @@ exports.default = {
   data: function data() {
     return {
       selectedDevice: null,
-      devices: [{ name: 'iPhone 4', width: 320, height: 480, userAgent: iPhoneUserAgent }, { name: 'iPhone 5', width: 320, height: 568, userAgent: iPhoneUserAgent }, { name: 'iPhone 6', width: 375, height: 667, userAgent: iPhoneUserAgent }, { name: 'iPhone 6 Plus', width: 414, height: 736, userAgent: iPhoneUserAgent }, { name: 'iPad', width: 768, height: 1024, userAgent: iPadUserAgent }, { name: 'iPad Pro', width: 1024, height: 1366, userAgent: iPadUserAgent }]
+      devices: [{ name: 'iPhone 4', width: 320, height: 480, userAgent: iPhoneUserAgent }, { name: 'iPhone 5', width: 320, height: 568, userAgent: iPhoneUserAgent }, { name: 'iPhone 6', width: 375, height: 667, userAgent: iPhoneUserAgent }, { name: 'iPhone 6 Plus', width: 414, height: 736, userAgent: iPhoneUserAgent }, { name: 'iPad', width: 768, height: 1024, userAgent: iPadUserAgent }, { name: 'iPad Pro', width: 1024, height: 1366, userAgent: iPadUserAgent }],
+      defaultUserAgent: global.navigator.userAgent
     };
+  },
+  created: function created() {
+    this.defineUserAgent(global);
+    this.defineUserAgent(global.document.querySelector('iframe').contentWindow);
   },
 
   methods: _extends({}, (0, _vuex.mapActions)(['setFrameSize']), {
@@ -695,10 +700,27 @@ exports.default = {
       } else {
         this.setFrameSize();
       }
+    },
+    defineUserAgent: function defineUserAgent(window) {
+      var _this = this;
+
+      if (window.navigator) {
+        var userAgentProp = { get: function get() {
+            return _this.selectedDevice ? _this.selectedDevice.userAgent : _this.defaultUserAgent;
+          } };
+        try {
+          Object.defineProperty(window.navigator, 'userAgent', userAgentProp);
+        } catch (e) {
+          window.navigator = Object.create(window.navigator, {
+            userAgent: userAgentProp
+          });
+        }
+      }
     }
   }),
   components: { MobileIcon: _MobileIcon2.default, DesktopIcon: _DesktopIcon2.default }
 };
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(53)))
 
 /***/ }),
 /* 17 */
@@ -753,7 +775,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 //
 //
 
-var _vueSlimModal = __webpack_require__(62);
+var _vueSlimModal = __webpack_require__(63);
 
 var _vueSlimModal2 = _interopRequireDefault(_vueSlimModal);
 
@@ -1367,7 +1389,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.UPDATE_CURRENT_SCENARIO = undefined;
 
-var _arrayFindIndex = __webpack_require__(54);
+var _arrayFindIndex = __webpack_require__(55);
 
 var _arrayFindIndex2 = _interopRequireDefault(_arrayFindIndex);
 
@@ -1460,7 +1482,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-var _uid = __webpack_require__(60);
+var _uid = __webpack_require__(61);
 
 var _uid2 = _interopRequireDefault(_uid);
 
@@ -2517,63 +2539,90 @@ if (false) {
 }
 
 /***/ }),
-/* 53 */,
-/* 54 */
+/* 53 */
+/***/ (function(module, exports) {
+
+var g;
+
+// This works in non-strict mode
+g = (function() {
+	return this;
+})();
+
+try {
+	// This works if eval is allowed (see CSP)
+	g = g || Function("return this")() || (1,eval)("this");
+} catch(e) {
+	// This works if the window reference is available
+	if(typeof window === "object")
+		g = window;
+}
+
+// g can still be undefined, but nothing to do about it...
+// We return undefined, instead of nothing here, so it's
+// easier to handle this case. if(!global) { ...}
+
+module.exports = g;
+
+
+/***/ }),
+/* 54 */,
+/* 55 */
 /***/ (function(module, exports) {
 
 module.exports = require("array-find-index");
 
 /***/ }),
-/* 55 */
+/* 56 */
 /***/ (function(module, exports) {
 
 module.exports = require("highlight.js/lib/highlight");
 
 /***/ }),
-/* 56 */
+/* 57 */
 /***/ (function(module, exports) {
 
 module.exports = require("highlight.js/lib/languages/javascript");
 
 /***/ }),
-/* 57 */
+/* 58 */
 /***/ (function(module, exports) {
 
 module.exports = require("highlight.js/lib/languages/json");
 
 /***/ }),
-/* 58 */
+/* 59 */
 /***/ (function(module, exports) {
 
 module.exports = require("highlight.js/lib/languages/xml");
 
 /***/ }),
-/* 59 */,
-/* 60 */
+/* 60 */,
+/* 61 */
 /***/ (function(module, exports) {
 
 module.exports = require("uid");
 
 /***/ }),
-/* 61 */
+/* 62 */
 /***/ (function(module, exports) {
 
 module.exports = require("vue-router");
 
 /***/ }),
-/* 62 */
+/* 63 */
 /***/ (function(module, exports) {
 
 module.exports = require("vue-slim-modal");
 
 /***/ }),
-/* 63 */
+/* 64 */
 /***/ (function(module, exports) {
 
 module.exports = require("vuex-router-sync");
 
 /***/ }),
-/* 64 */
+/* 65 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__(11);

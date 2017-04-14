@@ -64,7 +64,7 @@ module.exports =
 /******/ 	__webpack_require__.p = "/";
 
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 66);
+/******/ 	return __webpack_require__(__webpack_require__.s = 67);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -136,7 +136,7 @@ var _vue = __webpack_require__(2);
 
 var _vue2 = _interopRequireDefault(_vue);
 
-var _queryString = __webpack_require__(59);
+var _queryString = __webpack_require__(60);
 
 var _queryString2 = _interopRequireDefault(_queryString);
 
@@ -146,7 +146,7 @@ var _findScenario2 = _interopRequireDefault(_findScenario);
 
 var _keyEvents = __webpack_require__(5);
 
-var _play = __webpack_require__(53);
+var _play = __webpack_require__(54);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -312,21 +312,21 @@ var observeKeyEvents = exports.observeKeyEvents = function observeKeyEvents(stor
 
 /***/ }),
 
-/***/ 53:
+/***/ 54:
 /***/ (function(module, exports) {
 
 module.exports = require("./play");
 
 /***/ }),
 
-/***/ 59:
+/***/ 60:
 /***/ (function(module, exports) {
 
 module.exports = require("query-string");
 
 /***/ }),
 
-/***/ 66:
+/***/ 67:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__(13);
