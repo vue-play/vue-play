@@ -1,3 +1,11 @@
+## [Version 3.2.0](https://github.com/egoist/vue-play/releases/tag/v3.2.0) (2017-4-14)
+
+### New features
+
+- Device Toolbar: [`8002688`](https://github.com/egoist/vue-play/commit/8002688) ([#57](https://github.com/egoist/vue-play/issues/57))
+
+[...full changes](https://github.com/egoist/vue-play/compare/v3.1.3...v3.2.0)
+
 ## [Version 3.1.2](https://github.com/egoist/vue-play/releases/tag/v3.1.2) (2017-3-31)
 
 ### Bug fixes
