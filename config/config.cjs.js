@@ -13,18 +13,12 @@ module.exports = {
   },
   html: false,
   minimize: false,
-  format: 'cjs',
   sourceMap: false,
+  hotReload: false,
   postcss: config.postcss,
-  templateCompiler: true,
-  webpack: {
-    resolve: {
-      modules: [
-        path.resolve('src')
-      ]
-    },
-    externals: [
-      './play'
-    ]
+  webpack (config) {
+    config.resolve.modules.push(path.resolve('src'))
+    config.externals.push('./play')
+    return config
   }
 }

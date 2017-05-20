@@ -188,7 +188,7 @@
   }
 </script>
 
-<style src="highlight.js/styles/github"></style>
+<style src="highlight.js/styles/github.css"></style>
 <style src="github-markdown-css"></style>
 <style src="hint.css/hint.css"></style>
 <style scoped>
