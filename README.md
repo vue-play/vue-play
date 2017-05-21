@@ -45,7 +45,7 @@ So far we got:
 
 - npm scripts `yarn play` & `yarn build:play`
 - A `./play` folder where you write scenarios for your component
-- A `./play.config.js` file which helps you configure webpack easily using [vbuild](https://vbuild.js.org)
+- A `./play.config.js` file which helps you configure webpack easily using [Poi](https://poi.js.org)
 
 
 The only thing you really need to worry about is `./play/index.js`, since you will write scenarios or dynamically load scenarios there.

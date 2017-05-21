@@ -3,21 +3,15 @@ const config = require('./')
 
 module.exports = {
   entry: {
-    app: './play/app.js',
-    preview: './play/preview.js'
+    app: [':hot:', './play/app.js'],
+    preview: [':hot:', './play/preview.js']
   },
   dist: 'dist-play',
   postcss: config.postcss,
-  templateCompiler: true,
-  webpack: {
-    resolve: {
-      modules: [
-        path.resolve('src')
-      ]
-    }
+  webpack (config) {
+    config.resolve.modules.push(path.resolve('src'))
+    return config
   },
-  // add hmr client to these entries
-  hmrEntry: ['app', 'preview'],
   // produce html files for these entries
   html: [
     {title: 'Vue-Play Panel', chunks: ['app']},

@@ -16,10 +16,10 @@
     "test": "npm run build",
     "prepublish": "npm t",
     "toc": "markdown-toc -i README.md",
-    "build": "vbuild -c config/config.cjs.js",
+    "build": "poi build -c config/config.cjs.js --templateCompiler --format cjs",
     "surge": "npm run play:build && surge -p dist-play -d vue-play-button.surge.sh",
-    "play": "vbuild -c config/config.play.js -d",
-    "play:build": "vbuild --config config/config.play.js"
+    "play": "poi -c config/config.play.js --templateCompiler",
+    "play:build": "poi build -c config/config.play.js --templateCompiler --format cjs"
   },
   "files": [
     "dist/play.js",
@@ -56,8 +56,8 @@
     "github-markdown-css": "^2.4.1",
     "hint.css": "^2.4.1",
     "markdown-toc": "^1.1.0",
+    "poi": "^8.0.4",
     "postcss-nested": "^1.0.0",
-    "postcss-simple-vars": "^3.0.0",
-    "vbuild": "^6.24.2"
+    "postcss-simple-vars": "^3.0.0"
   }
 }
