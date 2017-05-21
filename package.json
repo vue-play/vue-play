@@ -56,8 +56,8 @@
     "github-markdown-css": "^2.4.1",
     "hint.css": "^2.4.1",
     "markdown-toc": "^1.1.0",
+    "poi": "^8.0.4",
     "postcss-nested": "^1.0.0",
-    "postcss-simple-vars": "^3.0.0",
-    "poi": "^8.0.0"
+    "postcss-simple-vars": "^3.0.0"
   }
 }
