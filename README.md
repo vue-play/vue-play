@@ -52,7 +52,7 @@ The only thing you really need to worry about is `./play/index.js`, since you wi
 
 ## Writing Scenarios
 
-`scenario`, a.k.a. story in react-storybook, it's usually an example component for demostrating your real component.
+`scenario`, a.k.a. story in react-storybook, it's usually an example component for demonstrating your real component.
 
 ### Keeping Scenarios
 
